@@ -1,0 +1,9 @@
+<div *ngIf="deal">
+  <h3>{{deal.name}}</h3>
+  <h4>{{deal.price}}</h4>
+  <div *ngFor="let pair of deal.debtors | keyvalue">
+    {{deal.members.get(pair.key).name}} за себя и за
+    <span *ngFor="let borrower of pair.value; last as isLast">{{deal.members.get(borrower).name}}<span *ngIf="!isLast">, </span> </span>
+    <p *ngFor="let notDebtor of notDebtors() | keyvalue">{{notDebtor.value.name}} за себя</p>
+  </div>
+</div>
