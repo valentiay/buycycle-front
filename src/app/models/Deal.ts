@@ -14,4 +14,21 @@ export class Deal {
     this.members = members;
     this.debtors = debtors;
   }
+
+  notDebtors(): Map<string, Person> {
+    const members = new Map<string, Person>(this.members);
+    this.debtors.forEach((borrowers, lender) => {
+      members.delete(lender);
+      borrowers.forEach(borrower => members.delete(borrower));
+    });
+    return members;
+  }
+
+  notBorrowers(): Map<string, Person> {
+    const members = new Map<string, Person>(this.members);
+    this.debtors.forEach(borrowers => {
+      borrowers.forEach(borrower => members.delete(borrower));
+    });
+    return members;
+  }
 }

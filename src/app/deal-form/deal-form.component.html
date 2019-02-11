@@ -1,0 +1,21 @@
+<div *ngIf="deal">
+  <input [(ngModel)]="deal.name" placeholder="Название" required="required"/><br/>
+  <input [(ngModel)]="deal.price" placeholder="Стоимость" required="required"/>
+  <div *ngFor="let notBorrower of deal.notBorrowers() | keyvalue">{{notBorrower.value.name}} за себя
+    <span *ngIf="deal.debtors.has(notBorrower.key)">
+      и за
+      <span *ngFor="let borrower of deal.debtors.get(notBorrower.key); last as isLast">
+        {{deal.members.get(borrower).name}} <ng-container *ngIf="!isLast">, </ng-container>
+      </span>
+    </span>
+    <button (click)="toggleBorrowerList(notBorrower.key)">и за</button>
+    <div *ngIf="notBorrower.key === activeLender">
+      <div *ngFor="let otherNotBorrower of deal.notDebtors() | keyvalue"
+           (click)="addBorrower(notBorrower.key, otherNotBorrower.key)">
+        <ng-container *ngIf="otherNotBorrower.key !== notBorrower.key">
+          {{otherNotBorrower.value.name}}
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

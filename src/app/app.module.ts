@@ -8,6 +8,7 @@ import { PersonComponent } from './person/person.component';
 import { PersonsComponent } from './persons/persons.component';
 import { DealsComponent } from './deals/deals.component';
 import { DealComponent } from './deal/deal.component';
+import { DealFormComponent } from './deal-form/deal-form.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DealComponent } from './deal/deal.component';
     PersonComponent,
     PersonsComponent,
     DealsComponent,
-    DealComponent
+    DealComponent,
+    DealFormComponent
   ],
   imports: [
     BrowserModule,

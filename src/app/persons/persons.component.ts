@@ -34,6 +34,10 @@ export class PersonsComponent implements OnInit {
     });
   }
 
+  clearPerson() {
+    this.newPerson = undefined;
+  }
+
   deletePerson(person: Person) {
     this.personService.deletePerson(person).subscribe(() => this.getPersons());
   }

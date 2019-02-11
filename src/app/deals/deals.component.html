@@ -1,4 +1,8 @@
 <h2>Покупки</h2>
+<button (click)="initEmptyDeal()" *ngIf="!newDeal">Добавить</button>
+<app-deal-form [deal]="newDeal"></app-deal-form>
+<button (click)="addNewDeal()" *ngIf="newDeal">Добавить</button>
+<button (click)="clearDeal()" *ngIf="newDeal">Отмена</button>
 <div *ngFor="let deal of deals">
   <app-deal [deal]="deal"></app-deal>
 </div>
