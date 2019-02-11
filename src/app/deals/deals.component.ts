@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Deal} from '../models/Deal';
+import {DebtorDeal} from '../models/DebtorDeal';
+import {Deal, DealType} from '../models/Deal';
 import {Person} from '../models/Person';
 import {PersonService} from '../person.service';
 import {DealService} from '../deal.service';
+import {OneForAllDeal} from '../models/OneForAllDeal';
 
 @Component({
   selector: 'app-deals',
@@ -10,8 +12,11 @@ import {DealService} from '../deal.service';
   styleUrls: ['./deals.component.css']
 })
 export class DealsComponent implements OnInit {
+  dealType = DealType;
+
   deals: Deal[];
   newDeal: Deal;
+  newDealType: DealType = DealType.OneForAll;
   persons: Person[];
 
   constructor(private personService: PersonService, private dealService: DealService) {
@@ -27,13 +32,28 @@ export class DealsComponent implements OnInit {
   }
 
   getDeals() {
-    this.dealService.getDeals().subscribe(deals => this.deals = deals)
+    this.dealService.getDeals().subscribe(deals => this.deals = deals);
+  }
+
+  setNewDealType(type: DealType) {
+    this.newDealType = type;
+    switch (type) {
+      case DealType.OneForAll: {
+        this.newDeal = OneForAllDeal.fromOtherDeal(this.newDeal);
+        break;
+      }
+      case DealType.Debtors: {
+        this.newDeal = DebtorDeal.fromOtherDeal(this.newDeal);
+        break;
+      }
+    }
   }
 
   initEmptyDeal() {
     const members = new Map<string, Person>();
     this.persons.forEach(person => members.set(person.id, person));
-    this.newDeal = new Deal('1', '', '', members, new Map());
+    this.newDealType = DealType.OneForAll;
+    this.newDeal = new OneForAllDeal('1', '', '', members, '');
   }
 
   addNewDeal() {

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Deal} from '../models/Deal';
+import {Deal, DealType} from '../models/Deal';
 
 @Component({
   selector: 'app-deal',
@@ -7,6 +7,8 @@ import {Deal} from '../models/Deal';
   styleUrls: ['./deal.component.css']
 })
 export class DealComponent {
+
+  dealType = DealType;
 
   @Input() deal: Deal;
 

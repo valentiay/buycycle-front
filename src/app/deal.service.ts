@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Deal} from './models/Deal';
+import {DebtorDeal} from './models/DebtorDeal';
 import {Person} from './models/Person';
-import {Observable, of} from "rxjs";
+import {Observable, of} from 'rxjs';
+import {OneForAllDeal} from './models/OneForAllDeal';
+import {Deal} from './models/Deal';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +23,10 @@ export class DealService {
     persons.forEach(person => members.set(person.id, person));
     const debtors = new Map<string, string[]>();
     debtors.set('14', ['12', '23']);
-    this.deals = [new Deal('1', 'Makdak', '$300', members, debtors)];
+    this.deals = [
+      new DebtorDeal('1', 'Makdak', '$300', members, debtors),
+      new OneForAllDeal('2', 'Burger King', '$150', members, '23')
+    ];
   }
 
   getDeals(): Observable<Deal[]> {

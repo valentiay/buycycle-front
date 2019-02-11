@@ -1,8 +1,21 @@
 <h2>Покупки</h2>
-<button (click)="initEmptyDeal()" *ngIf="!newDeal">Добавить</button>
-<app-deal-form [deal]="newDeal"></app-deal-form>
-<button (click)="addNewDeal()" *ngIf="newDeal">Добавить</button>
-<button (click)="clearDeal()" *ngIf="newDeal">Отмена</button>
+<button (click)="initEmptyDeal()" *ngIf="!newDeal">Добавить</button><br/>
+<ng-container *ngIf="newDeal">
+  <button (click)="setNewDealType(dealType.OneForAll)" [class.selectedType]="newDealType === dealType.OneForAll">
+    Один за всех
+  </button>
+  <button (click)="setNewDealType(dealType.Debtors)" [class.selectedType]="newDealType === dealType.Debtors">
+    Непонятная Васе схема
+  </button>
+  <div>
+    <ng-container [ngSwitch]="newDealType">
+      <app-one-for-all-deal-form *ngSwitchCase="dealType.OneForAll" [deal]="newDeal"></app-one-for-all-deal-form>
+      <app-debtor-deal-form *ngSwitchCase="dealType.Debtors" [deal]="newDeal"></app-debtor-deal-form>
+    </ng-container>
+    <button (click)="addNewDeal()" *ngIf="newDeal">Добавить</button>
+    <button (click)="clearDeal()" *ngIf="newDeal">Отмена</button>
+  </div>
+</ng-container>
 <div *ngFor="let deal of deals">
   <app-deal [deal]="deal"></app-deal>
 </div>

@@ -1,0 +1,15 @@
+<div *ngIf="deal">
+  <input [(ngModel)]="deal.name" placeholder="Название" required="required"/><br/>
+  <input [(ngModel)]="deal.price" placeholder="Стоимость" required="required"/><br>
+  <label><select [(ngModel)]="deal.lender" required="required">
+    <option *ngFor="let member of deal.members | keyvalue; first as isFirst"
+            [attr.selected]="isFirst ? 'selected' : null"
+            value="{{member.key}}">
+      {{member.value.name}}
+    </option>
+  </select> платит за всех: </label>
+  <div *ngFor="let member of deal.members | keyvalue">
+    {{member.value.name}}
+    <button (click)="deleteMember(member.key)">X</button>
+  </div>
+</div>

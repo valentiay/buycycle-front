@@ -8,7 +8,8 @@ import { PersonComponent } from './person/person.component';
 import { PersonsComponent } from './persons/persons.component';
 import { DealsComponent } from './deals/deals.component';
 import { DealComponent } from './deal/deal.component';
-import { DealFormComponent } from './deal-form/deal-form.component';
+import { DebtorDealFormComponent } from './debtor-deal-form/debtor-deal-form.component';
+import { OneForAllDealFormComponent } from './one-for-all-deal-form/one-for-all-deal-form.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DealFormComponent } from './deal-form/deal-form.component';
     PersonsComponent,
     DealsComponent,
     DealComponent,
-    DealFormComponent
+    DebtorDealFormComponent,
+    OneForAllDealFormComponent
   ],
   imports: [
     BrowserModule,
