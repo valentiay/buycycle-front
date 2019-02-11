@@ -14,10 +14,10 @@ import {OneForAllDeal} from '../models/OneForAllDeal';
 export class DealsComponent implements OnInit {
   dealType = DealType;
 
-  deals: Deal[];
+  deals: Map<string, Deal>;
   newDeal: Deal;
   newDealType: DealType = DealType.OneForAll;
-  persons: Person[];
+  persons: Map<string, Person>;
 
   constructor(private personService: PersonService, private dealService: DealService) {
   }
@@ -50,8 +50,8 @@ export class DealsComponent implements OnInit {
   }
 
   initEmptyDeal() {
-    const members = new Map<string, Person>();
-    this.persons.forEach(person => members.set(person.id, person));
+    const members = new Set<string>();
+    this.persons.forEach(person => members.add(person.id));
     this.newDealType = DealType.OneForAll;
     this.newDeal = new OneForAllDeal('1', '', '', members, '');
   }

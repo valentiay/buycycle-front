@@ -9,7 +9,7 @@ import {PersonService} from '../person.service';
 })
 export class PersonsComponent implements OnInit {
 
-  persons: Person[];
+  persons: Map<string, Person>;
   newPerson: Person;
 
   constructor(private personService: PersonService) { }
@@ -27,7 +27,6 @@ export class PersonsComponent implements OnInit {
   }
 
   addNewPerson() {
-    this.newPerson.id = this.persons[this.persons.length - 1].id + 1;
     this.personService.addPerson(this.newPerson).subscribe(() => {
       this.newPerson = undefined;
       this.getPersons();
@@ -38,7 +37,7 @@ export class PersonsComponent implements OnInit {
     this.newPerson = undefined;
   }
 
-  deletePerson(person: Person) {
-    this.personService.deletePerson(person).subscribe(() => this.getPersons());
+  deletePerson(id: string) {
+    this.personService.deletePerson(id).subscribe(() => this.getPersons());
   }
 }

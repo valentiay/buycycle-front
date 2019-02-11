@@ -4,18 +4,18 @@
   <ng-container [ngSwitch]="deal.type">
 
     <ng-container *ngSwitchCase="dealType.OneForAll">
-      <p><b>{{deal.members.get(deal.lender).name}} платит за всех:</b></p>
-      <span *ngFor="let member of deal.members | keyvalue; last as isLast">{{member.value.name}}<ng-container *ngIf="!isLast">, </ng-container></span>
+      <p><b>{{persons.get(deal.lender).name}} платит за всех:</b></p>
+      <span *ngFor="let member of deal.members; last as isLast">{{persons.get(member).name}}<ng-container *ngIf="!isLast">, </ng-container></span>
     </ng-container>
 
     <ng-container *ngSwitchCase="dealType.Debtors">
     <div *ngFor="let debtor of deal.debtors | keyvalue">
-      {{deal.members.get(debtor.key).name}} платит за себя и за
+      {{persons.get(debtor.key).name}} платит за себя и за
       <span *ngFor="let borrower of debtor.value; last as isLast">
-        {{deal.members.get(borrower).name}}<ng-container *ngIf="!isLast">, </ng-container>
+        {{persons.get(borrower).name}}<ng-container *ngIf="!isLast">, </ng-container>
       </span>
-      <p *ngFor="let notDebtor of deal.notDebtors() | keyvalue">{{notDebtor.value.name}} платит за себя</p>
     </div>
+    <p *ngFor="let notDebtor of deal.notDebtors()">{{persons.get(notDebtor).name}} платит за себя</p>
     </ng-container>
   </ng-container>
 </div>

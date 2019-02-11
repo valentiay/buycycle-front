@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DebtorDeal} from '../models/DebtorDeal';
+import {Person} from '../models/Person';
 
 @Component({
   selector: 'app-debtor-deal-form',
@@ -9,6 +10,7 @@ import {DebtorDeal} from '../models/DebtorDeal';
 export class DebtorDealFormComponent implements OnInit {
 
   @Input() deal: DebtorDeal;
+  @Input() persons: Map<string, Person>;
   activeLender: string;
 
   constructor() { }

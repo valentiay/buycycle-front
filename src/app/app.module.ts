@@ -10,6 +10,7 @@ import { DealsComponent } from './deals/deals.component';
 import { DealComponent } from './deal/deal.component';
 import { DebtorDealFormComponent } from './debtor-deal-form/debtor-deal-form.component';
 import { OneForAllDealFormComponent } from './one-for-all-deal-form/one-for-all-deal-form.component';
+import { TransferComponent } from './transfer/transfer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { OneForAllDealFormComponent } from './one-for-all-deal-form/one-for-all-
     DealsComponent,
     DealComponent,
     DebtorDealFormComponent,
-    OneForAllDealFormComponent
+    OneForAllDealFormComponent,
+    TransferComponent
   ],
   imports: [
     BrowserModule,

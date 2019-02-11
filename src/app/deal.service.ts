@@ -9,32 +9,26 @@ import {Deal} from './models/Deal';
   providedIn: 'root'
 })
 export class DealService {
-  deals: Deal[];
+  deals: Map<string, Deal>;
 
   constructor() {
-    const members = new Map<string, Person>();
-    const persons = [
-      new Person('Сашка', '12'),
-      new Person('Димка', '23'),
-      new Person('Васька', '14'),
-      new Person('Петька', '72'),
-      new Person('Сережка', '73')
-    ];
-    persons.forEach(person => members.set(person.id, person));
-    const debtors = new Map<string, string[]>();
-    debtors.set('14', ['12', '23']);
-    this.deals = [
-      new DebtorDeal('1', 'Makdak', '$300', members, debtors),
-      new OneForAllDeal('2', 'Burger King', '$150', members, '23')
-    ];
+    const members = new Set<string>(['12', '23', '14', '72', '73']);
+    const debtors = new Map<string, Set<string>>();
+    debtors.set('14', new Set(['12', '23']));
+    this.deals = new Map<string, Deal>([
+      ['1', new DebtorDeal('1', 'Makdak', '$300', members, debtors)],
+      ['2', new OneForAllDeal('2', 'Burger King', '$150', members, '23')]
+    ]);
   }
 
-  getDeals(): Observable<Deal[]> {
+  getDeals(): Observable<Map<string, Deal>> {
     return of(this.deals);
   }
 
   addDeal(deal: Deal): Observable<{}> {
-    this.deals.push(deal);
+    const id = (Math.floor(1000 * Math.random())).toString();
+    deal.id = id;
+    this.deals.set(id, deal);
     return of({});
   }
 }

@@ -5,7 +5,7 @@
   <button (click)="addNewPerson()">Добавить</button>
   <button (click)="clearPerson()">Отмена</button>
 </div>
-<div *ngFor="let person of persons">
-  <app-person [person]="person"></app-person>
-  <button (click)="deletePerson(person)">X</button>
+<div *ngFor="let person of persons | keyvalue">
+  <app-person [person]="person.value"></app-person>
+  <!--<button (click)="deletePerson(person.key)">X</button>-->
 </div>

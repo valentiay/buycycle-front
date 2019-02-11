@@ -1,11 +1,9 @@
-import {Person} from './Person';
-
 export interface Deal {
   id: string;
   name: string;
   price: string;
   type: DealType;
-  members: Map<string, Person>;
+  members: Set<string>;
 }
 
 export enum DealType {

@@ -9,25 +9,27 @@ export class PersonService {
 
   constructor() { }
 
-  private persons: Person[] = [
-    new Person('Сашка', '12'),
-    new Person('Димка', '23'),
-    new Person('Васька', '14'),
-    new Person('Петька', '72'),
-    new Person('Сережка', '73')
-  ];
+  private persons: Map<string, Person> = new Map([
+    ['12', new Person('Сашка', '12')],
+    ['23', new Person('Димка', '23')],
+    ['14', new Person('Васька', '14')],
+    ['72', new Person('Петька', '72')],
+    ['73', new Person('Сережка', '73')],
+  ]);
 
-  getPersons(): Observable<Person[]> {
-    return of(this.persons.map(p => ({...p})));
+  getPersons(): Observable<Map<string, Person>> {
+    return of(this.persons);
   }
 
   addPerson(person: Person): Observable<{}> {
-    this.persons.push(person);
+    const id = (Math.floor(1000 * Math.random())).toString();
+    person.id = id;
+    this.persons.set(id, person);
     return of({});
   }
 
-  deletePerson(person: Person): Observable<{}> {
-    this.persons = this.persons.filter(oldPerson => oldPerson.id !== person.id);
+  deletePerson(id: string): Observable<{}> {
+    this.persons.delete(id);
     return of({});
   }
 }

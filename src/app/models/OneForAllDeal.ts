@@ -1,15 +1,14 @@
 import {Deal, DealType} from './Deal';
-import {Person} from './Person';
 
 export class OneForAllDeal implements Deal {
   id: string;
   name: string;
   price: string;
-  members: Map<string, Person>;
+  members: Set<string>;
   lender: string;
   type: DealType = DealType.OneForAll;
 
-  constructor(id: string, name: string, price: string, members: Map<string, Person>, lender: string) {
+  constructor(id: string, name: string, price: string, members: Set<string>, lender: string) {
     this.id = id;
     this.name = name;
     this.price = price;

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {OneForAllDeal} from '../models/OneForAllDeal';
+import {Person} from '../models/Person';
 
 @Component({
   selector: 'app-one-for-all-deal-form',
@@ -9,8 +10,10 @@ import {OneForAllDeal} from '../models/OneForAllDeal';
 export class OneForAllDealFormComponent implements OnInit {
 
   @Input() deal: OneForAllDeal;
+  @Input() persons: Map<string, Person>;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

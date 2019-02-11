@@ -1,15 +1,14 @@
-import {Person} from './Person';
 import {Deal, DealType} from './Deal';
 
 export class DebtorDeal implements Deal {
   id: string;
   name: string;
   price: string;
-  members: Map<string, Person>;
+  members: Set<string>;
   debtors: Map<string, Set<string>>;
   type: DealType = DealType.Debtors;
 
-  constructor(id: string, name: string, price: string, members: Map<string, Person>, debtors: Map<string, Set<string>>) {
+  constructor(id: string, name: string, price: string, members: Set<string>, debtors: Map<string, Set<string>>) {
     this.id = id;
     this.name = name;
     this.price = price;
@@ -21,8 +20,8 @@ export class DebtorDeal implements Deal {
     return new DebtorDeal(other.id, other.name, other.price, other.members, new Map());
   }
 
-  notDebtors(): Map<string, Person> {
-    const members = new Map<string, Person>(this.members);
+  notDebtors(): Set<string> {
+    const members = new Set<string>(this.members);
     this.debtors.forEach((borrowers, lender) => {
       members.delete(lender);
       borrowers.forEach(borrower => members.delete(borrower));
@@ -30,8 +29,8 @@ export class DebtorDeal implements Deal {
     return members;
   }
 
-  notBorrowers(): Map<string, Person> {
-    const members = new Map<string, Person>(this.members);
+  notBorrowers(): Set<string> {
+    const members = new Set<string>(this.members);
     this.debtors.forEach(borrowers => {
       borrowers.forEach(borrower => members.delete(borrower));
     });
