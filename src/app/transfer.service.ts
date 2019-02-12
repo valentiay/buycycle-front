@@ -25,4 +25,9 @@ export class TransferService {
     this.transfers.set(id, transfer);
     return of({});
   }
+
+  deleteTransfer(id: string): Observable<{}> {
+    this.transfers.delete(id);
+    return of({});
+  }
 }

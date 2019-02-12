@@ -7,7 +7,7 @@ import {TransferService} from '../transfer.service';
 @Component({
   selector: 'app-transfer',
   templateUrl: './transfer.component.html',
-  styleUrls: ['./transfer.component.css']
+  styleUrls: ['./transfer.component.scss']
 })
 export class TransferComponent implements OnInit {
 
@@ -40,5 +40,9 @@ export class TransferComponent implements OnInit {
 
   clearTransfer() {
     this.newTransfer = undefined;
+  }
+
+  deleteTransfer(id: string) {
+    this.transferService.deleteTransfer(id).subscribe(() => this.getTransfers());
   }
 }

@@ -5,7 +5,7 @@ import {Person} from '../models/Person';
 @Component({
   selector: 'app-deal',
   templateUrl: './deal.component.html',
-  styleUrls: ['./deal.component.css']
+  styleUrls: ['./deal.component.scss']
 })
 export class DealComponent {
 

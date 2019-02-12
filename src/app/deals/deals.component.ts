@@ -9,7 +9,7 @@ import {OneForAllDeal} from '../models/OneForAllDeal';
 @Component({
   selector: 'app-deals',
   templateUrl: './deals.component.html',
-  styleUrls: ['./deals.component.css']
+  styleUrls: ['./deals.component.scss']
 })
 export class DealsComponent implements OnInit {
   dealType = DealType;

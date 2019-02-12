@@ -5,7 +5,7 @@ import {Person} from '../models/Person';
 @Component({
   selector: 'app-one-for-all-deal-form',
   templateUrl: './one-for-all-deal-form.component.html',
-  styleUrls: ['./one-for-all-deal-form.component.css']
+  styleUrls: ['./one-for-all-deal-form.component.scss']
 })
 export class OneForAllDealFormComponent implements OnInit {
 

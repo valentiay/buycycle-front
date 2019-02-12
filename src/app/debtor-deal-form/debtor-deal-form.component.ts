@@ -5,7 +5,7 @@ import {Person} from '../models/Person';
 @Component({
   selector: 'app-debtor-deal-form',
   templateUrl: './debtor-deal-form.component.html',
-  styleUrls: ['./debtor-deal-form.component.css']
+  styleUrls: ['./debtor-deal-form.component.scss']
 })
 export class DebtorDealFormComponent implements OnInit {
 

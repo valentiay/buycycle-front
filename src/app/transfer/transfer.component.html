@@ -13,4 +13,5 @@
 </div>
 <div *ngFor="let transfer of transfers | keyvalue">
   {{transfer.value.amount}}: {{persons.get(transfer.value.from).name}} -> {{persons.get(transfer.value.to).name}}
+  <button (click)="deleteTransfer(transfer.key)">X</button>
 </div>

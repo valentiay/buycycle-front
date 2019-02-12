@@ -10,8 +10,8 @@ export class PersonService {
   constructor() { }
 
   private persons: Map<string, Person> = new Map([
-    ['12', new Person('Сашка', '12')],
-    ['23', new Person('Димка', '23')],
+    ['12', new Person('Сашка', '12', new Map([['23', '$100']]), new Map())],
+    ['23', new Person('Димка', '23', new Map(), new Map([['12', '$100']]))],
     ['14', new Person('Васька', '14')],
     ['72', new Person('Петька', '72')],
     ['73', new Person('Сережка', '73')],

@@ -1,0 +1,12 @@
+<h2>Долги</h2>
+<div *ngFor="let person of persons | keyvalue">
+  <ng-container *ngIf="person.value.lenders.size !== 0 || person.value.borrowers.size !== 0">
+    <h4>{{person.value.name}}</h4>
+    <div *ngFor="let lender of person.value.lenders | keyvalue">
+      должен отдать {{lender.value}} {{persons.get(lender.key).name}}
+    </div>
+    <div *ngFor="let borrower of person.value.borrowers | keyvalue">
+      должен получить {{borrower.value}} от {{persons.get(borrower.key).name}}
+    </div>
+  </ng-container>
+</div>
