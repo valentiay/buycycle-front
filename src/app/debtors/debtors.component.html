@@ -1,4 +1,4 @@
-<h2>Долги</h2>
+<h1>Долги</h1>
 <div *ngFor="let person of persons | keyvalue">
   <ng-container *ngIf="person.value.lenders.size !== 0 || person.value.borrowers.size !== 0">
     <h4>{{person.value.name}}</h4>

@@ -1,3 +1,41 @@
-.selectedType {
-  border: inset;
+@import "../../styles";
+
+.deal-type-button {
+  border-radius: $default-radius $default-radius 0 0;
+  background-color: $secondary-accent-color;
+}
+
+.selected-type {
+  background-color: $secondary-color-light;
+}
+
+.deal-type-button:focus {
+  outline: none;
+}
+
+#deal-form {
+  background-color: $secondary-color-light;
+  color: $sub-primary-color;
+  border-radius: 0 $default-radius $default-radius $default-radius;
+  padding: 15px;
+  width: max-content;
+  max-width: 100%;
+}
+
+#deal-form button {
+  background-color: $secondary-accent-color;
+}
+
+.deal {
+  background-color: $accent-color-light;
+  border-radius: $default-radius;
+  padding: 10px;
+  margin: $default-margin 0;
+  width: max-content;
+  max-width: 100%;
+  display: block;
+}
+
+.deal-control-button {
+  margin-right: 2px;
 }

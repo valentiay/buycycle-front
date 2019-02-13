@@ -1,21 +1,27 @@
-<h2>Покупки</h2>
-<button (click)="initEmptyDeal()" *ngIf="!newDeal">Добавить</button><br/>
+<h1>Покупки</h1>
+<button id="add-button" (click)="initEmptyDeal()" *ngIf="!newDeal">Добавить</button>
 <ng-container *ngIf="newDeal">
-  <button (click)="setNewDealType(dealType.OneForAll)" [class.selectedType]="newDealType === dealType.OneForAll">
+  <button class="deal-type-button"
+          (click)="setNewDealType(dealType.OneForAll)"
+          [class.selected-type]="newDealType === dealType.OneForAll">
     Один за всех
   </button>
-  <button (click)="setNewDealType(dealType.Debtors)" [class.selectedType]="newDealType === dealType.Debtors">
+  <button class="deal-type-button"
+          (click)="setNewDealType(dealType.Debtors)"
+          [class.selected-type]="newDealType === dealType.Debtors">
     Непонятная Васе схема
   </button>
-  <div>
+  <div id="deal-form">
     <ng-container [ngSwitch]="newDealType">
-      <app-one-for-all-deal-form *ngSwitchCase="dealType.OneForAll" [deal]="newDeal" [persons]="persons"></app-one-for-all-deal-form>
-      <app-debtor-deal-form *ngSwitchCase="dealType.Debtors" [deal]="newDeal" [persons]="persons"></app-debtor-deal-form>
+      <app-one-for-all-deal-form *ngSwitchCase="dealType.OneForAll" [deal]="newDeal"
+                                 [persons]="persons"></app-one-for-all-deal-form>
+      <app-debtor-deal-form *ngSwitchCase="dealType.Debtors" [deal]="newDeal"
+                            [persons]="persons"></app-debtor-deal-form>
     </ng-container>
-    <button (click)="addNewDeal()" *ngIf="newDeal">Добавить</button>
-    <button (click)="clearDeal()" *ngIf="newDeal">Отмена</button>
+    <button class="deal-control-button" (click)="addNewDeal()" *ngIf="newDeal">Добавить</button>
+    <button class="deal-control-button" (click)="clearDeal()" *ngIf="newDeal">Отмена</button>
   </div>
 </ng-container>
-<div *ngFor="let deal of deals | keyvalue">
+<div class="deal" *ngFor="let deal of deals | keyvalue">
   <app-deal [deal]="deal.value" [persons]="persons"></app-deal>
 </div>

@@ -1,6 +1,6 @@
 <div *ngIf="deal">
-  <h3>{{deal.name}}</h3>
-  <h4>{{deal.price}}</h4>
+  <div class="deal-name">{{deal.name}}</div>
+  <div class="deal-price">{{deal.price}}</div>
   <ng-container [ngSwitch]="deal.type">
 
     <ng-container *ngSwitchCase="dealType.OneForAll">

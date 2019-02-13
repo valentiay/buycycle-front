@@ -1,1 +1,92 @@
-/* You can add global styles to this file, and also import other style files */
+$primary-color: #ffffff;
+$sub-primary-color: #dee8fa;
+$font-color: #212121;
+$secondary-color: #1c052b;
+$secondary-color-light: #7e45a3;
+$secondary-accent-color: #261431;
+$accent-color-light: #6a65a4;
+$second-accent-color: #ab4270;
+
+$default-radius: 6px;
+$default-margin: 6px;
+
+$biggest-font-size: 1.50em;
+$big-font-size: 1.17em;
+
+html, body {
+  font-family: sans-serif;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: $primary-color;
+  margin: 0;
+  padding: 0;
+  color: $font-color;
+}
+
+div {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+app-root {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h4 {
+  color: $secondary-color;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: $biggest-font-size;
+}
+
+p {
+  margin: 4px 0;
+}
+
+b {
+  color: $secondary-color;
+}
+
+button {
+  background-color: $secondary-color-light;
+  color: $primary-color;
+  border: 0;
+  border-radius: $default-radius;
+  font-size: 14px;
+  padding: 5px 6px;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px $secondary-color;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $accent-color-light;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $secondary-color-light;
+}

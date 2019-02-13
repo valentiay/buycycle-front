@@ -1,0 +1,67 @@
+@import "../styles.scss";
+
+$header-height: 40px;
+
+header {
+  background-color: $secondary-color;
+  height: $header-height;
+  width: 100%;
+  display: block;
+  float: left;
+}
+
+#header-icon {
+  font-size: 24px;
+  color: $primary-color;
+  font-weight: bold;
+  margin: calc((#{$header-height} - 30px) / 2) 40px;
+  height: 30px;
+}
+
+app-debtors, app-deals, app-persons, app-transfer {
+  display: block;
+  border-radius: $default-radius;
+  border: solid 1px #00000033;
+  float: left;
+  margin: 0 $default-margin $default-margin 0;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+app-debtors {
+  width: calc(50% - #{$default-margin});
+  height: calc(100% - 2 * #{$default-margin});
+}
+
+app-deals {
+  width: calc(50% - #{$default-margin});
+  height: calc(100% - 2 * #{$default-margin});
+}
+
+app-persons {
+  width: calc(100% - #{$default-margin});
+  height: calc(50% - #{$default-margin});
+}
+
+app-transfer {
+  width: calc(100% - #{$default-margin});
+  height: calc(50% - #{$default-margin});
+}
+
+#primary-col {
+  margin-left: $default-margin;
+  margin-top: $default-margin;
+  width: calc(75% - #{$default-margin});
+  height: calc(100% - #{$header-height});
+  display: block;
+  float: left;
+}
+
+#secondary-col {
+  margin-top: $default-margin;
+  width: 25%;
+  height: calc(100% - #{$default-margin} - #{$header-height});
+  display: block;
+  float: left;
+}

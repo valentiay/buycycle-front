@@ -1,0 +1,42 @@
+@import "../../styles";
+
+input {
+  border-radius: $default-radius;
+  background-color: $sub-primary-color;
+  border-style: none;
+  padding: 5px;
+  margin: 4px 1px;
+  width: auto;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px $secondary-color;
+}
+
+.deal-name {
+  background-color: $secondary-color;
+  font-size: $big-font-size;
+  color: $sub-primary-color;
+  border-radius: $default-radius;
+  padding: 7px;
+  width: max-content;
+  font-weight: bold;
+}
+
+.deal-name::placeholder {
+  color: #999999;
+}
+
+button {
+  background-color: $secondary-accent-color;
+}
+
+select {
+  background-color: $secondary-color;
+  border-radius: $default-radius;
+  outline: none;
+  border: none;
+  color: $sub-primary-color;
+  padding: 5px;
+}

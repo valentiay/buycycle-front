@@ -1,5 +1,5 @@
 <div *ngIf="deal">
-  <input [(ngModel)]="deal.name" placeholder="Название" required="required"/><br/>
+  <input class="deal-name" [(ngModel)]="deal.name" placeholder="Название" required="required"/><br/>
   <input [(ngModel)]="deal.price" placeholder="Стоимость" required="required"/>
   <div *ngFor="let notBorrower of deal.notBorrowers()">{{persons.get(notBorrower).name}} за себя
     <span *ngIf="deal.debtors.has(notBorrower)">
