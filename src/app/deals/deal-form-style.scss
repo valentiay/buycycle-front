@@ -1,42 +1,26 @@
 @import "../../styles";
 
-input {
-  border-radius: $default-radius;
-  background-color: $sub-primary-color;
-  border-style: none;
-  padding: 5px;
-  margin: 4px 1px;
-  width: auto;
-}
-
-input:focus {
-  outline: none;
-  box-shadow: 0 0 0 1px $secondary-color;
-}
-
 .deal-name {
-  background-color: $secondary-color;
-  font-size: $big-font-size;
-  color: $sub-primary-color;
+  background-color: $light-color-bright;
+  font-size: $bigger-font-size;
+  color: $dark-color;
   border-radius: $default-radius;
   padding: 7px;
-  width: max-content;
+  width: calc(61% - 8px);
   font-weight: bold;
+  display: inline-block;
 }
 
-.deal-name::placeholder {
-  color: #999999;
-}
-
-button {
-  background-color: $secondary-accent-color;
-}
-
-select {
+.deal-price {
   background-color: $secondary-color;
-  border-radius: $default-radius;
-  outline: none;
-  border: none;
-  color: $sub-primary-color;
+  font-size: $big-font-size;
+  color: $light-color-bright;
+  width: calc(39% - 10px);
   padding: 5px;
+  margin: 0 5px;
+  display: inline-block;
+}
+
+.deal-price::placeholder {
+  color: $light-color-pale;
 }

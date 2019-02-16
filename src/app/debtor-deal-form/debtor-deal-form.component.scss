@@ -1,2 +1,13 @@
 @import "../../styles";
 @import "../deals/deal-form-style";
+
+.borrower-list-item {
+  background-color: $secondary-color-other;
+  color: $light-color;
+  border-radius: $default-radius;
+  padding: 5px;
+}
+
+.active-button {
+  background-color: $secondary-color;
+}

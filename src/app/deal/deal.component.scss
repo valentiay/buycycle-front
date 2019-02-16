@@ -1,20 +1,30 @@
 @import "../../styles";
 
-.deal-name, .deal-price {
-  font-size: $big-font-size;
-  border-radius: $default-radius;
-  padding: 7px;
-  display: inline-block;
-  font-weight: bold;
-  margin: 2px;
+:host {
+  display: block;
+  float: left;
+  background-color: $light-color-bright;
+  padding: $default-padding;
+  margin: 1px 0;
+  width: 100%;
+  vertical-align: baseline;
 }
 
 .deal-name {
-  background-color: #171444;
-  color: $sub-primary-color;
+  font-size: $bigger-font-size;
+  font-weight: bold;
+  display: inline-block;
+  vertical-align: baseline;
 }
 
 .deal-price {
-  background-color: $second-accent-color;
-  color: $secondary-color;
+  font-size: $big-font-size;
+  border-radius: $default-radius;
+  padding: 4px 5px;
+  display: inline-block;
+  font-weight: bold;
+  margin: 0 5px;
+  background-color: $secondary-color;
+  color: $light-color;
+  vertical-align: baseline;
 }

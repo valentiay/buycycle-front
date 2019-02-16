@@ -1,11 +1,8 @@
-<h1>Люди</h1>
-<button *ngIf="!newPerson" (click)="initEmptyPerson()">Добавить</button>
-<div *ngIf="newPerson">
-  <input [(ngModel)]="newPerson.name" placeholder="Имя"/><br/>
+<div class="section-header">Люди</div>
+<button class="section-add" *ngIf="!newPerson" (click)="initEmptyPerson()">Добавить</button><br />
+<div id="person-form" *ngIf="newPerson">
+  <input class="person-name" [(ngModel)]="newPerson.name" placeholder="Имя"/><br/>
   <button (click)="addNewPerson()">Добавить</button>
   <button (click)="clearPerson()">Отмена</button>
 </div>
-<div *ngFor="let person of persons | keyvalue">
-  <app-person [person]="person.value"></app-person>
-  <!--<button (click)="deletePerson(person.key)">X</button>-->
-</div>
+<app-person *ngFor="let person of persons | keyvalue" [person]="person.value"></app-person>

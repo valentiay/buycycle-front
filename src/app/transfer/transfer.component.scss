@@ -1,0 +1,9 @@
+@import "../../styles";
+
+:host {
+  background-color: $light-color-bright;
+  width: 100%;
+  margin: 1px 0;
+  display: block;
+  padding: $default-padding;
+}

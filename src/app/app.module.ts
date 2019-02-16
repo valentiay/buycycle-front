@@ -12,6 +12,7 @@ import { DebtorDealFormComponent } from './debtor-deal-form/debtor-deal-form.com
 import { OneForAllDealFormComponent } from './one-for-all-deal-form/one-for-all-deal-form.component';
 import { TransferComponent } from './transfer/transfer.component';
 import { DebtorsComponent } from './debtors/debtors.component';
+import { TransfersComponent } from './transfers/transfers.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DebtorsComponent } from './debtors/debtors.component';
     DebtorDealFormComponent,
     OneForAllDealFormComponent,
     TransferComponent,
-    DebtorsComponent
+    DebtorsComponent,
+    TransfersComponent
   ],
   imports: [
     BrowserModule,

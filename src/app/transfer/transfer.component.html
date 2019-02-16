@@ -1,17 +1,2 @@
-<h1>Переводы</h1>
-<button *ngIf="!newTransfer" (click)="initEmptyTransfer()">Добавить</button>
-<div *ngIf="newTransfer">
-  <input [(ngModel)]="newTransfer.amount" placeholder="Сумма"/><br/>
-  <label>Отправитель <select [(ngModel)]="newTransfer.from">
-    <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
-  </select></label><br/>
-  <label>Получатель <select [(ngModel)]="newTransfer.to">
-    <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
-  </select></label><br/>
-  <button (click)="addNewTransfer()">Добавить</button>
-  <button (click)="clearTransfer()">Отмена</button>
-</div>
-<div *ngFor="let transfer of transfers | keyvalue">
-  {{transfer.value.amount}}: {{persons.get(transfer.value.from).name}} -> {{persons.get(transfer.value.to).name}}
-  <button (click)="deleteTransfer(transfer.key)">X</button>
-</div>
+{{transfer.value.amount}}: {{persons.get(transfer.value.from).name}} 🠚 {{persons.get(transfer.value.to).name}}
+<button (click)="deleteTransfer(transfer.key)">X</button>

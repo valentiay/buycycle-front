@@ -1,0 +1,20 @@
+<div class="section-header">Переводы</div>
+<button class="section-add" *ngIf="!newTransfer" (click)="initEmptyTransfer()">Добавить</button>
+<div id="transfers-form" *ngIf="newTransfer">
+  <input [(ngModel)]="newTransfer.amount" placeholder="Сумма"/><br/>
+  <p>
+    <label>Отправитель <select [(ngModel)]="newTransfer.from">
+      <option value="" disabled selected>Кто?</option>
+      <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
+    </select></label>
+  </p>
+  <p>
+    <label>Получатель <select [(ngModel)]="newTransfer.to">
+      <option value="" disabled selected>Кто?</option>
+      <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
+    </select></label>
+  </p>
+  <button (click)="addNewTransfer()">Добавить</button>
+  <button (click)="clearTransfer()">Отмена</button>
+</div>
+<app-transfer *ngFor="let transfer of transfers | keyvalue" [transfer]="transfer" [persons]="persons"></app-transfer>

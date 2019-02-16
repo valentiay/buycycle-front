@@ -1,6 +1,7 @@
-<h1>Покупки</h1>
-<button id="add-button" (click)="initEmptyDeal()" *ngIf="!newDeal">Добавить</button>
-<ng-container *ngIf="newDeal">
+<div class="section-header">Покупки</div>
+<button class="section-add" (click)="initEmptyDeal()" *ngIf="!newDeal">Добавить</button>
+<br/>
+<div *ngIf="newDeal">
   <button class="deal-type-button"
           (click)="setNewDealType(dealType.OneForAll)"
           [class.selected-type]="newDealType === dealType.OneForAll">
@@ -18,10 +19,8 @@
       <app-debtor-deal-form *ngSwitchCase="dealType.Debtors" [deal]="newDeal"
                             [persons]="persons"></app-debtor-deal-form>
     </ng-container>
-    <button class="deal-control-button" (click)="addNewDeal()" *ngIf="newDeal">Добавить</button>
-    <button class="deal-control-button" (click)="clearDeal()" *ngIf="newDeal">Отмена</button>
+    <button class="deal-control-button" type="submit" (click)="addNewDeal()" *ngIf="newDeal">Добавить</button>
+    <button class="deal-control-button" type="reset" (click)="clearDeal()" *ngIf="newDeal">Отмена</button>
   </div>
-</ng-container>
-<div class="deal" *ngFor="let deal of deals | keyvalue">
-  <app-deal [deal]="deal.value" [persons]="persons"></app-deal>
 </div>
+<app-deal *ngFor="let deal of deals | keyvalue" [deal]="deal.value" [persons]="persons"></app-deal>

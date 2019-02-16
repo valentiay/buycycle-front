@@ -1,6 +1,6 @@
 <div *ngIf="deal">
-  <input class="deal-name" [(ngModel)]="deal.name" placeholder="Название" required="required" /><br/>
-  <input [(ngModel)]="deal.price" placeholder="Стоимость" required="required"/><br>
+  <input class="deal-name" [(ngModel)]="deal.name" placeholder="Название" required="required" />
+  <input class="deal-price" [(ngModel)]="deal.price" placeholder="Стоимость" required="required"/>
   <p>
     <label><select [(ngModel)]="deal.lender" required="required">
       <option value="" disabled selected>Кто?</option>
@@ -10,9 +10,8 @@
     </select> платит за всех: </label>
   </p>
   <p>
-    <span *ngFor="let member of deal.members; last as isLast">
-      {{persons.get(member).name}}<button (click)="deleteMember(member)">x</button>
-      <ng-container *ngIf="!isLast">,</ng-container>
-    </span>
+    <ng-container *ngFor="let member of deal.members; last as isLast">
+      <span class="no-break">{{persons.get(member).name}}<button (click)="deleteMember(member)">x</button><ng-container *ngIf="!isLast">,</ng-container></span>
+    </ng-container>
   </p>
 </div>

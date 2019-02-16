@@ -1,28 +1,42 @@
-$primary-color: #ffffff;
-$sub-primary-color: #dee8fa;
-$font-color: #212121;
-$secondary-color: #1c052b;
-$secondary-color-light: #7e45a3;
-$secondary-accent-color: #261431;
-$accent-color-light: #6a65a4;
-$second-accent-color: #ab4270;
+$light-color-pale: #cbcbcb;
+$light-color: #f2f2f2;
+$light-color-bright: #ffffff;
+$dark-color: #141414;
+$dark-color-bright: #3d3d3d;
+$secondary-color: #080e27;
+$secondary-color-light: #5665a0;
+$secondary-color-other: #28386d;
 
 $default-radius: 6px;
-$default-margin: 6px;
+$default-margin: 10px;
+$default-padding: 15px;
 
 $biggest-font-size: 1.50em;
-$big-font-size: 1.17em;
+$bigger-font-size: 1.25em;
+$big-font-size: 1.05em;
+
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "free-set-light";
+  src: url("/assets/fonts/freesetlight.otf");
+  //src: url("css/fonts/Harabara.woff") format("woff"),
+  //  url("css/fonts/Harabara.otf") format("opentype"),
+  //  url("css/fonts/Harabara.svg#filename") format("svg");
+}
 
 html, body {
-  font-family: sans-serif;
+  font-family: free-set-light, sans-serif;
   display: block;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: $primary-color;
+  background-color: $light-color;
   margin: 0;
   padding: 0;
-  color: $font-color;
+  color: $dark-color;
 }
 
 div {
@@ -38,8 +52,9 @@ app-root {
   display: block;
 }
 
-h1, h2, h3, h4, h5, h4 {
-  color: $secondary-color;
+h1, h2, h3, h4, h5, h6 {
+  color: $dark-color;
+  font-weight: bold;
 }
 
 h1 {
@@ -53,16 +68,39 @@ p {
 }
 
 b {
-  color: $secondary-color;
+  color: $dark-color;
+}
+
+a {
+  text-decoration: underline;
+  color: $secondary-color-light;
 }
 
 button {
-  background-color: $secondary-color-light;
-  color: $primary-color;
-  border: 0;
+  font-size: 1em;
+  background-color: $secondary-color-other;
+  color: $light-color;
+  border: none;
   border-radius: $default-radius;
-  font-size: 14px;
   padding: 5px 6px;
+  margin: 1px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+input {
+  border-radius: $default-radius;
+  background-color: $light-color-bright;
+  border-style: none;
+  padding: 5px;
+  margin: 4px 1px;
+  font-size: 1em;
 }
 
 input:focus {
@@ -70,9 +108,19 @@ input:focus {
   box-shadow: 0 0 0 1px $secondary-color;
 }
 
-button:hover {
-  cursor: pointer;
+input::placeholder {
+  color: $dark-color-bright;
 }
+
+select {
+  background-color: $secondary-color-other;
+  color: $light-color;
+  border: none;
+  border-radius: $default-radius;
+  padding: 5px 6px;
+  outline: none;
+}
+
 
 ::-webkit-scrollbar {
   width: 6px;
@@ -83,10 +131,26 @@ button:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $accent-color-light;
+  background: $secondary-color-light;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: $secondary-color-light;
+  background: $secondary-color;
+}
+
+.section-header {
+  margin-bottom: 8px;
+  margin-right: $default-margin;
+  font-size: $biggest-font-size;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.section-add {
+  vertical-align: top;
+}
+
+span.no-break {
+  display: inline-block;
 }
