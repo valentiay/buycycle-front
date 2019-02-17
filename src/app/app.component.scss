@@ -29,6 +29,7 @@ app-debtors, app-deals, app-persons, app-transfers {
 app-debtors {
   width: calc(55% - #{$default-margin});
   height: calc(100% - 2 * #{$default-margin});
+  padding: 0 2 * $default-padding;
 }
 
 app-deals {
