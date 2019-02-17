@@ -1,3 +1,6 @@
-<span *ngIf="person">
-  <b>{{person.name}}</b>
-</span>
+<div *ngIf="person">
+  <div class="card-title"><b>{{person.name}}</b></div>
+  <div class="card-controls">
+    <fa-icon [icon]="['fas', 'pencil-alt']"></fa-icon>
+  </div>
+</div>

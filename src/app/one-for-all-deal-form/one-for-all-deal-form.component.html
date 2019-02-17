@@ -11,7 +11,7 @@
   </p>
   <p>
     <ng-container *ngFor="let member of deal.members; last as isLast">
-      <span class="no-break">{{persons.get(member).name}}<button (click)="deleteMember(member)">x</button><ng-container *ngIf="!isLast">,</ng-container></span>
+      <span class="no-break">{{persons.get(member).name}} <fa-icon class="inline-control" size="sm" (click)="deleteMember(member)" [icon]="['fas', 'times']"></fa-icon><ng-container *ngIf="!isLast">,</ng-container></span>
     </ng-container>
   </p>
 </div>

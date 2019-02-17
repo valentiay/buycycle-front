@@ -1,18 +1,22 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { PersonComponent } from './person/person.component';
-import { PersonsComponent } from './persons/persons.component';
-import { DealsComponent } from './deals/deals.component';
-import { DealComponent } from './deal/deal.component';
-import { DebtorDealFormComponent } from './debtor-deal-form/debtor-deal-form.component';
-import { OneForAllDealFormComponent } from './one-for-all-deal-form/one-for-all-deal-form.component';
-import { TransferComponent } from './transfer/transfer.component';
-import { DebtorsComponent } from './debtors/debtors.component';
-import { TransfersComponent } from './transfers/transfers.component';
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {PersonComponent} from './person/person.component';
+import {PersonsComponent} from './persons/persons.component';
+import {DealsComponent} from './deals/deals.component';
+import {DealComponent} from './deal/deal.component';
+import {DebtorDealFormComponent} from './debtor-deal-form/debtor-deal-form.component';
+import {OneForAllDealFormComponent} from './one-for-all-deal-form/one-for-all-deal-form.component';
+import {TransferComponent} from './transfer/transfer.component';
+import {DebtorsComponent} from './debtors/debtors.component';
+import {TransfersComponent} from './transfers/transfers.component';
+
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {faCheck, faTimes, faPencilAlt} from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [
@@ -30,9 +34,14 @@ import { TransfersComponent } from './transfers/transfers.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    library.add(faCheck, faTimes, faPencilAlt);
+  }
+}

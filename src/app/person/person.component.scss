@@ -1,9 +1,2 @@
 @import "../../styles";
-
-:host {
-  width: calc(100% - 2px);
-  background-color: $light-color-bright;
-  display: inline-block;
-  padding: $default-padding;
-  margin: 1px 0;
-}
+@import "../../elements";

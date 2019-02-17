@@ -17,4 +17,4 @@
   <button (click)="addNewTransfer()">Добавить</button>
   <button (click)="clearTransfer()">Отмена</button>
 </div>
-<app-transfer *ngFor="let transfer of transfers | keyvalue" [transfer]="transfer" [persons]="persons"></app-transfer>
+<app-transfer class="card" *ngFor="let transfer of transfers | keyvalue" [transfer]="transfer" [persons]="persons"></app-transfer>

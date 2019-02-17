@@ -23,4 +23,4 @@
     <button class="deal-control-button" type="reset" (click)="clearDeal()" *ngIf="newDeal">Отмена</button>
   </div>
 </div>
-<app-deal *ngFor="let deal of deals | keyvalue" [deal]="deal.value" [persons]="persons"></app-deal>
+<app-deal class="card" *ngFor="let deal of deals | keyvalue" [deal]="deal.value" [persons]="persons"></app-deal>

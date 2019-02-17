@@ -1,2 +1,5 @@
 {{transfer.value.amount}}: {{persons.get(transfer.value.from).name}} 🠚 {{persons.get(transfer.value.to).name}}
-<button (click)="deleteTransfer(transfer.key)">X</button>
+<div class="card-controls">
+  <fa-icon [icon]="['fas', 'pencil-alt']"></fa-icon>
+  <fa-icon (click)="deleteTransfer(transfer.key)" [icon]="['fas', 'times']" size="lg"></fa-icon>
+</div>

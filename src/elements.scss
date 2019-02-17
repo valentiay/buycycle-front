@@ -1,0 +1,38 @@
+@import "styles";
+
+.card {
+  display: block;
+  float: left;
+  background-color: $light-color-bright;
+  padding: $default-padding;
+  margin: 1px 0;
+  width: 100%;
+  vertical-align: baseline;
+  position: relative;
+}
+
+.card-title {
+  max-width: calc(100% - 60px);
+}
+
+.card-controls {
+  position: absolute;
+  right: $default-padding;
+  top: $default-padding;
+}
+
+.card-controls fa-icon {
+  margin: 4px;
+  color: $dark-color-bright;
+}
+
+.inline-control {
+  vertical-align: baseline;
+  color: $dark-color-bright;
+  margin: 0;
+}
+
+.card-controls fa-icon:hover, .inline-control:hover {
+  cursor: pointer;
+  color: $secondary-color;
+}

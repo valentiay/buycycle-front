@@ -5,4 +5,4 @@
   <button (click)="addNewPerson()">Добавить</button>
   <button (click)="clearPerson()">Отмена</button>
 </div>
-<app-person *ngFor="let person of persons | keyvalue" [person]="person.value"></app-person>
+<app-person class="card" *ngFor="let person of persons | keyvalue" [person]="person.value"></app-person>

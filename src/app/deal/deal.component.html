@@ -1,6 +1,12 @@
 <div *ngIf="deal">
-  <div class="deal-name">{{deal.name}}</div>
-  <div class="deal-price">{{deal.price}}</div>
+  <div class="card-title">
+    <div class="deal-name">{{deal.name}}</div>
+    <div class="deal-price">{{deal.price}}</div>
+  </div>
+  <div class="card-controls">
+    <fa-icon [icon]="['fas', 'pencil-alt']"></fa-icon>
+    <fa-icon [icon]="['fas', 'times']" size="lg"></fa-icon>
+  </div>
   <ng-container [ngSwitch]="deal.type">
 
     <ng-container *ngSwitchCase="dealType.OneForAll">

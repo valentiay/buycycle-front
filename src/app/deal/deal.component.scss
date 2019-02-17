@@ -1,20 +1,12 @@
 @import "../../styles";
-
-:host {
-  display: block;
-  float: left;
-  background-color: $light-color-bright;
-  padding: $default-padding;
-  margin: 1px 0;
-  width: 100%;
-  vertical-align: baseline;
-}
+@import "../../elements.scss";
 
 .deal-name {
   font-size: $bigger-font-size;
   font-weight: bold;
   display: inline-block;
   vertical-align: baseline;
+  margin-right: 5px;
 }
 
 .deal-price {
@@ -23,7 +15,6 @@
   padding: 4px 5px;
   display: inline-block;
   font-weight: bold;
-  margin: 0 5px;
   background-color: $secondary-color;
   color: $light-color;
   vertical-align: baseline;
