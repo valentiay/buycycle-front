@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {Deal, DealType} from '../models/Deal';
 import {Person} from '../models/Person';
 import {KeyValue} from '@angular/common';
-import {DealService} from "../deal.service";
+import {AccountService} from '../account.service';
 
 @Component({
   selector: 'app-deal',
@@ -19,11 +19,11 @@ export class DealComponent {
   editedDeal: Deal;
   isEdited = false;
 
-  constructor(private dealService: DealService) {
+  constructor(private accountService: AccountService) {
   }
 
   remove() {
-    this.dealService.remove(this.deal.key);
+    this.accountService.removeDeal(this.deal.key);
   }
 
   edit() {
@@ -37,7 +37,7 @@ export class DealComponent {
   }
 
   submit() {
-    this.dealService.updateDeal(this.deal.key, this.editedDeal).subscribe(() => {
+    this.accountService.updateDeal(this.deal.key, this.editedDeal).subscribe(() => {
       this.deal.value = this.editedDeal;
       this.isEdited = false;
       this.editedDeal = undefined;

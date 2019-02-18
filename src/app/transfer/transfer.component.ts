@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Transfer} from '../models/Transfer';
-import {TransferService} from '../transfer.service';
+import {AccountService} from '../account.service';
 import {Person} from '../models/Person';
 import {KeyValue} from '@angular/common';
 
@@ -13,13 +13,13 @@ export class TransferComponent implements OnInit {
   @Input() transfer: KeyValue<string, Transfer>;
   @Input() persons: Map<string, Person>;
 
-  constructor(private transferService: TransferService) {
+  constructor(private accountService: AccountService) {
   }
 
   ngOnInit() {
   }
 
   deleteTransfer(id: string) {
-    this.transferService.deleteTransfer(id);
+    this.accountService.deleteTransfer(id);
   }
 }

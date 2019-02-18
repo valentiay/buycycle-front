@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PersonService} from '../person.service';
+import {AccountService} from '../account.service';
 import {Person} from '../models/Person';
 
 @Component({
@@ -11,14 +11,14 @@ export class DebtorsComponent implements OnInit {
 
   persons: Map<string, Person>;
 
-  constructor(private personService: PersonService) { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
     this.getPersons();
   }
 
   getPersons() {
-    this.personService.getPersons().subscribe(persons => this.persons = persons);
+    this.accountService.getPersons().subscribe(persons => this.persons = persons);
   }
 
 }

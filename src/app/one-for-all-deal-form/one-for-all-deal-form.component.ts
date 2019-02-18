@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {OneForAllDeal} from '../models/OneForAllDeal';
 import {Person} from '../models/Person';
+import {AccountService} from '../account.service';
 
 @Component({
   selector: 'app-one-for-all-deal-form',
@@ -10,12 +11,20 @@ import {Person} from '../models/Person';
 export class OneForAllDealFormComponent implements OnInit {
 
   @Input() deal: OneForAllDeal;
-  @Input() persons: Map<string, Person>;
+  persons: Map<string, Person>;
 
-  constructor() {
+  constructor(private accountService: AccountService) {
   }
 
   ngOnInit() {
+    this.getPersons();
+  }
+
+  getPersons() {
+    this.accountService.getPersons().subscribe(persons => {
+      this.persons = persons;
+      console.log('updated');
+    });
   }
 
   deleteMember(id: string) {

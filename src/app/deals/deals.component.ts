@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DebtorDeal} from '../models/DebtorDeal';
 import {Deal, DealType} from '../models/Deal';
 import {Person} from '../models/Person';
-import {PersonService} from '../person.service';
-import {DealService} from '../deal.service';
+import {AccountService} from '../account.service';
 import {OneForAllDeal} from '../models/OneForAllDeal';
 
 @Component({
@@ -14,12 +13,12 @@ import {OneForAllDeal} from '../models/OneForAllDeal';
 export class DealsComponent implements OnInit {
   dealType = DealType;
 
-  deals: Map<string, Deal>;
   newDeal: Deal;
   newDealType: DealType = DealType.OneForAll;
+  deals: Map<string, Deal>;
   persons: Map<string, Person>;
 
-  constructor(private personService: PersonService, private dealService: DealService) {
+  constructor(private accountService: AccountService) {
   }
 
   ngOnInit() {
@@ -28,11 +27,11 @@ export class DealsComponent implements OnInit {
   }
 
   getPersons() {
-    this.personService.getPersons().subscribe(persons => this.persons = persons);
+    this.accountService.getPersons().subscribe(persons => this.persons = persons);
   }
 
   getDeals() {
-    this.dealService.getDeals().subscribe(deals => this.deals = deals);
+    this.accountService.getDeals().subscribe(deals => this.deals = deals);
   }
 
   setNewDealType(type: DealType) {
@@ -57,7 +56,7 @@ export class DealsComponent implements OnInit {
   }
 
   addNewDeal() {
-    this.dealService.addDeal(this.newDeal).subscribe(() => this.newDeal = undefined);
+    this.accountService.addDeal(this.newDeal).subscribe(() => this.newDeal = undefined);
   }
 
   clearDeal() {

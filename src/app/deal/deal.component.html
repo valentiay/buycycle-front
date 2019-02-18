@@ -29,7 +29,7 @@
 <div *ngIf="deal && isEdited" class="active-card">
   <ng-container [ngSwitch]="deal.value.type">
     <ng-container *ngSwitchCase="dealType.OneForAll">
-      <app-one-for-all-deal-form [deal]="editedDeal" [persons]="persons"></app-one-for-all-deal-form>
+      <app-one-for-all-deal-form [deal]="editedDeal"></app-one-for-all-deal-form>
     </ng-container>
 
     <ng-container *ngSwitchCase="dealType.Debtors">

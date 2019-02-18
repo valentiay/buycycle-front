@@ -14,8 +14,7 @@
   </button>
   <div id="deal-form" class="active-card">
     <ng-container [ngSwitch]="newDealType">
-      <app-one-for-all-deal-form *ngSwitchCase="dealType.OneForAll" [deal]="newDeal"
-                                 [persons]="persons"></app-one-for-all-deal-form>
+      <app-one-for-all-deal-form *ngSwitchCase="dealType.OneForAll" [deal]="newDeal"></app-one-for-all-deal-form>
       <app-debtor-deal-form *ngSwitchCase="dealType.Debtors" [deal]="newDeal"
                             [persons]="persons"></app-debtor-deal-form>
     </ng-container>

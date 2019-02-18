@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Transfer} from '../models/Transfer';
 import {Person} from '../models/Person';
-import {PersonService} from '../person.service';
-import {TransferService} from '../transfer.service';
+import {AccountService} from '../account.service';
 
 @Component({
   selector: 'app-transfers',
@@ -16,7 +15,7 @@ export class TransfersComponent implements OnInit {
   persons: Map<string, Person>;
   newTransfer: Transfer;
 
-  constructor(private personService: PersonService, private transferService: TransferService) {
+  constructor(private accountService: AccountService) {
   }
 
   ngOnInit() {
@@ -25,11 +24,11 @@ export class TransfersComponent implements OnInit {
   }
 
   getPersons() {
-    this.personService.getPersons().subscribe(persons => this.persons = persons);
+    this.accountService.getPersons().subscribe(persons => this.persons = persons);
   }
 
   getTransfers() {
-    this.transferService.getTransfers().subscribe(transfers => this.transfers = transfers);
+    this.accountService.getTransfers().subscribe(transfers => this.transfers = transfers);
   }
 
   initEmptyTransfer() {
@@ -37,7 +36,7 @@ export class TransfersComponent implements OnInit {
   }
 
   addNewTransfer() {
-    this.transferService.addTransfer(this.newTransfer).subscribe(this.newTransfer = undefined);
+    this.accountService.addTransfer(this.newTransfer).subscribe(this.newTransfer = undefined);
   }
 
   clearTransfer() {

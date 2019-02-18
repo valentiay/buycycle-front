@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Person} from '../models/Person';
-import {PersonService} from '../person.service';
+import {AccountService} from '../account.service';
 
 @Component({
   selector: 'app-persons',
@@ -12,14 +12,14 @@ export class PersonsComponent implements OnInit {
   persons: Map<string, Person>;
   newPerson: Person;
 
-  constructor(private personService: PersonService) { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
     this.getPersons();
   }
 
   getPersons() {
-    this.personService.getPersons().subscribe(persons => this.persons = persons);
+    this.accountService.getPersons().subscribe(persons => this.persons = persons);
   }
 
   initEmptyPerson() {
@@ -27,7 +27,7 @@ export class PersonsComponent implements OnInit {
   }
 
   addNewPerson() {
-    this.personService.addPerson(this.newPerson).subscribe(() => {
+    this.accountService.addPerson(this.newPerson).subscribe(() => {
       this.newPerson = undefined;
       this.getPersons();
     });
@@ -38,6 +38,6 @@ export class PersonsComponent implements OnInit {
   }
 
   deletePerson(id: string) {
-    this.personService.deletePerson(id).subscribe(() => this.getPersons());
+    this.accountService.deletePerson(id).subscribe(() => this.getPersons());
   }
 }
