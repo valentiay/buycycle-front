@@ -1,14 +1,21 @@
 @import "styles";
 
-.card {
+.card, .active-card {
   display: block;
   float: left;
-  background-color: $light-color-bright;
   padding: $default-padding;
   margin: 1px 0;
   width: 100%;
   vertical-align: baseline;
   position: relative;
+}
+
+.card {
+  background-color: $light-color-bright;
+}
+
+.active-card {
+  background-color: $light-color-pale;
 }
 
 .card-title {

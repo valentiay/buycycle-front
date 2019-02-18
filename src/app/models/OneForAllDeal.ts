@@ -19,4 +19,8 @@ export class OneForAllDeal implements Deal {
   static fromOtherDeal(other: Deal): Deal {
     return new OneForAllDeal(other.id, other.name, other.price, other.members, '');
   }
+
+  clone(): OneForAllDeal {
+    return new OneForAllDeal(this.id, this.name, this.price, new Set(this.members), this.lender);
+  }
 }

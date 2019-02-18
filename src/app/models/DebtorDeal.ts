@@ -20,6 +20,12 @@ export class DebtorDeal implements Deal {
     return new DebtorDeal(other.id, other.name, other.price, other.members, new Map());
   }
 
+  clone(): DebtorDeal {
+    const debtors = new Map<string, Set<string>>();
+    this.debtors.forEach((value, key) => debtors.set(key, new Set(value)));
+    return new DebtorDeal(this.id, this.name, this.price, new Set(this.members), debtors);
+  }
+
   notDebtors(): Set<string> {
     const members = new Set<string>(this.members);
     this.debtors.forEach((borrowers, lender) => {

@@ -4,6 +4,7 @@ export interface Deal {
   price: string;
   type: DealType;
   members: Set<string>;
+  clone(): Deal;
 }
 
 export enum DealType {

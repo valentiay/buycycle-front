@@ -12,15 +12,15 @@
           [class.selected-type]="newDealType === dealType.Debtors">
     Непонятная Васе схема
   </button>
-  <div id="deal-form">
+  <div id="deal-form" class="active-card">
     <ng-container [ngSwitch]="newDealType">
       <app-one-for-all-deal-form *ngSwitchCase="dealType.OneForAll" [deal]="newDeal"
                                  [persons]="persons"></app-one-for-all-deal-form>
       <app-debtor-deal-form *ngSwitchCase="dealType.Debtors" [deal]="newDeal"
                             [persons]="persons"></app-debtor-deal-form>
     </ng-container>
-    <button class="deal-control-button" type="submit" (click)="addNewDeal()" *ngIf="newDeal">Добавить</button>
-    <button class="deal-control-button" type="reset" (click)="clearDeal()" *ngIf="newDeal">Отмена</button>
+    <button type="submit" (click)="addNewDeal()">Добавить</button>
+    <button type="reset" (click)="clearDeal()">Отмена</button>
   </div>
 </div>
-<app-deal class="card" *ngFor="let deal of deals | keyvalue" [deal]="deal.value" [persons]="persons"></app-deal>
+<app-deal *ngFor="let deal of deals | keyvalue" [deal]="deal" [persons]="persons"></app-deal>
