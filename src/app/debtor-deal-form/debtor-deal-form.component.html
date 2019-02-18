@@ -1,6 +1,7 @@
 <div *ngIf="deal">
   <input class="deal-name" [(ngModel)]="deal.name" placeholder="Название" required="required"/>
   <input class="deal-price" [(ngModel)]="deal.price" placeholder="Стоимость" required="required"/>
+  <hr/>
   <div *ngFor="let notBorrower of deal.notBorrowers()">{{persons.get(notBorrower).name}}
     <fa-icon class="inline-control" size="sm" (click)="deleteMember(notBorrower)" [icon]="['fas', 'times']"></fa-icon> за себя
     <span *ngIf="deal.debtors.has(notBorrower)">
@@ -15,11 +16,20 @@
     <div class="borrower-list" *ngIf="notBorrower === activeLender">
       <ng-container *ngFor="let otherNotBorrower of deal.notDebtors()">
         <ng-container *ngIf="otherNotBorrower !== notBorrower">
-          <button class="borrower-list-item" (click)="addBorrower(notBorrower, otherNotBorrower)">
+          <button class="person-list-item" (click)="addBorrower(notBorrower, otherNotBorrower)">
             + {{persons.get(otherNotBorrower).name}}
           </button>
         </ng-container>
       </ng-container>
     </div>
   </div>
+  <p>
+    <ng-container *ngFor="let person of notMembers() | keyvalue; first as isFirst">
+        <hr *ngIf="isFirst"/>
+        <button class="person-list-item" (click)="addMember(person.key)">
+          + {{person.value.name}}
+        </button>
+    </ng-container>
+  </p>
+  <hr/>
 </div>

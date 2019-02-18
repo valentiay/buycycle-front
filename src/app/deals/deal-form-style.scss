@@ -24,3 +24,15 @@
 .deal-price::placeholder {
   color: $light-color-pale;
 }
+
+.person-list-item {
+  background-color: $secondary-color-other;
+  color: $light-color;
+  border-radius: $default-radius;
+  padding: 5px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid $dark-color-bright;
+}

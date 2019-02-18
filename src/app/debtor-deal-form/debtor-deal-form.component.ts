@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DebtorDeal} from '../models/DebtorDeal';
 import {Person} from '../models/Person';
+import {AccountService} from '../account.service';
 
 @Component({
   selector: 'app-debtor-deal-form',
@@ -10,12 +11,20 @@ import {Person} from '../models/Person';
 export class DebtorDealFormComponent implements OnInit {
 
   @Input() deal: DebtorDeal;
-  @Input() persons: Map<string, Person>;
+  persons: Map<string, Person>;
   activeLender: string;
 
-  constructor() { }
+  constructor(private accountService: AccountService) {
+  }
 
   ngOnInit() {
+    this.getPersons();
+  }
+
+  getPersons() {
+    this.accountService.getPersons().subscribe(persons => {
+      this.persons = persons;
+    });
   }
 
   toggleBorrowerList(lender: string) {
@@ -41,8 +50,22 @@ export class DebtorDealFormComponent implements OnInit {
     }
   }
 
+  addMember(id: string) {
+    this.deal.members.add(id);
+  }
+
   deleteMember(member: string) {
     this.deal.debtors.delete(member);
     this.deal.members.delete(member);
+  }
+
+  notMembers(): Map<string, Person> {
+    const notMembers = new Map<string, Person>();
+    this.persons.forEach((value, key) => {
+      if (!this.deal.members.has(key)) {
+        notMembers.set(key, value);
+      }
+    });
+    return notMembers;
   }
 }

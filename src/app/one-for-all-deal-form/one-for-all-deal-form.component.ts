@@ -23,15 +23,14 @@ export class OneForAllDealFormComponent implements OnInit {
   getPersons() {
     this.accountService.getPersons().subscribe(persons => {
       this.persons = persons;
-      console.log('updated');
     });
   }
 
+  addMember(id: string) {
+    this.deal.members.add(id);
+  }
+
   deleteMember(id: string) {
-    if (id === this.deal.lender) {
-      alert('Вы пытаетесь удалить человека, который платит');
-    } else {
-      this.deal.members.delete(id);
-    }
+    this.deal.members.delete(id);
   }
 }

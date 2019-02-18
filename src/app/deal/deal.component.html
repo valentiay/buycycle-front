@@ -10,7 +10,7 @@
   <ng-container [ngSwitch]="deal.value.type">
 
     <ng-container *ngSwitchCase="dealType.OneForAll">
-      <p><b><a href="#">{{persons.get(deal.value.lender).name}}</a> платит за всех:</b></p>
+      <p><b><a href="#">{{persons.get(deal.value.lender).name}}</a> платит за:</b></p>
       <span *ngFor="let member of deal.value.members; last as isLast"><a href="">{{persons.get(member).name}}</a><ng-container *ngIf="!isLast">, </ng-container></span>
     </ng-container>
 
@@ -33,7 +33,7 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="dealType.Debtors">
-      <app-debtor-deal-form [deal]="editedDeal" [persons]="persons"></app-debtor-deal-form>
+      <app-debtor-deal-form [deal]="editedDeal"></app-debtor-deal-form>
     </ng-container>
   </ng-container>
   <button class="deal-control-button" type="submit" (click)="submit()">Сохранить</button>
