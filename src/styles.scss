@@ -32,7 +32,8 @@ html, body {
   display: block;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   background-color: $light-color;
   margin: 0;
   padding: 0;

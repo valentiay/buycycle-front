@@ -1,5 +1,5 @@
 <div class="card" *ngIf="transfer && !isEdited">
-  {{transfer.value.amount}}: {{persons.get(transfer.value.from).name}} 🠚 {{persons.get(transfer.value.to).name}}
+  <div class="card-title">{{transfer.value.amount}}: {{persons.get(transfer.value.from).name}} 🠚 {{persons.get(transfer.value.to).name}}</div>
   <div class="card-controls">
     <fa-icon (click)=edit() [icon]="['fas', 'pencil-alt']"></fa-icon>
     <fa-icon (click)="remove(transfer.key)" [icon]="['fas', 'times']" size="lg"></fa-icon>
