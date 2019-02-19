@@ -50,9 +50,9 @@ export class DealsComponent implements OnInit {
 
   initEmptyDeal() {
     const members = new Set<string>();
-    this.persons.forEach(person => members.add(person.id));
+    this.persons.forEach((person, id) => members.add(id));
     this.newDealType = DealType.OneForAll;
-    this.newDeal = new OneForAllDeal('1', '', '', members, '');
+    this.newDeal = new OneForAllDeal('', '', members, '');
   }
 
   addNewDeal() {

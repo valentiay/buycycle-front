@@ -1,5 +1,4 @@
 export interface Deal {
-  id: string;
   name: string;
   price: string;
   type: DealType;

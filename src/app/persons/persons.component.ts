@@ -23,7 +23,7 @@ export class PersonsComponent implements OnInit {
   }
 
   initEmptyPerson() {
-    this.newPerson = new Person('', '');
+    this.newPerson = new Person('');
   }
 
   addNewPerson() {
@@ -38,6 +38,6 @@ export class PersonsComponent implements OnInit {
   }
 
   deletePerson(id: string) {
-    this.accountService.deletePerson(id).subscribe(() => this.getPersons());
+    this.accountService.removePerson(id).subscribe(() => this.getPersons());
   }
 }

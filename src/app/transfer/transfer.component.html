@@ -1,5 +1,24 @@
-{{transfer.value.amount}}: {{persons.get(transfer.value.from).name}} 🠚 {{persons.get(transfer.value.to).name}}
-<div class="card-controls">
-  <fa-icon [icon]="['fas', 'pencil-alt']"></fa-icon>
-  <fa-icon (click)="deleteTransfer(transfer.key)" [icon]="['fas', 'times']" size="lg"></fa-icon>
+<div class="card" *ngIf="transfer && !isEdited">
+  {{transfer.value.amount}}: {{persons.get(transfer.value.from).name}} 🠚 {{persons.get(transfer.value.to).name}}
+  <div class="card-controls">
+    <fa-icon (click)=edit() [icon]="['fas', 'pencil-alt']"></fa-icon>
+    <fa-icon (click)="remove(transfer.key)" [icon]="['fas', 'times']" size="lg"></fa-icon>
+  </div>
+</div>
+<div class="active-card" *ngIf="transfer && isEdited">
+  <input [(ngModel)]="editedTransfer.amount" placeholder="Сумма"/><br/>
+  <p>
+    <label>Отправитель <select [(ngModel)]="editedTransfer.from">
+      <option value="" disabled selected>Кто?</option>
+      <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
+    </select></label>
+  </p>
+  <p>
+    <label>Получатель <select [(ngModel)]="editedTransfer.to">
+      <option value="" disabled selected>Кто?</option>
+      <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
+    </select></label>
+  </p>
+  <button (click)="submit()">Сохранить</button>
+  <button (click)="cancel()">Отмена</button>
 </div>

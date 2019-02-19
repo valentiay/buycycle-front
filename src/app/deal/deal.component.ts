@@ -32,8 +32,8 @@ export class DealComponent {
   }
 
   cancel() {
-    this.editedDeal = undefined;
     this.isEdited = false;
+    this.editedDeal = undefined;
   }
 
   submit() {
