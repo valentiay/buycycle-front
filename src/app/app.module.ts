@@ -17,6 +17,7 @@ import {TransfersComponent} from './transfers/transfers.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faCheck, faTimes, faPlus, faPencilAlt} from '@fortawesome/free-solid-svg-icons';
+import { AutoFocusDirective } from './auto-focus.directive';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {faCheck, faTimes, faPlus, faPencilAlt} from '@fortawesome/free-solid-svg
     OneForAllDealFormComponent,
     TransferComponent,
     DebtorsComponent,
-    TransfersComponent
+    TransfersComponent,
+    AutoFocusDirective
   ],
   imports: [
     BrowserModule,

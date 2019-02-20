@@ -107,7 +107,7 @@ input {
   font-size: 1em;
 }
 
-input:focus {
+input:focus, select:focus {
   outline: none;
   box-shadow: 0 0 0 1px $secondary-color;
 }

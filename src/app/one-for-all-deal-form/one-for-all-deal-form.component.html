@@ -1,6 +1,6 @@
 <div *ngIf="deal">
-  <input class="deal-name" [(ngModel)]="deal.name" placeholder="Название" required="required"/>
-  <input class="deal-price" [(ngModel)]="deal.price" placeholder="Стоимость" required="required"/>
+  <input class="deal-name" [(ngModel)]="deal.name" placeholder="Название" required appAutofocus/>
+  <input class="deal-price" [(ngModel)]="deal.price" placeholder="Стоимость" required/>
   <hr/>
   <p>
     <label><select [(ngModel)]="deal.lender" required="required">

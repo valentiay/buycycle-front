@@ -6,12 +6,12 @@
     {{transfer.value.amount}}
   </div>
   <div class="card-controls">
-    <fa-icon (click)=edit() [icon]="['fas', 'pencil-alt']"></fa-icon>
+    <fa-icon (click)="edit()" [icon]="['fas', 'pencil-alt']"></fa-icon>
     <fa-icon (click)="remove(transfer.key)" [icon]="['fas', 'times']" size="lg"></fa-icon>
   </div>
 </div>
-<div class="active-card" *ngIf="transfer && isEdited">
-  <input [(ngModel)]="editedTransfer.amount" placeholder="Сумма"/><br/>
+<div class="active-card" *ngIf="transfer && isEdited" (keyup.enter)="submit()">
+  <input [(ngModel)]="editedTransfer.amount" placeholder="Сумма" appAutofocus/><br/>
   <p>
     <label>Отправитель <select [(ngModel)]="editedTransfer.from">
       <option value="" disabled selected>Кто?</option>

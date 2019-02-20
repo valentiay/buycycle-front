@@ -26,7 +26,7 @@
   </ng-container>
 </div>
 
-<div *ngIf="deal && isEdited" class="active-card">
+<div *ngIf="deal && isEdited" class="active-card" (keyup.enter)="submit()">
   <ng-container [ngSwitch]="deal.value.type">
     <ng-container *ngSwitchCase="dealType.OneForAll">
       <app-one-for-all-deal-form [deal]="editedDeal"></app-one-for-all-deal-form>

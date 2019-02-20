@@ -1,7 +1,7 @@
 <div class="section-header">Покупки</div>
 <button class="section-add" (click)="initEmptyDeal()" *ngIf="!newDeal">Добавить</button>
 <br/>
-<div *ngIf="newDeal">
+<div *ngIf="newDeal" (keyup.enter)="addNewDeal()">
   <button class="deal-type-button"
           (click)="setNewDealType(dealType.OneForAll)"
           [class.selected-type]="newDealType === dealType.OneForAll">

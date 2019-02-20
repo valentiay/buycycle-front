@@ -1,7 +1,7 @@
 @import "../styles.scss";
 
 $header-height: 50px;
-$footer-height: 40px;
+$footer-height: 35px;
 :host {
   display: block;
   float: left;
@@ -28,7 +28,6 @@ footer {
   width: 100vw;
   margin-top: 10px;
   height: $footer-height - 10px;
-  line-height: ($footer-height - 10px);
   text-align: center;
   color: $dark-color-bright;
   vertical-align: bottom;
