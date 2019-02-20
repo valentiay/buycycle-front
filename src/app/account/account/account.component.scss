@@ -1,0 +1,85 @@
+@import "../../../styles";
+
+$header-height: 50px;
+$footer-height: 35px;
+
+:host {
+  display: block;
+  float: left;
+  height: 100%;
+}
+
+header {
+  background-color: $secondary-color;
+  height: $header-height;
+  width: 100vw;
+  display: block;
+  float: left;
+}
+
+#header-icon {
+  font-size: $biggest-font-size;
+  line-height: $header-height;
+  color: $light-color;
+  display: inline-block;
+  font-weight: bold;
+  margin: 0 $default-margin;
+}
+
+#account-name {
+  display: inline-block;
+  font-size: $biggest-font-size;
+  vertical-align: baseline;
+  font-weight: bold;
+  color: $light-color-bright;
+  line-height: $header-height;
+  margin: 0 $default-margin;
+}
+
+#header-content {
+  height: 100%;
+}
+
+@media (min-width: $max-width) {
+  #outlet {
+    width: $max-width;
+    margin: 0 calc((100% - #{$max-width}) / 2);
+  }
+
+  #header-content {
+    width: $max-width;
+    margin: 0 calc((100% - #{$max-width}) / 2);
+  }
+}
+
+#outlet {
+  float: left;
+  display: block;
+}
+
+@media (min-width: 600px) {
+  #outlet {
+    height: calc(100% - #{$header-height} - #{$footer-height});
+  }
+}
+
+@media (max-width: $max-width - 1px) {
+  #outlet {
+    width: 100%;
+  }
+
+  #header-content {
+    width: 100%;
+  }
+}
+
+footer {
+  font-size: $small-font-size;
+  width: 100vw;
+  margin-top: 10px;
+  height: $footer-height - 10px;
+  text-align: center;
+  color: $dark-color-bright;
+  vertical-align: bottom;
+  float: left;
+}

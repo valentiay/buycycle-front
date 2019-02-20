@@ -1,14 +1,10 @@
-@import "../../styles";
-@import "../../elements";
+@import "../../../styles";
+@import "../../../elements";
 
-#person-form {
+#transfers-form {
   background-color: $light-color-pale;
   color: $dark-color;
   padding: $default-padding;
   width: 100%;
   margin-bottom: 1px;
-}
-
-.person-name {
-  font-weight: bold;
 }

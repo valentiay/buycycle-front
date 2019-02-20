@@ -1,0 +1,101 @@
+@import "../../../styles";
+
+@media (min-width: 1025px) {
+  #primary-col {
+    margin-left: $default-margin;
+    margin-top: 2 * $default-margin;
+    width: calc(70% - #{$default-margin});
+    height: calc(100% - 3 * #{$default-margin});
+    display: block;
+    float: left;
+  }
+
+  #secondary-col {
+    margin-top: 2 * $default-margin;
+    width: 30%;
+    height: calc(100% - 3 * #{$default-margin});
+    display: block;
+    float: left;
+  }
+
+  app-debtors, app-deals, app-persons, app-transfers {
+    display: block;
+    margin: 0 $default-margin $default-margin 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  app-debtors {
+    width: calc(55% - #{$default-margin});
+    height: calc(100% - 2 * #{$default-margin});
+    padding: 0 2 * $default-padding;
+    float: right;
+  }
+
+  app-deals {
+    width: calc(45% - #{$default-margin});
+    height: calc(100% - 2 * #{$default-margin});
+    float: right;
+  }
+
+  app-transfers, app-persons {
+    width: calc(100% - #{$default-margin});
+    height: calc(50% - #{$default-margin});
+    float: left;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+
+  #primary-col, #secondary-col {
+    margin-top: 2 * $default-margin;
+    height: calc(100% - 2 * #{$default-margin});
+    display: block;
+    float: left;
+  }
+
+  #primary-col {
+    margin-left: $default-margin;
+    width: calc(61% - #{$default-margin});
+  }
+
+  #secondary-col {
+    width: 39%;
+  }
+
+  app-debtors, app-deals, app-persons, app-transfers {
+    display: block;
+    float: left;
+    margin: 0 $default-margin $default-margin 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+    width: calc(100% - #{$default-margin});
+    height: calc(50% - #{$default-margin});  }
+
+  app-debtors {
+    padding: 0 2 * $default-padding 0 0;
+  }
+}
+
+@media (max-width: 599px) {
+
+
+  #primary-col {
+    margin-top: 2 * $default-margin;
+  }
+
+  #primary-col,  #secondary-col {
+    width: 100%;
+    display: block;
+    float: left;
+  }
+
+  app-debtors, app-deals, app-persons, app-transfers {
+    display: block;
+    float: left;
+    margin: $default-margin 0;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 $default-padding;
+  }
+}
