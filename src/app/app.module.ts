@@ -16,7 +16,7 @@ import {TransfersComponent} from './transfers/transfers.component';
 
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
-import {faCheck, faTimes, faPencilAlt} from '@fortawesome/free-solid-svg-icons';
+import {faCheck, faTimes, faPlus, faPencilAlt} from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [
@@ -42,6 +42,6 @@ import {faCheck, faTimes, faPencilAlt} from '@fortawesome/free-solid-svg-icons';
 })
 export class AppModule {
   constructor() {
-    library.add(faCheck, faTimes, faPencilAlt);
+    library.add(faCheck, faTimes, faPlus, faPencilAlt);
   }
 }

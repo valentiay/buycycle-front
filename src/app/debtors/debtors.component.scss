@@ -6,3 +6,17 @@
   vertical-align: baseline;
   margin: $default-margin 0;
 }
+
+.container {
+  position: relative;
+}
+
+.limiter {
+  max-width: calc(100% - 90px);
+}
+
+.done-button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}

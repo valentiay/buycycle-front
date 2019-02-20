@@ -1,24 +1,29 @@
 <div *ngIf="deal">
-  <input class="deal-name" [(ngModel)]="deal.name" placeholder="Название" required="required" />
+  <input class="deal-name" [(ngModel)]="deal.name" placeholder="Название" required="required"/>
   <input class="deal-price" [(ngModel)]="deal.price" placeholder="Стоимость" required="required"/>
   <hr/>
   <p>
     <label><select [(ngModel)]="deal.lender" required="required">
       <option value="" disabled selected>Кто?</option>
-      <option *ngFor="let member of deal.members" value="{{member}}">
-        {{persons.get(member).name}}
+      <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">
+        {{person.value.name}}
       </option>
     </select> платит за: </label>
   </p>
   <p class="members-list">
     <ng-container *ngFor="let member of deal.members; last as isLast">
-      <span class="no-break">{{persons.get(member).name}} <fa-icon class="inline-control" size="sm" (click)="deleteMember(member)" [icon]="['fas', 'times']"></fa-icon><ng-container *ngIf="!isLast">, </ng-container></span>
+      <button (click)="deleteMember(member)" class="person-list-item">{{persons.get(member).name}}
+        <fa-icon size="sm" [icon]="['fas', 'times']"></fa-icon>
+      </button>
+      <ng-container *ngIf="!isLast">,</ng-container>
     </ng-container>
   </p>
   <p>
-    <ng-container *ngFor="let person of persons | keyvalue">
-      <button class="person-list-item" *ngIf="!deal.members.has(person.key)" (click)="addMember(person.key)">
-        + {{person.value.name}}
+    <ng-container *ngFor="let person of notMembers() | keyvalue; first as isFirst">
+      <hr *ngIf="isFirst"/>
+      <button class="person-list-item" (click)="addMember(person.key)">
+        <fa-icon size="sm" [icon]="['fas', 'plus']"></fa-icon>
+        {{person.value.name}}
       </button>
     </ng-container>
   </p>

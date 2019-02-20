@@ -33,4 +33,14 @@ export class OneForAllDealFormComponent implements OnInit {
   deleteMember(id: string) {
     this.deal.members.delete(id);
   }
+
+  notMembers(): Map<string, Person> {
+    const notMembers = new Map<string, Person>();
+    this.persons.forEach((value, key) => {
+      if (!this.deal.members.has(key)) {
+        notMembers.set(key, value);
+      }
+    });
+    return notMembers;
+  }
 }

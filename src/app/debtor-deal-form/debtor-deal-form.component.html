@@ -2,22 +2,29 @@
   <input class="deal-name" [(ngModel)]="deal.name" placeholder="Название" required="required"/>
   <input class="deal-price" [(ngModel)]="deal.price" placeholder="Стоимость" required="required"/>
   <hr/>
-  <div *ngFor="let notBorrower of deal.notBorrowers()">{{persons.get(notBorrower).name}}
-    <fa-icon class="inline-control" size="sm" (click)="deleteMember(notBorrower)" [icon]="['fas', 'times']"></fa-icon> за себя
+  <div *ngFor="let notBorrower of deal.notBorrowers()">
+    <button (click)="deleteMember(notBorrower)">
+      {{persons.get(notBorrower).name}}
+      <fa-icon size="sm" [icon]="['fas', 'times']"></fa-icon>
+    </button>
+    за себя
     <span *ngIf="deal.debtors.has(notBorrower)">
       и за
-      <span *ngFor="let borrower of deal.debtors.get(notBorrower); last as isLast">
-        {{persons.get(borrower).name}}
-        <fa-icon class="inline-control" size="sm" (click)="deleteBorrower(notBorrower, borrower)" [icon]="['fas', 'times']"></fa-icon>
+      <ng-container *ngFor="let borrower of deal.debtors.get(notBorrower); last as isLast">
+        <button class="person-list-item" (click)="deleteBorrower(notBorrower, borrower)">
+          {{persons.get(borrower).name}}
+          <fa-icon size="sm" [icon]="['fas', 'times']"></fa-icon>
+        </button>
         <ng-container *ngIf="!isLast">, </ng-container>
-      </span>
+      </ng-container>
     </span>
     <button (click)="toggleBorrowerList(notBorrower)" [class.active-button]="notBorrower===activeLender">и за</button>
     <div class="borrower-list" *ngIf="notBorrower === activeLender">
       <ng-container *ngFor="let otherNotBorrower of deal.notDebtors()">
         <ng-container *ngIf="otherNotBorrower !== notBorrower">
           <button class="person-list-item" (click)="addBorrower(notBorrower, otherNotBorrower)">
-            + {{persons.get(otherNotBorrower).name}}
+            <fa-icon size="sm" [icon]="['fas', 'plus']"></fa-icon>
+            {{persons.get(otherNotBorrower).name}}
           </button>
         </ng-container>
       </ng-container>
@@ -25,10 +32,11 @@
   </div>
   <p>
     <ng-container *ngFor="let person of notMembers() | keyvalue; first as isFirst">
-        <hr *ngIf="isFirst"/>
-        <button class="person-list-item" (click)="addMember(person.key)">
-          + {{person.value.name}}
-        </button>
+      <hr *ngIf="isFirst"/>
+      <button class="person-list-item" (click)="addMember(person.key)">
+        <fa-icon size="sm" [icon]="['fas', 'plus']"></fa-icon>
+        {{person.value.name}}
+      </button>
     </ng-container>
   </p>
   <hr/>

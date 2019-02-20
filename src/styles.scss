@@ -10,10 +10,12 @@ $secondary-color-other: #28386d;
 $default-radius: 6px;
 $default-margin: 10px;
 $default-padding: 15px;
+$max-width: 1300px;
 
 $biggest-font-size: 1.50em;
 $bigger-font-size: 1.25em;
 $big-font-size: 1.05em;
+$small-font-size: 0.6em;
 
 * {
   box-sizing: border-box;
@@ -29,6 +31,7 @@ $big-font-size: 1.05em;
 
 html, body {
   font-family: free-set-light, sans-serif;
+  font-size: 16px;
   display: block;
   width: 100vw;
   height: 100vh;
@@ -125,7 +128,7 @@ select {
 
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -134,7 +137,7 @@ select {
 
 ::-webkit-scrollbar-thumb {
   background: $secondary-color-light;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
