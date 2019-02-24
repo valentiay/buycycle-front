@@ -7,15 +7,15 @@
           [class.selected-type]="newDealType === dealType.OneForAll">
     Один за всех
   </button>
-  <button class="deal-type-button"
+  <!--<button class="deal-type-button"
           (click)="setNewDealType(dealType.Debtors)"
           [class.selected-type]="newDealType === dealType.Debtors">
     Непонятная Васе схема
-  </button>
+  </button>-->
   <div id="deal-form" class="active-card">
     <ng-container [ngSwitch]="newDealType">
       <app-one-for-all-deal-form *ngSwitchCase="dealType.OneForAll" [deal]="newDeal"></app-one-for-all-deal-form>
-      <app-debtor-deal-form *ngSwitchCase="dealType.Debtors" [deal]="newDeal"></app-debtor-deal-form>
+      <!--<app-debtor-deal-form *ngSwitchCase="dealType.Debtors" [deal]="newDeal"></app-debtor-deal-form>-->
     </ng-container>
     <button type="submit" (click)="addNewDeal()">Добавить</button>
     <button type="reset" (click)="clearDeal()">Отмена</button>

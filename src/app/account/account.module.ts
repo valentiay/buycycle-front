@@ -14,6 +14,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {AccountRoutingModule} from './account-routing.module';
+import { DetailedComponent } from './detailed/detailed.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {AccountRoutingModule} from './account-routing.module';
     TransferComponent,
     DebtorsComponent,
     TransfersComponent,
-    DashboardComponent
+    DashboardComponent,
+    DetailedComponent
   ],
   imports: [
     BrowserModule,

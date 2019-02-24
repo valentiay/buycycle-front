@@ -3,12 +3,12 @@
   <ng-container *ngIf="person.value.lenders.size !== 0 || person.value.borrowers.size !== 0">
     <div class="container">
       <div class="debtors-person-name">{{person.value.name}}</div>
-      <div *ngFor="let lender of person.value.lenders | keyvalue">
-        <div class="limiter">должен <b>отдать</b> {{lender.value}} {{persons.get(lender.key).name}}</div>
+      <div class="limiter" *ngFor="let lender of person.value.lenders | keyvalue">
+        должен <b>отдать</b> {{lender.value}} {{persons.get(lender.key).name}}
         <button class="done-button" (click)="addTransfer(person.key, lender.key, lender.value)">Сделано</button>
       </div>
-      <div *ngFor="let borrower of person.value.borrowers | keyvalue">
-        <div class="limiter">должен <b>получить</b> {{borrower.value}} от {{persons.get(borrower.key).name}}</div>
+      <div class="limiter" *ngFor="let borrower of person.value.borrowers | keyvalue">
+        должен <b>получить</b> {{borrower.value}} от {{persons.get(borrower.key).name}}
         <button class="done-button" (click)="addTransfer(borrower.key, person.key, borrower.value)">Сделано</button>
       </div>
     </div>

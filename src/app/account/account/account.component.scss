@@ -1,7 +1,7 @@
 @import "../../../styles";
 
 $header-height: 50px;
-$footer-height: 35px;
+$footer-height: 20px;
 
 :host {
   display: block;
@@ -11,26 +11,25 @@ $footer-height: 35px;
 
 header {
   background-color: $secondary-color;
-  height: $header-height;
   width: 100vw;
   display: block;
   float: left;
 }
 
 #header-icon {
+  display: inline-flex;
   font-size: $biggest-font-size;
+  height: $header-height;
   line-height: $header-height;
   color: $light-color;
-  display: inline-block;
   font-weight: bold;
   margin: 0 $default-margin;
 }
 
 #account-name {
   display: inline-block;
-  font-size: $biggest-font-size;
+  font-size: $big-font-size;
   vertical-align: baseline;
-  font-weight: bold;
   color: $light-color-bright;
   line-height: $header-height;
   margin: 0 $default-margin;
@@ -40,10 +39,84 @@ header {
   height: 100%;
 }
 
+nav, #lower-row {
+  display: flex;
+  float: right;
+  justify-content: flex-end;
+}
+
+#upper-row {
+  display: inline-flex;
+}
+
+nav a {
+  font-size: $bigger-font-size;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0 $default-margin;
+  color: $light-color-pale;
+  line-height: calc(#{$header-height} - 5px);
+  height: 100%;
+}
+
+.active-nav-a {
+  border-bottom: 5px $secondary-color-light solid;
+}
+
+#outlet {
+  float: left;
+  display: inline-flex;
+  justify-content: center;
+}
+
+@media (min-width: 600px) {
+  header {
+    height: $header-height;
+  }
+
+  nav, #lower-row, #upper-row {
+    width: max-content;
+    height: 100%;
+  }
+
+  #outlet {
+    height: calc(100% - #{$header-height} - #{$footer-height} - 4 * #{$default-margin});
+  }
+}
+
+@media (max-width: 599px) {
+  header {
+    height: 2 * $header-height;
+  }
+
+  #lower-row {
+    height: 50%;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  #lower-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  #upper-row {
+    height: 50%;
+  }
+
+  nav {
+    min-width: 100%;
+    justify-content: space-between;
+  }
+
+  nav a {
+    padding: 0 5px;
+  }
+}
+
 @media (min-width: $max-width) {
   #outlet {
-    width: $max-width;
-    margin: 0 calc((100% - #{$max-width}) / 2);
+    width: $max-width - 50px;
+    margin: 2 * $default-margin calc((100% - #{$max-width}) / 2 + 25px);
   }
 
   #header-content {
@@ -52,20 +125,10 @@ header {
   }
 }
 
-#outlet {
-  float: left;
-  display: block;
-}
-
-@media (min-width: 600px) {
-  #outlet {
-    height: calc(100% - #{$header-height} - #{$footer-height});
-  }
-}
-
 @media (max-width: $max-width - 1px) {
   #outlet {
-    width: 100%;
+    width: calc(100% - 2 * #{$default-margin});
+    margin: 2 * $default-margin $default-margin;
   }
 
   #header-content {
@@ -76,8 +139,7 @@ header {
 footer {
   font-size: $small-font-size;
   width: 100vw;
-  margin-top: 10px;
-  height: $footer-height - 10px;
+  height: $footer-height;
   text-align: center;
   color: $dark-color-bright;
   vertical-align: bottom;

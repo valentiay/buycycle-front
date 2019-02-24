@@ -1,2 +1,10 @@
 @import "../../../styles";
 @import "../../../elements";
+
+:host {
+  display: block;
+}
+
+.card {
+  padding-right: 30px + $default-padding;
+}

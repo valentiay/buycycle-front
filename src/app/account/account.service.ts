@@ -5,6 +5,7 @@ import {OneForAllDeal} from './models/OneForAllDeal';
 import {Deal} from './models/Deal';
 import {Person} from './models/Person';
 import {Transfer} from './models/Transfer';
+import {Account} from './models/Account';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,9 @@ export class AccountService {
     ['1', new Transfer('12', '23', '$100')],
     ['2', new Transfer('23', '73', '$200')],
   ]));
+  private accounts: BehaviorSubject<Map<string, Account>> = new BehaviorSubject(new Map<string, Account>([
+    ['1', new Account('Поход по фастфудам')]
+  ]));
 
   constructor() {
     const members = new Set<string>(['12', '23', '14', '72', '73']);
@@ -32,6 +36,10 @@ export class AccountService {
       ['1', new DebtorDeal('Makdak', '$300', new Set(members), debtors)],
       ['2', new OneForAllDeal('Burger King', '$150', new Set(members), '23')]
     ]));
+  }
+
+  getAccount(id: string): Observable<Account> {
+    return of(this.accounts.getValue().get(id));
   }
 
   getDeals(): Observable<Map<string, Deal>> {

@@ -1,6 +1,10 @@
 @import "../../../styles";
 @import "../../../elements";
 
+:host {
+  display: block;
+}
+
 .deal-name {
   font-size: $bigger-font-size;
   font-weight: bold;

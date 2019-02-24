@@ -1,5 +1,5 @@
 <div class="card" *ngIf="person && !isEdited">
-  <div class="card-title"><b>{{person.value.name}}</b></div>
+  <div><b>{{person.value.name}}</b></div>
   <div class="card-controls">
     <fa-icon [icon]="['fas', 'pencil-alt']" (click)="edit()"></fa-icon>
   </div>

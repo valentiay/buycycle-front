@@ -19,6 +19,7 @@ $small-font-size: 0.6em;
 
 * {
   box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
 }
 
 @font-face {

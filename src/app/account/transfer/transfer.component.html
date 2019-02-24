@@ -1,10 +1,8 @@
 <div class="card" *ngIf="transfer && !isEdited">
-  <div class="card-title">
-    <a href="">{{persons.get(transfer.value.from).name}}</a>
-    отдал
-    <a href="">{{persons.get(transfer.value.to).name}}</a>
-    {{transfer.value.amount}}
-  </div>
+  <a href="">{{persons.get(transfer.value.from).name}}</a>
+  отдал
+  <a href="">{{persons.get(transfer.value.to).name}}</a>
+  {{transfer.value.amount}}
   <div class="card-controls">
     <fa-icon (click)="edit()" [icon]="['fas', 'pencil-alt']"></fa-icon>
     <fa-icon (click)="remove(transfer.key)" [icon]="['fas', 'times']" size="lg"></fa-icon>

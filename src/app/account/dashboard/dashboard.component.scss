@@ -3,17 +3,15 @@
 @media (min-width: 1025px) {
   #primary-col {
     margin-left: $default-margin;
-    margin-top: 2 * $default-margin;
     width: calc(70% - #{$default-margin});
-    height: calc(100% - 3 * #{$default-margin});
+    height: calc(100% - 1 * #{$default-margin});
     display: block;
     float: left;
   }
 
   #secondary-col {
-    margin-top: 2 * $default-margin;
     width: 30%;
-    height: calc(100% - 3 * #{$default-margin});
+    height: calc(100% - #{$default-margin});
     display: block;
     float: left;
   }
@@ -96,6 +94,5 @@
     margin: $default-margin 0;
     box-sizing: border-box;
     width: 100%;
-    padding: 0 $default-padding;
   }
 }

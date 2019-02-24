@@ -1,0 +1,15 @@
+:host {
+  float: left;
+}
+
+@media (min-width: 400px) {
+  :host {
+    min-width: 400px;
+  }
+}
+
+@media (max-width: 399px) {
+  :host {
+    width: 100%;
+  }
+}
