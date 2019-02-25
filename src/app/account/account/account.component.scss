@@ -57,19 +57,20 @@ nav a {
   color: $light-color-pale;
   line-height: calc(#{$header-height} - 5px);
   height: 100%;
+  white-space: nowrap;
 }
 
 .active-nav-a {
   border-bottom: 5px $secondary-color-light solid;
 }
 
-#outlet {
+article {
   float: left;
   display: inline-flex;
   justify-content: center;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 1025px) {
   header {
     height: $header-height;
   }
@@ -79,12 +80,12 @@ nav a {
     height: 100%;
   }
 
-  #outlet {
+  article {
     height: calc(100% - #{$header-height} - #{$footer-height} - 4 * #{$default-margin});
   }
 }
 
-@media (max-width: 599px) {
+@media (max-width: 1024px) {
   header {
     height: 2 * $header-height;
   }
@@ -114,7 +115,7 @@ nav a {
 }
 
 @media (min-width: $max-width) {
-  #outlet {
+  article {
     width: $max-width - 50px;
     margin: 2 * $default-margin calc((100% - #{$max-width}) / 2 + 25px);
   }
@@ -126,7 +127,7 @@ nav a {
 }
 
 @media (max-width: $max-width - 1px) {
-  #outlet {
+  article {
     width: calc(100% - 2 * #{$default-margin});
     margin: 2 * $default-margin $default-margin;
   }

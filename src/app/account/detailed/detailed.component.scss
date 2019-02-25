@@ -2,13 +2,13 @@
   float: left;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 360px) {
   :host {
-    min-width: 400px;
+    min-width: 340px;
   }
 }
 
-@media (max-width: 399px) {
+@media (max-width: 359px) {
   :host {
     width: 100%;
   }

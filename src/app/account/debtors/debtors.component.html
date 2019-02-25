@@ -1,4 +1,10 @@
-<div class="section-header">Долги</div>
+<div class="section-header">Люди и долги</div>
+<button class="section-add" *ngIf="!newPerson" (click)="initEmptyPerson()">Добавить</button><br />
+<div id="person-form" *ngIf="newPerson" (keyup.enter)="addNewPerson()">
+  <input class="person-name" [(ngModel)]="newPerson.name" placeholder="Имя" appAutofocus/><br/>
+  <button (click)="addNewPerson()">Добавить</button>
+  <button (click)="clearPerson()">Отмена</button>
+</div>
 <ng-container *ngFor="let person of persons | keyvalue">
   <ng-container *ngIf="person.value.lenders.size !== 0 || person.value.borrowers.size !== 0">
     <div class="container">

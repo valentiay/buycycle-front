@@ -1,6 +1,14 @@
 @import "../../../styles";
 @import "../../../elements";
 
+#person-form {
+  background-color: $light-color-pale;
+  color: $dark-color;
+  padding: $default-padding;
+  width: 100%;
+  margin-bottom: 1px;
+}
+
 .debtors-person-name {
   font-size: $bigger-font-size;
   vertical-align: baseline;

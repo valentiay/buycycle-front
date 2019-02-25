@@ -1,8 +1,6 @@
 import {NgModule} from '@angular/core';
 import {AccountComponent} from './account/account.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {PersonComponent} from './person/person.component';
-import {PersonsComponent} from './persons/persons.component';
 import {DealsComponent} from './deals/deals.component';
 import {DealComponent} from './deal/deal.component';
 import {DebtorDealFormComponent} from './debtor-deal-form/debtor-deal-form.component';
@@ -19,8 +17,6 @@ import { DetailedComponent } from './detailed/detailed.component';
 @NgModule({
   declarations: [
     AccountComponent,
-    PersonComponent,
-    PersonsComponent,
     DealsComponent,
     DealComponent,
     DebtorDealFormComponent,
