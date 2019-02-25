@@ -1,15 +1,8 @@
 @import "../../../styles";
 @import "../../../elements";
 
-.deal-type-button {
-  border-radius: 0;
-  background-color: $light-color-bright;
-  color: $dark-color;
-  margin: 0 2px 0 0;
-}
-
 .selected-type {
-  background-color: $light-color-pale;
+  background-color: $secondary-color;
 }
 
 .deal-type-button:focus {
@@ -18,5 +11,6 @@
 
 #deal-form {
   margin-top: 0;
+  display: flex;
+  flex-direction: column;
 }
-

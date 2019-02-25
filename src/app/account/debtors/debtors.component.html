@@ -1,5 +1,7 @@
-<div class="section-header">Люди и долги</div>
-<button class="section-add" *ngIf="!newPerson" (click)="initEmptyPerson()">Добавить</button><br />
+<header>
+  <div class="section-header">Люди и долги</div>
+  <button class="section-add" *ngIf="!newPerson" (click)="initEmptyPerson()">Добавить</button><br />
+</header>
 <div id="person-form" *ngIf="newPerson" (keyup.enter)="addNewPerson()">
   <input class="person-name" [(ngModel)]="newPerson.name" placeholder="Имя" appAutofocus/><br/>
   <button (click)="addNewPerson()">Добавить</button>

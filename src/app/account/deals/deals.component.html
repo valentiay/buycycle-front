@@ -1,24 +1,27 @@
-<div class="section-header">Покупки</div>
-<button class="section-add" (click)="initEmptyDeal()" *ngIf="!newDeal">Добавить</button>
-<br/>
+<header>
+  <div class="section-header">Покупки</div>
+  <button class="section-add" (click)="initEmptyDeal()" *ngIf="!newDeal">Добавить</button>
+</header>
 <div *ngIf="newDeal" (keyup.enter)="addNewDeal()">
-  <button class="deal-type-button"
-          (click)="setNewDealType(dealType.OneForAll)"
-          [class.selected-type]="newDealType === dealType.OneForAll">
-    Один за всех
-  </button>
-  <!--<button class="deal-type-button"
-          (click)="setNewDealType(dealType.Debtors)"
-          [class.selected-type]="newDealType === dealType.Debtors">
-    Непонятная Васе схема
-  </button>-->
   <div id="deal-form" class="active-card">
-    <ng-container [ngSwitch]="newDealType">
+      <section>
+        <button (click)="setNewDealType(dealType.OneForAll)"
+              [class.selected-type]="newDealType === dealType.OneForAll">
+        Один за всех
+      </button>
+      <button (click)="setNewDealType(dealType.Debtors)"
+              [class.selected-type]="newDealType === dealType.Debtors">
+        Непонятная Васе схема
+      </button>
+    </section>
+    <section [ngSwitch]="newDealType">
       <app-one-for-all-deal-form *ngSwitchCase="dealType.OneForAll" [deal]="newDeal"></app-one-for-all-deal-form>
-      <!--<app-debtor-deal-form *ngSwitchCase="dealType.Debtors" [deal]="newDeal"></app-debtor-deal-form>-->
-    </ng-container>
-    <button type="submit" (click)="addNewDeal()">Добавить</button>
-    <button type="reset" (click)="clearDeal()">Отмена</button>
+      <app-debtor-deal-form *ngSwitchCase="dealType.Debtors" [deal]="newDeal"></app-debtor-deal-form>
+    </section>
+    <section>
+      <button type="submit" (click)="addNewDeal()">Добавить</button>
+      <button type="reset" (click)="clearDeal()">Отмена</button>
+    </section>
   </div>
 </div>
 <app-deal *ngFor="let deal of deals | keyvalue" [deal]="deal" [persons]="persons"></app-deal>

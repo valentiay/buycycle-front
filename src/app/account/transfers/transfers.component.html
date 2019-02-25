@@ -1,5 +1,7 @@
-<div class="section-header">Переводы</div>
-<button class="section-add" *ngIf="!newTransfer" (click)="initEmptyTransfer()">Добавить</button>
+<header>
+  <div class="section-header">Переводы</div>
+  <button class="section-add" *ngIf="!newTransfer" (click)="initEmptyTransfer()">Добавить</button>
+</header>
 <div id="transfers-form" *ngIf="newTransfer" (keyup.enter)="addNewTransfer()">
   <input [(ngModel)]="newTransfer.amount" placeholder="Сумма" appAutofocus/><br/>
   <p>

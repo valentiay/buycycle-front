@@ -14,6 +14,14 @@ header {
   width: 100vw;
   display: block;
   float: left;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+article {
+  display: inline-flex;
 }
 
 #header-icon {
@@ -64,13 +72,14 @@ nav a {
   border-bottom: 5px $secondary-color-light solid;
 }
 
-article {
+main {
   float: left;
-  display: inline-flex;
+  display: flex;
   justify-content: center;
+  margin-bottom: 2 * $default-margin;
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 850px) {
   header {
     height: $header-height;
   }
@@ -80,12 +89,13 @@ article {
     height: 100%;
   }
 
-  article {
+  main {
     height: calc(100% - #{$header-height} - #{$footer-height} - 4 * #{$default-margin});
+    margin-top: $header-height + 2 * $default-margin;
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 849px) {
   header {
     height: 2 * $header-height;
   }
@@ -112,12 +122,17 @@ article {
   nav a {
     padding: 0 5px;
   }
+
+  main {
+    margin-top: 2 * $header-height + 2 * $default-margin;
+  }
 }
 
 @media (min-width: $max-width) {
-  article {
+  main {
     width: $max-width - 50px;
-    margin: 2 * $default-margin calc((100% - #{$max-width}) / 2 + 25px);
+    margin-left: calc((100% - #{$max-width}) / 2 + 25px);
+    margin-right: calc((100% - #{$max-width}) / 2 + 25px);
   }
 
   #header-content {
@@ -127,9 +142,10 @@ article {
 }
 
 @media (max-width: $max-width - 1px) {
-  article {
+  main {
     width: calc(100% - 2 * #{$default-margin});
-    margin: 2 * $default-margin $default-margin;
+    margin-left: $default-margin;
+    margin-right: $default-margin;
   }
 
   #header-content {

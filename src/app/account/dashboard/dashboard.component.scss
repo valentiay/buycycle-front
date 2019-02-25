@@ -1,6 +1,6 @@
 @import "../../../styles";
 
-@media (min-width: 1025px) {
+@media (min-width: 850px) {
   #primary-col {
     width: 70%;
     height: 100%;
@@ -41,17 +41,17 @@
   }
 }
 
-@media (max-width: 1024px) {
+
+@media (max-width: 849px) {
 
   #primary-col,  #secondary-col {
     width: 100%;
     display: block;
-    float: left;
   }
 
   app-debtors, app-deals, app-transfers {
-    display: block;
-    float: left;
+    display: flex;
+    flex-direction: column;
     margin-bottom: 2 * $default-margin;
     box-sizing: border-box;
     width: 100%;
