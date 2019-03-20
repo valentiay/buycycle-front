@@ -1,16 +1,15 @@
 @import "../../../styles";
 @import "../../../elements";
 
+article {
+  display: flex;
+  flex-direction: column;
+}
+
 .selected-type {
   background-color: $secondary-color;
 }
 
 .deal-type-button:focus {
   outline: none;
-}
-
-#deal-form {
-  margin-top: 0;
-  display: flex;
-  flex-direction: column;
 }

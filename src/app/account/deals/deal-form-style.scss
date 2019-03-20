@@ -24,20 +24,3 @@
 .deal-price::placeholder {
   color: $light-color-pale;
 }
-
-.person-list-item {
-  background-color: $secondary-color-other;
-  color: $light-color;
-  border-radius: $default-radius;
-  padding: 5px;
-}
-
-.person-list-item:focus {
-  outline: none;
-  box-shadow: 0 0 0 1px $secondary-color;
-}
-
-hr {
-  border: none;
-  border-top: 1px solid $dark-color-bright;
-}

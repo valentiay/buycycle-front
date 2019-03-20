@@ -1,13 +1,12 @@
 @import "styles";
 
 .card, .active-card {
-  display: block;
-  float: left;
   padding: $default-padding;
-  margin: 1px 0;
-  width: 100%;
+  margin: 4px;
+  width: calc(100% - 8px);
   vertical-align: baseline;
   position: relative;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1)
 }
 
 .card {
@@ -40,7 +39,7 @@
   margin: 0;
 }
 
-.card-controls fa-icon:hover, .inline-control:hover {
+.card-controls fa-icon:hover, .inline-control:hover, .fa-icon-button:hover {
   cursor: pointer;
   color: $secondary-color;
 }

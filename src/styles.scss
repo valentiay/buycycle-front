@@ -1,11 +1,12 @@
-$light-color-pale: #cbcbcb;
-$light-color: #f2f2f2;
+$light-color-pale: #c2d2dc;
+$light-color: #f0f3f6;
 $light-color-bright: #ffffff;
 $dark-color: #141414;
 $dark-color-bright: #3d3d3d;
-$secondary-color: #080e27;
-$secondary-color-light: #5665a0;
+$secondary-color: #101c38;
+$secondary-color-light: #4c5f8a;
 $secondary-color-other: #28386d;
+$third-color: #56bfbf;
 
 $default-radius: 6px;
 $default-margin: 10px;
@@ -69,7 +70,7 @@ h1 {
 }
 
 p {
-  margin: 4px 0;
+  margin: 0.5em 0;
 }
 
 b {
@@ -77,13 +78,13 @@ b {
 }
 
 a {
-  text-decoration: underline;
+  text-decoration: none;
   color: $secondary-color-light;
 }
 
 hr {
   border: none;
-  border-top: 1px solid $dark-color-bright;
+  border-top: 1px solid $secondary-color;
   width: 100%;
 }
 
@@ -103,6 +104,19 @@ button:hover {
 
 button:focus {
   outline: none;
+}
+
+.weak-button {
+  background-color: inherit;
+  color: inherit;
+  border: 1px solid $secondary-color-other;
+  border-radius: $default-radius;
+  padding: 5px;
+}
+
+.weak-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px $secondary-color;
 }
 
 input {
@@ -157,10 +171,6 @@ select {
   font-size: $biggest-font-size;
   font-weight: bold;
   display: inline-block;
-}
-
-.section-add {
-  vertical-align: top;
 }
 
 span.no-break {

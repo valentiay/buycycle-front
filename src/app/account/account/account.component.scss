@@ -1,6 +1,6 @@
 @import "../../../styles";
 
-$header-height: 50px;
+$header-height: 40px;
 $footer-height: 20px;
 
 :host {
@@ -22,25 +22,23 @@ header {
 
 article {
   display: inline-flex;
+  justify-content: center;
+}
+
+#header-icon, #account-name {
+  font-size: $biggest-font-size;
+  vertical-align: baseline;
+  line-height: $header-height;
+  margin-left: $default-margin;
 }
 
 #header-icon {
-  display: inline-flex;
-  font-size: $biggest-font-size;
-  height: $header-height;
-  line-height: $header-height;
-  color: $light-color;
   font-weight: bold;
-  margin: 0 $default-margin;
+  color: $light-color-bright;
 }
 
 #account-name {
-  display: inline-block;
-  font-size: $big-font-size;
-  vertical-align: baseline;
-  color: $light-color-bright;
-  line-height: $header-height;
-  margin: 0 $default-margin;
+  color: $light-color-pale;
 }
 
 #header-content {
@@ -66,10 +64,12 @@ nav a {
   line-height: calc(#{$header-height} - 5px);
   height: 100%;
   white-space: nowrap;
+  cursor: pointer;
+  text-align: center;
 }
 
 .active-nav-a {
-  border-bottom: 5px $secondary-color-light solid;
+  border-bottom: 5px $third-color solid;
 }
 
 main {
@@ -93,6 +93,10 @@ main {
     height: calc(100% - #{$header-height} - #{$footer-height} - 4 * #{$default-margin});
     margin-top: $header-height + 2 * $default-margin;
   }
+
+  article {
+    width: 100%;
+  }
 }
 
 @media (max-width: 849px) {
@@ -114,13 +118,19 @@ main {
     height: 50%;
   }
 
+  #header-icon {
+    display: none;
+  }
+
   nav {
     min-width: 100%;
     justify-content: space-between;
+    background-color: #1e7292;
   }
 
   nav a {
     padding: 0 5px;
+    flex-grow: 1;
   }
 
   main {

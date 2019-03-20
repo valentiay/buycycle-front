@@ -9,7 +9,7 @@
   </div>
 </div>
 <div class="active-card" *ngIf="transfer && isEdited" (keyup.enter)="submit()">
-  <input [(ngModel)]="editedTransfer.amount" placeholder="Сумма" appAutofocus/><br/>
+  <input [(ngModel)]="editedTransfer.amount" placeholder="Сумма" appAutofocus/>
   <p>
     <label>Отправитель <select [(ngModel)]="editedTransfer.from">
       <option value="" disabled selected>Кто?</option>

@@ -1,25 +1,26 @@
 <header>
-  <div class="section-header">Люди и долги</div>
-  <button class="section-add" *ngIf="!newPerson" (click)="initEmptyPerson()">Добавить</button><br />
+  <div class="section-header">Люди и долги <fa-icon class="fa-icon-button" [icon]="['fas', 'plus']" (click)="initEmptyPerson()" size="sm" *ngIf="!newPerson"></fa-icon></div>
 </header>
-<div id="person-form" *ngIf="newPerson" (keyup.enter)="addNewPerson()">
-  <input class="person-name" [(ngModel)]="newPerson.name" placeholder="Имя" appAutofocus/><br/>
-  <button (click)="addNewPerson()">Добавить</button>
-  <button (click)="clearPerson()">Отмена</button>
-</div>
-<ng-container *ngFor="let person of persons | keyvalue">
-  <ng-container *ngIf="person.value.lenders.size !== 0 || person.value.borrowers.size !== 0">
-    <div class="container">
-      <div class="debtors-person-name">{{person.value.name}}</div>
-      <div class="limiter" *ngFor="let lender of person.value.lenders | keyvalue">
-        должен <b>отдать</b> {{lender.value}} {{persons.get(lender.key).name}}
-        <button class="done-button" (click)="addTransfer(person.key, lender.key, lender.value)">Сделано</button>
+<article>
+  <div class="active-card" *ngIf="newPerson" (keyup.enter)="addNewPerson()">
+    <input class="person-name" [(ngModel)]="newPerson.name" placeholder="Имя" appAutofocus/>
+    <button (click)="addNewPerson()">Добавить</button>
+    <button (click)="clearPerson()">Отмена</button>
+  </div>
+  <ng-container *ngFor="let person of persons | keyvalue">
+    <ng-container *ngIf="person.value.lenders.size !== 0 || person.value.borrowers.size !== 0">
+      <div class="container">
+        <div class="debtors-person-name">{{person.value.name}}</div>
+        <div class="limiter" *ngFor="let lender of person.value.lenders | keyvalue">
+          должен <b>отдать</b> {{lender.value}} {{persons.get(lender.key).name}}
+          <button class="done-button" (click)="addTransfer(person.key, lender.key, lender.value)">Сделано</button>
+        </div>
+        <div class="limiter" *ngFor="let borrower of person.value.borrowers | keyvalue">
+          должен <b>получить</b> {{borrower.value}} от {{persons.get(borrower.key).name}}
+          <button class="done-button" (click)="addTransfer(borrower.key, person.key, borrower.value)">Сделано</button>
+        </div>
       </div>
-      <div class="limiter" *ngFor="let borrower of person.value.borrowers | keyvalue">
-        должен <b>получить</b> {{borrower.value}} от {{persons.get(borrower.key).name}}
-        <button class="done-button" (click)="addTransfer(borrower.key, person.key, borrower.value)">Сделано</button>
-      </div>
-    </div>
-    <hr/>
+      <hr/>
+    </ng-container>
   </ng-container>
-</ng-container>
+</article>

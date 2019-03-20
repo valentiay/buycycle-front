@@ -1,34 +1,33 @@
 <div *ngIf="deal">
-  <hr/>
   <section>
     <input class="deal-name" [(ngModel)]="deal.name" placeholder="Название" required appAutofocus/>
     <input class="deal-price" [(ngModel)]="deal.price" placeholder="Стоимость" required/>
   </section>
   <hr/>
-  <p>
-    <label><select [(ngModel)]="deal.lender" required="required">
-      <option value="" disabled selected>Кто?</option>
-      <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">
-        {{person.value.name}}
-      </option>
-    </select> платит за: </label>
-  </p>
-  <p class="members-list">
-    <ng-container *ngFor="let member of deal.members; last as isLast">
-      <button (click)="deleteMember(member)" class="person-list-item">{{persons.get(member).name}}
-        <fa-icon size="sm" [icon]="['fas', 'times']"></fa-icon>
-      </button>
-      <ng-container *ngIf="!isLast">,</ng-container>
-    </ng-container>
-  </p>
-  <p>
-    <ng-container *ngFor="let person of notMembers() | keyvalue; first as isFirst">
-      <hr *ngIf="isFirst"/>
-      <button class="person-list-item" (click)="addMember(person.key)">
-        <fa-icon size="sm" [icon]="['fas', 'plus']"></fa-icon>
-        {{person.value.name}}
-      </button>
-    </ng-container>
-  </p>
-  <hr/>
+  <section>
+    <p>
+      <label><select [(ngModel)]="deal.lender" required="required">
+        <option value="" disabled selected>Кто?</option>
+        <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">
+          {{person.value.name}}
+        </option>
+      </select> платит за: </label>
+    </p>
+    <p class="members-list">
+      <ng-container *ngFor="let member of deal.members; last as isLast">
+        <button (click)="deleteMember(member)" class="weak-button">
+          {{persons.get(member).name}} x
+        </button>
+        <ng-container *ngIf="!isLast">,</ng-container>
+      </ng-container>
+    </p>
+    <p>
+      <ng-container *ngFor="let person of notMembers() | keyvalue; first as isFirst">
+        <hr *ngIf="isFirst"/>
+        <button class="weak-button" (click)="addMember(person.key)">
+          + {{person.value.name}}
+        </button>
+      </ng-container>
+    </p>
+  </section>
 </div>
