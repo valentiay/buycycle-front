@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Transfer} from '../models/Transfer';
-import {Person} from '../models/Person';
+import {Transfer} from '../../models/Transfer';
+import {Person} from '../../models/Person';
 import {AccountService} from '../account.service';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import {AccountService} from '../account.service';
-import {Account} from '../models/Account';
+import {Account} from '../../models/Account';
 
 @Component({
   selector: 'app-account',
@@ -17,7 +17,7 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(
       (params: ParamMap) => {
-        this.accountService.getAccount(params.get('accountId')).subscribe(account =>
+        this.accountService.setAccount(params.get('accountId')).subscribe(account =>
           this.account = account
         );
       }

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {OneForAllDeal} from '../models/OneForAllDeal';
-import {Person} from '../models/Person';
+import {OneForAllDeal} from '../../models/OneForAllDeal';
+import {Person} from '../../models/Person';
 import {AccountService} from '../account.service';
 
 @Component({

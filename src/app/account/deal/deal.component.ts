@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {Deal, DealType} from '../models/Deal';
-import {Person} from '../models/Person';
+import {Deal, DealType} from '../../models/Deal';
+import {Person} from '../../models/Person';
 import {KeyValue} from '@angular/common';
 import {AccountService} from '../account.service';
 

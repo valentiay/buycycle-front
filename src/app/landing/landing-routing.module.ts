@@ -1,0 +1,25 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import {RegistrationComponent} from './registration/registration.component';
+
+const landingRoutes: Routes = [
+  {
+    path: 'registration',
+    component: RegistrationComponent,
+  },
+  {
+    path: '',
+    redirectTo: '/registration',
+    pathMatch: 'full',
+  },
+];
+
+@NgModule({
+  imports: [
+    RouterModule.forChild(
+      landingRoutes,
+    )
+  ],
+  exports: [ RouterModule ]
+})
+export class LandingRoutingModule { }

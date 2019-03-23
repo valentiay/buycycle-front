@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AccountService} from '../account.service';
-import {Person} from '../models/Person';
-import {Transfer} from '../models/Transfer';
+import {Person} from '../../models/Person';
+import {Transfer} from '../../models/Transfer';
 
 @Component({
   selector: 'app-debtors',

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {DebtorDeal} from '../models/DebtorDeal';
-import {Deal, DealType} from '../models/Deal';
-import {Person} from '../models/Person';
+import {DebtorDeal} from '../../models/DebtorDeal';
+import {Deal, DealType} from '../../models/Deal';
+import {Person} from '../../models/Person';
 import {AccountService} from '../account.service';
-import {OneForAllDeal} from '../models/OneForAllDeal';
+import {OneForAllDeal} from '../../models/OneForAllDeal';
 
 @Component({
   selector: 'app-deals',

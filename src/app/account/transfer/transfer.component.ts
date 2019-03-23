@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Transfer} from '../models/Transfer';
+import {Transfer} from '../../models/Transfer';
 import {AccountService} from '../account.service';
-import {Person} from '../models/Person';
+import {Person} from '../../models/Person';
 import {KeyValue} from '@angular/common';
 
 @Component({

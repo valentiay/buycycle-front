@@ -33,17 +33,7 @@ const accountRoutes: Routes = [
             component: DebtorsComponent
           }
         ]
-      }
-    ]
-  },
-  {
-    path: '',
-    component: AccountComponent,
-    children: [
-      {
-        path: '',
-        component: DashboardComponent
-      }
+      },
     ]
   },
 ];

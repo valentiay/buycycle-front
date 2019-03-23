@@ -8,9 +8,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faCheck, faTimes, faPlus, faPencilAlt} from '@fortawesome/free-solid-svg-icons';
-import { AutoFocusDirective } from './auto-focus.directive';
+import {AutoFocusDirective} from './auto-focus.directive';
 import {AccountModule} from './account/account.module';
 import {CommonModule} from '@angular/common';
+import {LandingModule} from './landing/landing.module';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {CommonModule} from '@angular/common';
     FormsModule,
     FontAwesomeModule,
     AccountModule,
+    LandingModule,
     AppRoutingModule
   ],
   providers: [],
