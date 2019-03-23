@@ -3,6 +3,7 @@ $light-color: #f0f3f6;
 $light-color-bright: #ffffff;
 $dark-color: #141414;
 $dark-color-bright: #3d3d3d;
+$dark-color-brightest: #7c7c7c;
 $secondary-color: #101c38;
 $secondary-color-light: #4c5f8a;
 $secondary-color-other: #28386d;
@@ -40,7 +41,7 @@ html, body {
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: $light-color;
+  background-color: $light-color-bright;
   margin: 0;
   padding: 0;
   color: $dark-color;
@@ -60,10 +61,9 @@ app-root {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: $dark-color;
   font-weight: bold;
   margin-top: 0;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
 h1 {
@@ -79,8 +79,11 @@ b {
 }
 
 a {
-  text-decoration: none;
   color: $secondary-color-light;
+}
+
+a:hover {
+  cursor: pointer;
 }
 
 hr {
@@ -135,7 +138,8 @@ input:focus, select:focus {
 }
 
 input::placeholder {
-  color: $light-color-pale;
+  color: $dark-color-brightest;
+  font-size: 1em;
 }
 
 select {
