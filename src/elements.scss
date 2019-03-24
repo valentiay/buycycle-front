@@ -6,11 +6,11 @@
   width: calc(100% - 8px);
   vertical-align: baseline;
   position: relative;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1)
+  border-radius: $default-radius;
+  border: 1px solid $dark-color-borders;
 }
 
 .card {
-  background-color: $light-color-bright;
   line-height: 22px;
 }
 
@@ -18,14 +18,8 @@
   background-color: $light-color-pale;
 }
 
-.card-title {
-  max-width: calc(100% - 60px);
-}
-
 .card-controls {
-  position: absolute;
-  right: $default-padding;
-  top: $default-padding;
+  float: right;
 }
 
 .card-controls fa-icon {
@@ -42,4 +36,22 @@
 .card-controls fa-icon:hover, .inline-control:hover, .fa-icon-button:hover {
   cursor: pointer;
   color: $secondary-color;
+}
+
+.weak-button {
+  background-color: inherit;
+  color: inherit;
+  border: 1px solid $dark-color-borders;
+  border-radius: $default-radius;
+  padding: 5px;
+}
+
+.weak-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px $secondary-color;
+}
+
+.active-button {
+  background-color: $secondary-color;
+  color: $light-color;
 }

@@ -2,6 +2,7 @@ $light-color-pale: #c2d2dc;
 $light-color: #f0f3f6;
 $light-color-bright: #ffffff;
 $dark-color: #141414;
+$dark-color-borders: #00000055;
 $dark-color-bright: #3d3d3d;
 $dark-color-brightest: #7c7c7c;
 $secondary-color: #101c38;
@@ -88,13 +89,13 @@ a:hover {
 
 hr {
   border: none;
-  border-top: 1px solid $secondary-color;
+  border-top: 1px solid $dark-color-borders;
   width: 100%;
 }
 
 button {
   font-size: 1em;
-  background-color: $secondary-color-other;
+  background-color: $third-color-pale;
   color: $light-color;
   border: none;
   border-radius: $default-radius;
@@ -108,19 +109,6 @@ button:hover {
 
 button:focus {
   outline: none;
-}
-
-.weak-button {
-  background-color: inherit;
-  color: inherit;
-  border: 1px solid $secondary-color-other;
-  border-radius: $default-radius;
-  padding: 5px;
-}
-
-.weak-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 1px $secondary-color;
 }
 
 input {
@@ -143,7 +131,7 @@ input::placeholder {
 }
 
 select {
-  background-color: $secondary-color-other;
+  background-color: $third-color-pale;
   color: $light-color;
   border: none;
   border-radius: $default-radius;
@@ -153,20 +141,20 @@ select {
 }
 
 
-::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 4px;
 }
 
-::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background: $secondary-color-light;
   border-radius: 2px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
   background: $secondary-color;
 }
 

@@ -1,21 +1,30 @@
 <header>
-  <div class="section-header">Переводы <fa-icon class="fa-icon-button" [icon]="['fas', 'plus']" (click)="initEmptyTransfer()" size="sm" *ngIf="!newTransfer"></fa-icon></div>
+  <div class="section-header">Переводы
+    <fa-icon class="fa-icon-button" [icon]="['fas', 'plus']" (click)="initEmptyTransfer()" size="sm"
+             *ngIf="!newTransfer"></fa-icon>
+  </div>
 </header>
 <div class="active-card" id="transfers-form" *ngIf="newTransfer" (keyup.enter)="addNewTransfer()">
   <input [(ngModel)]="newTransfer.amount" placeholder="Сумма" appAutofocus/>
-  <p>
-    <label>Отправитель <select [(ngModel)]="newTransfer.from">
-      <option value="" disabled selected>Кто?</option>
-      <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
-    </select></label>
-  </p>
-  <p>
-    <label>Получатель <select [(ngModel)]="newTransfer.to">
-      <option value="" disabled selected>Кто?</option>
-      <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
-    </select></label>
-  </p>
-  <button (click)="addNewTransfer()">Добавить</button>
-  <button (click)="clearTransfer()">Отмена</button>
+  <hr/>
+  <section>
+    <p>
+      <label>Отправитель <select [(ngModel)]="newTransfer.from">
+        <option value="" disabled selected>Кто?</option>
+        <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
+      </select></label>
+    </p>
+    <p>
+      <label>Получатель <select [(ngModel)]="newTransfer.to">
+        <option value="" disabled selected>Кто?</option>
+        <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
+      </select></label>
+    </p>
+  </section>
+  <hr/>
+  <section>
+    <button (click)="addNewTransfer()">Добавить</button>
+    <button (click)="clearTransfer()">Отмена</button>
+  </section>
 </div>
 <app-transfer *ngFor="let transfer of transfers | keyvalue" [transfer]="transfer" [persons]="persons"></app-transfer>

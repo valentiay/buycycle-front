@@ -1,18 +1,21 @@
 <header>
-  <div class="section-header">Покупки <fa-icon class="fa-icon-button" [icon]="['fas', 'plus']" (click)="initEmptyDeal()" size="sm" *ngIf="!newDeal"></fa-icon></div>
+  <div class="section-header">Покупки
+    <fa-icon class="fa-icon-button" [icon]="['fas', 'plus']" (click)="initEmptyDeal()" size="sm"
+             *ngIf="!newDeal"></fa-icon>
+  </div>
 </header>
 <article>
   <div *ngIf="newDeal" class="active-card" (keyup.enter)="addNewDeal()">
     <section>
-      <button (click)="setNewDealType(dealType.OneForAll)"
-            [class.selected-type]="newDealType === dealType.OneForAll">
-      Один за всех
-    </button>
-    <button (click)="setNewDealType(dealType.Debtors)"
-            [class.selected-type]="newDealType === dealType.Debtors">
-      Непонятная Васе схема
-    </button>
-    <hr/>
+      <button class="weak-button" (click)="setNewDealType(dealType.OneForAll)"
+              [class.active-button]="newDealType === dealType.OneForAll">
+        Один за всех
+      </button>
+      <button class="weak-button" (click)="setNewDealType(dealType.Debtors)"
+              [class.active-button]="newDealType === dealType.Debtors">
+        Непонятная Васе схема
+      </button>
+      <hr/>
     </section>
     <section [ngSwitch]="newDealType">
       <app-one-for-all-deal-form *ngSwitchCase="dealType.OneForAll" [deal]="newDeal"></app-one-for-all-deal-form>

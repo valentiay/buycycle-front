@@ -1,7 +1,7 @@
 @import "../../../styles";
 
-$header-height: 40px;
-$footer-height: 20px;
+$header-height: 50px;
+$footer-height: 25px;
 
 :host {
   display: block;
@@ -10,14 +10,15 @@ $footer-height: 20px;
 }
 
 header {
-  background-color: $secondary-color;
+  background: linear-gradient(90deg, $secondary-color, $third-color-pale);
   width: 100vw;
   display: block;
   float: left;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
+}
+
+#not-header {
+  float: left;
+  overflow-y: auto;
 }
 
 article {
@@ -43,6 +44,8 @@ article {
 
 #header-content {
   height: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 nav, #lower-row {
@@ -84,14 +87,18 @@ main {
     height: $header-height;
   }
 
+  #not-header {
+    height: calc(100% - #{$header-height});
+  }
+
   nav, #lower-row, #upper-row {
     width: max-content;
     height: 100%;
   }
 
   main {
-    height: calc(100% - #{$header-height} - #{$footer-height} - 4 * #{$default-margin});
-    margin-top: $header-height + 2 * $default-margin;
+    height: calc(100% - #{$footer-height} - 4 * #{$default-margin});
+    margin-top: 2 * $default-margin;
   }
 
   article {
@@ -102,6 +109,15 @@ main {
 @media (max-width: 849px) {
   header {
     height: 2 * $header-height;
+    background: linear-gradient($secondary-color, $third-color-pale);
+  }
+
+  #not-header {
+    height: calc(100% - #{2 * $header-height})
+  }
+
+  #header-content {
+    flex-direction: column;
   }
 
   #lower-row {
@@ -118,14 +134,13 @@ main {
     height: 50%;
   }
 
-  #header-icon {
-    display: none;
-  }
+  //#header-icon {
+  //  display: none;
+  //}
 
   nav {
     min-width: 100%;
     justify-content: space-between;
-    background-color: $third-color-pale;
   }
 
   nav a {
@@ -134,7 +149,7 @@ main {
   }
 
   main {
-    margin-top: 2 * $header-height + 2 * $default-margin;
+    margin-top: 2 * $default-margin;
   }
 }
 

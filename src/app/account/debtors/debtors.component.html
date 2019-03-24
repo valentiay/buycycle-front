@@ -1,11 +1,17 @@
 <header>
-  <div class="section-header">Люди и долги <fa-icon class="fa-icon-button" [icon]="['fas', 'plus']" (click)="initEmptyPerson()" size="sm" *ngIf="!newPerson"></fa-icon></div>
+  <div class="section-header">Люди и долги
+    <fa-icon class="fa-icon-button" [icon]="['fas', 'plus']" (click)="initEmptyPerson()" size="sm"
+             *ngIf="!newPerson"></fa-icon>
+  </div>
 </header>
 <article>
   <div class="active-card" *ngIf="newPerson" (keyup.enter)="addNewPerson()">
-    <input class="person-name" [(ngModel)]="newPerson.name" placeholder="Имя" appAutofocus/>
-    <button (click)="addNewPerson()">Добавить</button>
-    <button (click)="clearPerson()">Отмена</button>
+    <section><input class="person-name" [(ngModel)]="newPerson.name" placeholder="Имя" appAutofocus/></section>
+    <hr/>
+    <section>
+      <button (click)="addNewPerson()">Добавить</button>
+      <button (click)="clearPerson()">Отмена</button>
+    </section>
   </div>
   <ng-container *ngFor="let person of persons | keyvalue">
     <ng-container *ngIf="person.value.lenders.size !== 0 || person.value.borrowers.size !== 0">
