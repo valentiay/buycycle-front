@@ -1,7 +1,6 @@
 <header>
   <div class="section-header">Переводы
-    <fa-icon class="fa-icon-button" [icon]="['fas', 'plus']" (click)="initEmptyTransfer()" size="sm"
-             *ngIf="!newTransfer"></fa-icon>
+    <b class="fa-icon-button"(click)="initEmptyTransfer()">+</b>
   </div>
 </header>
 <div class="active-card" id="transfers-form" *ngIf="newTransfer" (keyup.enter)="addNewTransfer()">

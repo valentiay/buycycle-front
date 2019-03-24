@@ -6,10 +6,12 @@ import {Deal} from '../models/Deal';
 import {Person} from '../models/Person';
 import {Transfer} from '../models/Transfer';
 import {Account} from '../models/Account';
-import {HttpClient, HttpEventType, HttpParams, HttpRequest} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {AddPersonRequest} from '../models/requests/AddPersonRequest';
 import {AddAnythingResponse} from '../models/responses/AddAnythingResponse';
-import {map} from 'rxjs/operators';
+import {flatMap} from 'rxjs/operators';
+import {WithId} from '../models/responses/WithId';
+import {AddDealRequest} from "../models/requests/AddDealRequest";
 
 @Injectable({
   providedIn: 'root'
@@ -17,50 +19,47 @@ import {map} from 'rxjs/operators';
 export class AccountService {
 
   private deals: BehaviorSubject<Map<string, Deal>> = new BehaviorSubject(new Map());
-  private persons: BehaviorSubject<Map<string, Person>> = new BehaviorSubject(new Map([
-    ['12', new Person('Сашка', new Map([['23', '$100']]), new Map())],
-    ['23', new Person('Димка', new Map(), new Map([['12', '$100']]))],
-    ['14', new Person('Васька')],
-    ['72', new Person('Петька')],
-    ['73', new Person('Сережка')],
-  ]));
-  private transfers: BehaviorSubject<Map<string, Transfer>> = new BehaviorSubject(new Map<string, Transfer>([
-    ['1', new Transfer('12', '23', '$100')],
-    ['2', new Transfer('23', '73', '$200')],
-  ]));
+  private persons: BehaviorSubject<Map<string, Person>> = new BehaviorSubject(new Map());
+  private transfers: BehaviorSubject<Map<string, Transfer>> = new BehaviorSubject(new Map<string, Transfer>());
   private accountId: string;
 
   constructor(private http: HttpClient) {
-    const members = new Set<string>(['12', '23', '14', '72', '73']);
-    const debtors = new Map<string, Set<string>>();
-    debtors.set('14', new Set(['12', '23']));
-    this.deals.next(new Map<string, Deal>([
-      ['1', new DebtorDeal('Makdak', '$300', new Set(members), debtors)],
-      ['2', new OneForAllDeal('Burger King', '$150', new Set(members), '23')]
-    ]));
   }
 
   private getAccountUrl = 'http://80.240.31.209:8000/api/getAccount';
   private addPersonUrl = 'http://80.240.31.209:8000/api/addPerson';
+  private getPersonsUrl = 'http://80.240.31.209:8000/api/getPersons';
+  private addDealUrl = 'http://80.240.31.209:8000/api/addDeal';
+  private getDealsUrl = 'http://80.240.31.209:8000/api/getDeals';
+  private getTransfersUrl = 'http://80.240.31.209:8000/api/getTransfers';
+
+  private accountIdParams() {
+    return {params: new HttpParams().set('accountId', this.accountId)};
+  }
 
   setAccount(id: string): Observable<Account> {
     this.accountId = id;
-    const options = {params: new HttpParams().set('id', '3')};
-    return this.http.request<Account>(new HttpRequest('GET', this.getAccountUrl, options)).pipe(map(event => {
-      if (event.type === HttpEventType.Response) {
-        return event.body;
-      }
-    }));
+    return this.http.get<Account>(this.getAccountUrl, this.accountIdParams());
   }
 
   getDeals(): Observable<Map<string, Deal>> {
-    return this.deals;
+    return this.http
+      .get<(Deal & WithId)[]>(this.getDealsUrl, this.accountIdParams())
+      .pipe(flatMap(deals => {
+        const newDeals = new Map<string, Deal>();
+        deals.forEach(deal => newDeals.set(deal.id, deal));
+        this.deals.next(newDeals);
+        return this.deals;
+      }));
   }
 
   addDeal(deal: Deal): Observable<{}> {
-    const id = (Math.floor(1000 * Math.random())).toString();
-    this.deals.next(new Map(this.deals.getValue()).set(id, deal));
-    return of({});
+    return this.http
+      .post<AddAnythingResponse>(this.addDealUrl, AddDealRequest.fromDeal(deal, this.accountId))
+      .pipe(
+        flatMap(() => this.getDeals()),
+        flatMap(() => this.getPersons()),
+      );
   }
 
   updateDeal(id: string, deal: Deal): Observable<{}> {
@@ -75,13 +74,21 @@ export class AccountService {
     return of({});
   }
 
-
   getPersons(): Observable<Map<string, Person>> {
-    return this.persons;
+    return this.http
+      .get<(Person & WithId)[]>(this.getPersonsUrl, this.accountIdParams())
+      .pipe(flatMap(persons => {
+        const newPersons = new Map<string, Person>();
+        persons.forEach(person => newPersons.set(person.id, person));
+        this.persons.next(newPersons);
+        return this.persons;
+      }));
   }
 
   addPerson(person: Person): Observable<{}> {
-    return this.http.post<AddAnythingResponse>(this.addPersonUrl, AddPersonRequest.fromPerson(person, this.accountId));
+    return this.http
+      .post<AddAnythingResponse>(this.addPersonUrl, AddPersonRequest.fromPerson(person, this.accountId))
+      .pipe(flatMap(() => this.getPersons()));
   }
 
   updatePerson(id: string, person: Person): Observable<{}> {
@@ -98,7 +105,14 @@ export class AccountService {
 
 
   getTransfers(): Observable<Map<string, Transfer>> {
-    return this.transfers;
+    return this.http
+      .get<(Transfer & WithId)[]>(this.getTransfersUrl, this.accountIdParams())
+      .pipe(flatMap(transfers => {
+        const newTransfers = new Map<string, Transfer>();
+        transfers.forEach(deal => newTransfers.set(deal.id, deal));
+        this.transfers.next(newTransfers);
+        return this.transfers;
+      }));
   }
 
   addTransfer(transfer: Transfer): Observable<{}> {

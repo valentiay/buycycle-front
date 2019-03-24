@@ -1,13 +1,13 @@
 export interface Deal {
   name: string;
-  price: string;
+  price: number;
   type: DealType;
   members: Set<string>;
   clone(): Deal;
 }
 
 export enum DealType {
-  OneForAll,
-  Debtors,
-  Unequal,
+  OneForAll = 'OneForAll',
+  Debtors = 'Debtors',
+  Unequal = 'Unequal',
 }

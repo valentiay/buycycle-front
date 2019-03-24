@@ -2,12 +2,12 @@ import {Deal, DealType} from './Deal';
 
 export class DebtorDeal implements Deal {
   name: string;
-  price: string;
+  price: number;
   members: Set<string>;
   debtors: Map<string, Set<string>>;
   type: DealType = DealType.Debtors;
 
-  constructor(name: string, price: string, members: Set<string>, debtors: Map<string, Set<string>>) {
+  constructor(name: string, price: number, members: Set<string>, debtors: Map<string, Set<string>>) {
     this.name = name;
     this.price = price;
     this.members = members;

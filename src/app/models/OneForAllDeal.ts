@@ -2,12 +2,12 @@ import {Deal, DealType} from './Deal';
 
 export class OneForAllDeal implements Deal {
   name: string;
-  price: string;
+  price: number;
   members: Set<string>;
   lender: string;
   type: DealType = DealType.OneForAll;
 
-  constructor(name: string, price: string, members: Set<string>, lender: string) {
+  constructor(name: string, price: number, members: Set<string>, lender: string) {
     this.name = name;
     this.price = price;
     this.members = members;

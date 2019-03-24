@@ -4,7 +4,10 @@
       <span id="header-icon">
         Buycycle
       </span>
-      <span id="account-name">{{account.name}}</span>
+      <span id="account-name">
+        <ng-container *ngIf="account">{{account.name}}</ng-container>
+        <ng-container *ngIf="!account">...</ng-container>
+      </span>
     </div>
     <div id="lower-row">
       <nav>

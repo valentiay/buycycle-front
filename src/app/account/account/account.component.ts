@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 import {AccountService} from '../account.service';
 import {Account} from '../../models/Account';
 
@@ -12,13 +12,15 @@ export class AccountComponent implements OnInit {
 
   account: Account;
 
-  constructor(private route: ActivatedRoute, private accountService: AccountService) { }
+  constructor(private route: ActivatedRoute, private accountService: AccountService) {
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe(
       (params: ParamMap) => {
-        this.accountService.setAccount(params.get('accountId')).subscribe(account =>
-          this.account = account
+        this.accountService.setAccount(params.get('accountId')).subscribe(account => {
+            this.account = account;
+          }
         );
       }
     );

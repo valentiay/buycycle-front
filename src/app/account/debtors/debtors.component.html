@@ -1,7 +1,6 @@
 <header>
   <div class="section-header">Люди и долги
-    <fa-icon class="fa-icon-button" [icon]="['fas', 'plus']" (click)="initEmptyPerson()" size="sm"
-             *ngIf="!newPerson"></fa-icon>
+    <b class="fa-icon-button" (click)="initEmptyPerson()">+</b>
   </div>
 </header>
 <article>
@@ -14,7 +13,7 @@
     </section>
   </div>
   <ng-container *ngFor="let person of persons | keyvalue">
-    <ng-container *ngIf="person.value.lenders.size !== 0 || person.value.borrowers.size !== 0">
+    <ng-container *ngIf="!person.value.lenders || !person.value.borrowers">
       <div class="container">
         <div class="debtors-person-name">{{person.value.name}}</div>
         <div class="limiter" *ngFor="let lender of person.value.lenders | keyvalue">
