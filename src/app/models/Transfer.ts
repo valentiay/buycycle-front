@@ -1,11 +1,11 @@
 export class Transfer {
-  from: string;
-  to: string;
-  amount: string;
+  sender: string;
+  receiver : string;
+  amount: number;
 
-  constructor(from: string, to: string, amount: string) {
-    this.from = from;
-    this.to = to;
+  constructor(from: string, to: string, amount: number) {
+    this.sender = from;
+    this.receiver = to;
     this.amount = amount;
   }
 }

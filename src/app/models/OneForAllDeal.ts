@@ -2,23 +2,23 @@ import {Deal, DealType} from './Deal';
 
 export class OneForAllDeal implements Deal {
   name: string;
-  price: number;
+  amount: number;
   members: Set<string>;
   lender: string;
   type: DealType = DealType.OneForAll;
 
-  constructor(name: string, price: number, members: Set<string>, lender: string) {
+  constructor(name: string, amount: number, members: Set<string>, lender: string) {
     this.name = name;
-    this.price = price;
+    this.amount = amount;
     this.members = members;
     this.lender = lender;
   }
 
   static fromOtherDeal(other: Deal): Deal {
-    return new OneForAllDeal(other.name, other.price, other.members, '');
+    return new OneForAllDeal(other.name, other.amount, other.members, '');
   }
 
   clone(): OneForAllDeal {
-    return new OneForAllDeal(this.name, this.price, new Set(this.members), this.lender);
+    return new OneForAllDeal(this.name, this.amount, new Set(this.members), this.lender);
   }
 }

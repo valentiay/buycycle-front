@@ -32,7 +32,7 @@ export class TransfersComponent implements OnInit {
   }
 
   initEmptyTransfer() {
-    this.newTransfer = new Transfer('', '', '');
+    this.newTransfer = new Transfer(null, null, null);
   }
 
   addNewTransfer() {

@@ -3,21 +3,21 @@
     <fa-icon (click)="edit()" [icon]="['fas', 'pencil-alt']"></fa-icon>
     <fa-icon (click)="remove(transfer.key)" [icon]="['fas', 'times']" size="lg"></fa-icon>
   </div>
-  <a href="">{{persons.get(transfer.value.from).name}}</a>
-  отдал
-  <a href="">{{persons.get(transfer.value.to).name}}</a>
-  {{transfer.value.amount}}
+  <i>{{persons.get(transfer.value.receiver).name}}</i> получил
+  <i>{{transfer.value.amount}}</i>
+  от
+  <i>{{persons.get(transfer.value.sender).name}}</i>
 </div>
 <div class="active-card" *ngIf="transfer && isEdited" (keyup.enter)="submit()">
-  <input [(ngModel)]="editedTransfer.amount" placeholder="Сумма" appAutofocus/>
+  <input [(ngModel)]="editedTransfer.amount" placeholder="Сумма" appAutofocus type="number"/>
   <p>
-    <label>Отправитель <select [(ngModel)]="editedTransfer.from">
+    <label>Отправитель <select [(ngModel)]="editedTransfer.sender">
       <option value="" disabled selected>Кто?</option>
       <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
     </select></label>
   </p>
   <p>
-    <label>Получатель <select [(ngModel)]="editedTransfer.to">
+    <label>Получатель <select [(ngModel)]="editedTransfer.receiver">
       <option value="" disabled selected>Кто?</option>
       <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
     </select></label>

@@ -1,7 +1,7 @@
 @import "../../../styles";
 
 $header-height: 50px;
-$footer-height: 25px;
+$footer-height: 20px;
 
 :host {
   display: block;
@@ -181,7 +181,8 @@ main {
 footer {
   font-size: $small-font-size;
   width: 100vw;
-  height: $footer-height;
+  padding: 4px;
+  min-height: $footer-height;
   text-align: center;
   color: $dark-color-bright;
   vertical-align: bottom;

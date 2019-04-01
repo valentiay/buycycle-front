@@ -23,7 +23,7 @@ export class DealComponent {
   }
 
   remove() {
-    this.accountService.removeDeal(this.deal.key);
+    this.accountService.removeDeal(this.deal.key).subscribe();
   }
 
   edit() {

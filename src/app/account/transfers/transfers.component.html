@@ -1,20 +1,20 @@
 <header>
   <div class="section-header">Переводы
-    <b class="fa-icon-button"(click)="initEmptyTransfer()">+</b>
+    <b class="fa-icon-button" *ngIf="!newTransfer" (click)="initEmptyTransfer()">+</b>
   </div>
 </header>
-<div class="active-card" id="transfers-form" *ngIf="newTransfer" (keyup.enter)="addNewTransfer()">
-  <input [(ngModel)]="newTransfer.amount" placeholder="Сумма" appAutofocus/>
+<div class="active-card" id="transfers-form" *ngIf="newTransfer && persons" (keyup.enter)="addNewTransfer()">
+  <input [(ngModel)]="newTransfer.amount" placeholder="Сумма" appAutofocus type="number"/>
   <hr/>
   <section>
     <p>
-      <label>Отправитель <select [(ngModel)]="newTransfer.from">
+      <label>Отправитель <select [(ngModel)]="newTransfer.sender">
         <option value="" disabled selected>Кто?</option>
         <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
       </select></label>
     </p>
     <p>
-      <label>Получатель <select [(ngModel)]="newTransfer.to">
+      <label>Получатель <select [(ngModel)]="newTransfer.receiver">
         <option value="" disabled selected>Кто?</option>
         <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
       </select></label>
@@ -26,4 +26,6 @@
     <button (click)="clearTransfer()">Отмена</button>
   </section>
 </div>
-<app-transfer *ngFor="let transfer of transfers | keyvalue" [transfer]="transfer" [persons]="persons"></app-transfer>
+<ng-container *ngIf="persons">
+  <app-transfer *ngFor="let transfer of transfers | keyvalue" [transfer]="transfer" [persons]="persons"></app-transfer>
+</ng-container>

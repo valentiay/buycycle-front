@@ -5,6 +5,18 @@
   display: block;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.deal-main-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
 .deal-name {
   font-size: $bigger-font-size;
   font-weight: bold;
@@ -22,4 +34,6 @@
   background-color: $secondary-color;
   color: $light-color;
   vertical-align: baseline;
+  flex-shrink: 0;
+  flex-grow: 0;
 }

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {Account} from '../models/Account';
 import {HttpClient} from '@angular/common/http';
 import {AddAnythingResponse} from '../models/responses/AddAnythingResponse';
@@ -9,7 +9,7 @@ import {AddAnythingResponse} from '../models/responses/AddAnythingResponse';
 })
 export class AuthService {
 
-  private addAccountUrl = 'http://80.240.31.209:8000/api/addAccount';
+  private addAccountUrl = 'https://buycycle.ml/api/addAccount';
 
   constructor(private http: HttpClient) { }
 

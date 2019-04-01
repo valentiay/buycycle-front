@@ -1,7 +1,7 @@
 <div *ngIf="deal && persons">
   <section>
     <input class="deal-name" [(ngModel)]="deal.name" placeholder="Название" required appAutofocus/>
-    <input class="deal-price" [(ngModel)]="deal.price" placeholder="Стоимость" type="number" required/>
+    <input class="deal-price" [(ngModel)]="deal.amount" placeholder="Стоимость" type="number" required/>
   </section>
   <hr/>
   <section>

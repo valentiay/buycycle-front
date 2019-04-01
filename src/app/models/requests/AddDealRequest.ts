@@ -1,4 +1,5 @@
 import {Deal, DealType} from '../Deal';
+import {OneForAllDeal} from '../OneForAllDeal';
 
 export class AddDealRequest {
   accountId: string;
@@ -8,7 +9,7 @@ export class AddDealRequest {
   lender: string;
   type: DealType = DealType.OneForAll;
 
-  constructor(accountId: string, name: string, price: number, members: Set<string>, lender: string, type: DealType) {
+  private constructor(accountId: string, name: string, price: number, members: Set<string>, lender: string, type: DealType) {
     this.accountId = accountId;
     this.name = name;
     this.amount = price;
@@ -18,6 +19,14 @@ export class AddDealRequest {
   }
 
   static fromDeal(deal: Deal, accountId: string): AddDealRequest {
-    return new AddDealRequest(accountId, deal.name, deal.price, deal.members, deal.lender, deal.type);
+    const oneForAllDeal = deal as OneForAllDeal;
+    return new AddDealRequest(
+      accountId,
+      oneForAllDeal.name,
+      oneForAllDeal.amount,
+      oneForAllDeal.members,
+      oneForAllDeal.lender,
+      oneForAllDeal.type
+    );
   }
 }

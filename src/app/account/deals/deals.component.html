@@ -1,9 +1,9 @@
 <header>
   <div class="section-header">Покупки
-    <b class="fa-icon-button" (click)="initEmptyDeal()">+</b>
+    <b class="fa-icon-button" *ngIf="!newDeal" (click)="initEmptyDeal()">+</b>
   </div>
 </header>
-<article>
+<article *ngIf="persons && deals">
   <div *ngIf="newDeal" class="active-card" (keyup.enter)="addNewDeal()">
     <section>
       <button class="weak-button" (click)="setNewDealType(dealType.OneForAll)"
@@ -11,7 +11,8 @@
         Один за всех
       </button>
       <button class="weak-button" (click)="setNewDealType(dealType.Debtors)"
-              [class.active-button]="newDealType === dealType.Debtors">
+              [class.active-button]="newDealType === dealType.Debtors"
+              disabled>
         Непонятная Васе схема
       </button>
       <hr/>

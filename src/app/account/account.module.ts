@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {AccountRoutingModule} from './account-routing.module';
 import { DetailedComponent } from './detailed/detailed.component';
+import {AutoFocusDirective} from './auto-focus.directive';
 
 @NgModule({
   declarations: [
@@ -25,13 +26,14 @@ import { DetailedComponent } from './detailed/detailed.component';
     DebtorsComponent,
     TransfersComponent,
     DashboardComponent,
-    DetailedComponent
+    DetailedComponent,
+    AutoFocusDirective,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     FontAwesomeModule,
-    AccountRoutingModule
+    AccountRoutingModule,
   ]
 })
 export class AccountModule {

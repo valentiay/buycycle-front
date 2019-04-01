@@ -1,25 +1,29 @@
 <div class="card" *ngIf="deal && !isEdited">
-  <div class="card-controls">
-    <fa-icon [icon]="['fas', 'pencil-alt']" (click)="edit()"></fa-icon>
-    <fa-icon [icon]="['fas', 'times']" (click)="remove()" size="lg"></fa-icon>
-  </div>
-  <div class="deal-name">{{deal.value.name}}</div>
-  <div class="deal-price">{{deal.value.price}}</div>
+  <header>
+    <div class="deal-main-info">
+      <div class="deal-name">{{deal.value.name}}</div>
+      <div class="deal-price">{{deal.value.amount}}</div>
+    </div>
+    <div class="card-controls">
+      <fa-icon [icon]="['fas', 'pencil-alt']" (click)="edit()"></fa-icon>
+      <fa-icon [icon]="['fas', 'times']" (click)="remove()" size="lg"></fa-icon>
+    </div>
+  </header>
   <ng-container [ngSwitch]="deal.value.type">
 
     <ng-container *ngSwitchCase="dealType.OneForAll">
-      <p><b><a href="#">{{persons.get(deal.value.lender).name}}</a> платит за:</b></p>
-      <span *ngFor="let member of deal.value.members; last as isLast"><a href="">{{persons.get(member).name}}</a><ng-container *ngIf="!isLast">, </ng-container></span>
+      <p><b><i>{{persons.get(deal.value.lender).name}}</i> платит за:</b></p>
+      <span *ngFor="let member of deal.value.members; last as isLast"><i>{{persons.get(member).name}}</i><ng-container *ngIf="!isLast">, </ng-container></span>
     </ng-container>
 
     <ng-container *ngSwitchCase="dealType.Debtors">
     <p *ngFor="let debtor of deal.value.debtors | keyvalue">
-      <a href="">{{persons.get(debtor.key).name}}</a> платит за себя и за
+      <i>{{persons.get(debtor.key).name}}</i> платит за себя и за
       <span *ngFor="let borrower of debtor.value; last as isLast">
-        <a href="">{{persons.get(borrower).name}}</a><ng-container *ngIf="!isLast">, </ng-container>
+        <i>{{persons.get(borrower).name}}</i><ng-container *ngIf="!isLast">, </ng-container>
       </span>
     </p>
-      <p *ngFor="let notDebtor of deal.value.notDebtors()"><a href="">{{persons.get(notDebtor).name}}</a> платит за себя</p>
+      <p *ngFor="let notDebtor of deal.value.notDebtors()"><i>{{persons.get(notDebtor).name}}</i> платит за себя</p>
     </ng-container>
   </ng-container>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../account.service';
 import {Person} from '../../models/Person';
 import {Transfer} from '../../models/Transfer';
@@ -13,18 +13,21 @@ export class DebtorsComponent implements OnInit {
   persons: Map<string, Person>;
   newPerson: Person;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService) {
+  }
 
   ngOnInit() {
     this.getPersons();
   }
 
   getPersons() {
-    this.accountService.getPersons().subscribe(persons => this.persons = persons);
+    this.accountService.getPersons().subscribe(persons => {
+      this.persons = persons;
+    });
   }
 
-  addTransfer(from: string, to: string, amount: string) {
-    this.accountService.addTransfer(new Transfer(from, to, amount));
+  addTransfer(from: string, to: string, amount: number) {
+    this.accountService.addTransfer(new Transfer(from, to, amount)).subscribe();
   }
 
   initEmptyPerson() {
@@ -32,10 +35,7 @@ export class DebtorsComponent implements OnInit {
   }
 
   addNewPerson() {
-    this.accountService.addPerson(this.newPerson).subscribe(() => {
-      this.newPerson = undefined;
-      this.getPersons();
-    });
+    this.accountService.addPerson(this.newPerson).subscribe(() => this.newPerson = undefined);
   }
 
   clearPerson() {

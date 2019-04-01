@@ -23,11 +23,11 @@ export class TransferComponent implements OnInit {
   }
 
   remove(id: string) {
-    this.accountService.removeTransfer(id);
+    this.accountService.removeTransfer(id).subscribe();
   }
 
   edit() {
-    this.editedTransfer = new Transfer(this.transfer.value.from, this.transfer.value.to, this.transfer.value.amount);
+    this.editedTransfer = new Transfer(this.transfer.value.sender, this.transfer.value.receiver, this.transfer.value.amount);
     this.isEdited = true;
   }
 
