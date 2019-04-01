@@ -102,7 +102,6 @@ export class AccountService {
           this.persons.next(newPersons);
           return this.persons;
         }),
-        first(),
       );
   }
 
