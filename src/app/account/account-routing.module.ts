@@ -34,6 +34,11 @@ const accountRoutes: Routes = [
           }
         ]
       },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
     ]
   },
 ];

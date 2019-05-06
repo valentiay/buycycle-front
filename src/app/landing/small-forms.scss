@@ -1,0 +1,44 @@
+@import "../../styles";
+
+:host {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, $third-color-pale, $secondary-color-other);
+}
+
+main {
+  background-color: $light-color-bright;
+  padding: 2 * $default-padding;
+  border-radius: 2 * $default-radius;
+  border-radius: 2 * $default-radius;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  max-width: 100%;
+}
+
+section {
+  margin-top: 1em;
+}
+
+.small-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.small-form-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+input {
+  border: 1px solid $third-color-pale;
+}
+
+hr {
+  border-color: $third-color-pale;
+}

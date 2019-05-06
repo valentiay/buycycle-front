@@ -1,0 +1,12 @@
+<main>
+  <header><h2>Новый рассчет</h2></header>
+  <article>
+    <section class="small-form" (keyup.enter)="submit()">
+      <input type="text" appAutofocus [(ngModel)]="newAccount.name" placeholder="Имя рассчета"/>
+      <button (click)="submit()">Создать</button>
+    </section>
+    <section class="small-form-links">
+      <a routerLink="/accounts">Мои рассчеты</a>
+    </section>
+  </article>
+</main>

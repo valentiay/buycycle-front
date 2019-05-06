@@ -6,6 +6,11 @@ const appRoutes: Routes = [
     path: 'account',
     loadChildren: './account/account.module#AccountModule'
   },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: '/accounts'
+  }
 ];
 
 @NgModule({

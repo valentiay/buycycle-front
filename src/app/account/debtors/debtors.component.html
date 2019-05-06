@@ -16,11 +16,11 @@
       <div class="container">
         <div class="debtors-person-name">{{person.value.name}}</div>
         <div class="debtors-transfer" *ngFor="let lender of person.value.lenders | keyvalue">
-          <span>должен <b>отдать</b> {{lender.value}} <i>{{persons.get(lender.key).name}}</i></span>
+          <span>должен <b>отдать</b> {{lender.value | number:'1.2-2'}} <i>{{persons.get(lender.key).name}}</i></span>
           <button class="done-button" (click)="addTransfer(person.key, lender.key, lender.value)">Сделано</button>
         </div>
         <div class="debtors-transfer" *ngFor="let borrower of person.value.borrowers | keyvalue">
-          <span>должен <b>получить</b> {{borrower.value}} от <i>{{persons.get(borrower.key).name}}</i></span>
+          <span>должен <b>получить</b> {{borrower.value | number:'1.2-2'}} от <i>{{persons.get(borrower.key).name}}</i></span>
           <button class="done-button" (click)="addTransfer(borrower.key, person.key, borrower.value)">Сделано</button>
         </div>
       </div>

@@ -43,7 +43,10 @@ export class AccountService {
   private deleteTransferUrl = 'https://buycycle.ml/api/deleteTransfer';
 
   private accountIdParams() {
-    return {params: new HttpParams().set('accountId', this.accountId)};
+    return {
+      params: new HttpParams().set('accountId', this.accountId),
+      withCredentials: true,
+    };
   }
 
   setAccount(id: string): Observable<Account> {
@@ -64,7 +67,7 @@ export class AccountService {
 
   addDeal(deal: Deal): Observable<{}> {
     return this.http
-      .post<AddAnythingResponse>(this.addDealUrl, AddDealRequest.fromDeal(deal, this.accountId))
+      .post<AddAnythingResponse>(this.addDealUrl, AddDealRequest.fromDeal(deal, this.accountId), this.accountIdParams())
       .pipe(
         flatMap(() => this.getDeals()),
         flatMap(() => this.getPersons()),
@@ -73,7 +76,7 @@ export class AccountService {
   }
 
   updateDeal(id: string, deal: Deal): Observable<{}> {
-    const options = {params: new HttpParams().set('dealId', id)};
+    const options = {params: new HttpParams().set('dealId', id), withCredentials: true};
     return this.http
       .post<AddAnythingResponse>(this.updateDealUrl, AddDealRequest.fromDeal(deal, this.accountId), options)
       .pipe(
@@ -84,7 +87,7 @@ export class AccountService {
   }
 
   removeDeal(id: string): Observable<{}> {
-    const options = {params: new HttpParams().set('dealId', id)};
+    const options = {params: new HttpParams().set('dealId', id), withCredentials: true};
     return this.http.delete(this.deleteDealUrl, options).pipe(
       flatMap(() => this.getDeals()),
       flatMap(() => this.getPersons()),
@@ -107,7 +110,7 @@ export class AccountService {
 
   addPerson(person: Person): Observable<{}> {
     return this.http
-      .post<AddAnythingResponse>(this.addPersonUrl, AddPersonRequest.fromPerson(person, this.accountId))
+      .post<AddAnythingResponse>(this.addPersonUrl, AddPersonRequest.fromPerson(person, this.accountId), this.accountIdParams())
       .pipe(
         flatMap(() => this.getPersons()),
         first(),
@@ -142,7 +145,7 @@ export class AccountService {
 
   addTransfer(transfer: Transfer): Observable<{}> {
     return this.http
-      .post<AddAnythingResponse>(this.addTransferUrl, AddTransferRequest.fromTransfer(transfer, this.accountId))
+      .post<AddAnythingResponse>(this.addTransferUrl, AddTransferRequest.fromTransfer(transfer, this.accountId), this.accountIdParams())
       .pipe(
         flatMap(() => {
           return this.getTransfers();
@@ -155,7 +158,7 @@ export class AccountService {
   }
 
   removeTransfer(id: string): Observable<{}> {
-    const options = {params: new HttpParams().set('transferId', id)};
+    const options = {params: new HttpParams().set('transferId', id), withCredentials: true};
     return this.http.delete(this.deleteTransferUrl, options).pipe(
       flatMap(() => this.getPersons()),
       flatMap(() => this.getTransfers()),
@@ -164,7 +167,7 @@ export class AccountService {
   }
 
   updateTransfer(id: string, transfer: Transfer): Observable<{}> {
-    const options = {params: new HttpParams().set('transferId', id)};
+    const options = {params: new HttpParams().set('transferId', id), withCredentials: true};
     return this.http
       .post<AddAnythingResponse>(this.updateTransferUrl, AddTransferRequest.fromTransfer(transfer, this.accountId), options)
       .pipe(

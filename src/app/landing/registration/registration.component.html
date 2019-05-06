@@ -1,20 +1,12 @@
-<div id="registration-wrapper">
+<main>
+  <header><h2>Регистрация</h2></header>
   <article>
-    <div id="registration-faq">
-      <h1>Buycycle</h1>
-      <p><a>Уже есть аккаунт?</a></p>
-      <p><a>Зачем мне buycycle?</a></p>
-      <p><a>Связь с нами</a></p>
-      <p><a>Еще немножко бесполезного текста</a></p>
-      <p><a>И еще совсем чуть-чуть</a></p>
-    </div>
-    <div id="registration-form" (keyup.enter)="submit()">
-      <h3>Начните разбираться в совместных тратах прямо сейчас!</h3>
-      <section>
-        <p>Введите имя рассчета:</p>
-        <p><input type="text" [(ngModel)]="newAccount.name" placeholder="Поход по фастфудам"/></p>
-        <p><button (click)="submit()">Начать!</button></p>
-      </section>
-    </div>
+    <section class="small-form" (keyup.enter)="register()">
+      <input [(ngModel)]="login" type="text" appAutofocus placeholder="Логин">
+      <input [(ngModel)]="password1" type="password" placeholder="Пароль">
+      <input [(ngModel)]="password2" type="password" placeholder="Повторите пароль">
+      <button (click)="register()">Зарегистрироваться</button>
+    </section>
+    <section class="small-form-links"><a routerLink="/login">Уже есть аккаунт</a></section>
   </article>
-</div>
+</main>

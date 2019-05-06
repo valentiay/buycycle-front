@@ -14,7 +14,7 @@ $third-color: #56bfbf;
 $default-radius: 6px;
 $default-margin: 10px;
 $default-padding: 15px;
-$max-width: 1300px;
+$max-width: 1100px;
 
 $biggest-font-size: 1.50em;
 $bigger-font-size: 1.25em;
@@ -68,7 +68,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: $biggest-font-size;
+  color: $dark-color
 }
 
 p {
@@ -80,7 +80,8 @@ b {
 }
 
 a {
-  color: $secondary-color-light;
+  color: $third-color-pale;
+  text-decoration: underline;
 }
 
 a:hover {

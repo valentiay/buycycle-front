@@ -13,7 +13,7 @@ import {FormsModule} from '@angular/forms';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {AccountRoutingModule} from './account-routing.module';
 import { DetailedComponent } from './detailed/detailed.component';
-import {AutoFocusDirective} from './auto-focus.directive';
+import {AutoFocusDirective} from '../auto-focus.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +28,9 @@ import {AutoFocusDirective} from './auto-focus.directive';
     DashboardComponent,
     DetailedComponent,
     AutoFocusDirective,
+  ],
+  exports: [
+    AutoFocusDirective
   ],
   imports: [
     BrowserModule,

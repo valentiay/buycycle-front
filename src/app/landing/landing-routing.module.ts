@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {RegistrationComponent} from './registration/registration.component';
+import {LoginComponent} from './login/login.component';
+import {NepovesloComponent} from './nepoveslo/nepoveslo.component';
+import {NewAccountComponent} from './new-account/new-account.component';
+import {AccountsComponent} from './accounts/accounts.component';
 
 const landingRoutes: Routes = [
   {
@@ -8,10 +12,21 @@ const landingRoutes: Routes = [
     component: RegistrationComponent,
   },
   {
-    path: '',
-    redirectTo: '/registration',
-    pathMatch: 'full',
+    path: 'login',
+    component: LoginComponent,
   },
+  {
+    path: 'newAccount',
+    component: NewAccountComponent,
+  },
+  {
+    path: 'nepoveslo',
+    component: NepovesloComponent,
+  },
+  {
+    path: 'accounts',
+    component: AccountsComponent,
+  }
 ];
 
 @NgModule({

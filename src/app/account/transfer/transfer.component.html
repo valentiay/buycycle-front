@@ -4,7 +4,7 @@
     <fa-icon (click)="remove(transfer.key)" [icon]="['fas', 'times']" size="lg"></fa-icon>
   </div>
   <i>{{persons.get(transfer.value.receiver).name}}</i> получил
-  <i>{{transfer.value.amount}}</i>
+  <i>{{transfer.value.amount | number:'1.2-2'}}</i>
   от
   <i>{{persons.get(transfer.value.sender).name}}</i>
 </div>
