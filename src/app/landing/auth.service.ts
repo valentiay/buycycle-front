@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {Account} from '../models/Account';
+import {Error} from '../models/Error';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {AddAnythingResponse} from '../models/responses/AddAnythingResponse';
 import {User} from '../models/User';
@@ -22,6 +23,10 @@ export class AuthService {
 
   private options = {withCredentials: true};
 
+  private handleError = catchError((error, caught) => {
+    throw new Error(error.code, 'Произошла неизвестная ошибка');
+  });
+
   constructor(private http: HttpClient) {
   }
 
@@ -30,7 +35,7 @@ export class AuthService {
   }
 
   login(user: User): Observable<{}> {
-    return this.http.post(this.loginUrl, user, this.options);
+    return this.http.post(this.loginUrl, user, this.options).pipe(this.handleError);
   }
 
   register(user: User): Observable<{}> {
@@ -55,7 +60,6 @@ export class AuthService {
           return true;
         }),
         catchError((error, caught) => {
-          console.log(error);
           return of(false);
         }),
       );

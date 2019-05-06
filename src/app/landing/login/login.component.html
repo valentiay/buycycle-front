@@ -2,13 +2,14 @@
     <header><h2>Вход</h2></header>
     <article>
       <section class="small-form" (keyup.enter)="login()">
+        <app-error [text]="errorText"></app-error>
         <input [(ngModel)]="user.login" type="text" appAutofocus placeholder="Логин">
         <input [(ngModel)]="user.password" type="password" placeholder="Пароль">
         <button (click)="login()">Войти</button>
       </section>
       <section class="small-form-links">
         <a routerLink="/registration">Регистрация</a>
-        <a routerLink="/nepoveslo">Забыли пароль?</a>
+        <a routerLink="/nepoveslo">Забыли&nbsp;пароль?</a>
       </section>
     </article>
 </main>

@@ -11,6 +11,7 @@ import {faCheck, faTimes, faPlus, faPencilAlt} from '@fortawesome/free-solid-svg
 import {AccountModule} from './account/account.module';
 import {CommonModule} from '@angular/common';
 import {LandingModule} from './landing/landing.module';
+import { ErrorComponent } from './utils/error/error.component';
 
 
 @NgModule({

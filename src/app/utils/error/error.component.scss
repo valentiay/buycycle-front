@@ -1,0 +1,9 @@
+@import "../../../styles";
+
+main {
+  padding: 0.5em;
+  border-radius: $default-radius;
+  border: solid $error-color 1px;
+  color: $error-color;
+  max-width: 100%;
+}

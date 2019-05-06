@@ -9,6 +9,7 @@ import { NepovesloComponent } from './nepoveslo/nepoveslo.component';
 import { NewAccountComponent } from './new-account/new-account.component';
 import {AccountModule} from '../account/account.module';
 import { AccountsComponent } from './accounts/accounts.component';
+import {UtilsModule} from '../utils/utils.module';
 
 @NgModule({
   declarations: [RegistrationComponent, LoginComponent, NepovesloComponent, NewAccountComponent, AccountsComponent],
@@ -18,6 +19,7 @@ import { AccountsComponent } from './accounts/accounts.component';
     FormsModule,
     HttpClientModule,
     AccountModule,
+    UtilsModule,
   ]
 })
 export class LandingModule { }

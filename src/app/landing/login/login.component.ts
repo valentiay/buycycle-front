@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   user: User = new User(null, null);
+  errorText: string;
 
   ngOnInit() {
     this.authService.isAuthorised().subscribe(isAuthorised => {
@@ -23,8 +24,9 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.user).subscribe(() => {
-      this.router.navigateByUrl('/accounts');
-    });
+    this.authService.login(this.user).subscribe(
+    () => this.router.navigateByUrl('/accounts'),
+    err => this.errorText = err.text
+    );
   }
 }

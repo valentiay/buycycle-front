@@ -14,6 +14,7 @@ export class RegistrationComponent implements OnInit {
   login: string;
   password1: string;
   password2: string;
+  errorText: string;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -31,7 +32,7 @@ export class RegistrationComponent implements OnInit {
         this.router.navigateByUrl('/newAccount');
       });
     } else {
-      console.log('Wrong passwords');
+      this.errorText = 'Пароли не совпадают';
     }
   }
 }
