@@ -36,7 +36,7 @@
   margin: 0;
 }
 
-.card-controls fa-icon:hover, .inline-control:hover, .fa-icon-button:hover {
+.card-controls fa-icon:hover, .inline-control:hover {
   cursor: pointer;
   color: $secondary-color;
 }
@@ -61,4 +61,21 @@
 
 input {
   max-width: 100%;
+}
+
+.bigger-font {
+  font-size: $bigger-font-size;
+  font-weight: bold;
+}
+
+.hint {
+  padding: $default-padding;
+  border-radius: $default-radius;
+  border: 1px solid $third-color-pale;
+  color: $third-color-pale;
+  margin: 4px;
+}
+
+.header {
+  margin-bottom: 1em;
 }

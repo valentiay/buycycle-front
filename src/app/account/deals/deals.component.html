@@ -1,7 +1,8 @@
-<header>
-  <div class="section-header">Покупки
-    <b class="fa-icon-button" *ngIf="!newDeal" (click)="initEmptyDeal()">+</b>
-  </div>
+<header class="header">
+  <span class="bigger-font" title="После добавления людей здесь можно добавить покупки и указать, кто за кого заплатил">
+    Покупки
+  </span>&nbsp;
+  <button class="fa-icon-button" *ngIf="!newDeal && persons && persons.size !== 0" (click)="initEmptyDeal()">Добавить</button>
 </header>
 <article *ngIf="persons && deals">
   <div *ngIf="newDeal" class="active-card" (keyup.enter)="addNewDeal()">
@@ -26,6 +27,9 @@
       <button type="submit" (click)="addNewDeal()">Добавить</button>
       <button type="reset" (click)="clearDeal()">Отмена</button>
     </section>
+  </div>
+  <div class="hint" *ngIf="persons && deals.size === 0">
+    <fa-icon [icon]="['fas', 'info-circle']"></fa-icon> После добавления людей здесь можно добавить покупки и указать, кто за кого заплатил
   </div>
   <app-deal *ngFor="let deal of deals | keyvalue" [deal]="deal" [persons]="persons"></app-deal>
 </article>

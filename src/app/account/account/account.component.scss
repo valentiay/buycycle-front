@@ -82,7 +82,7 @@ main {
   margin-bottom: 2 * $default-margin;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 750px) {
   header {
     height: $header-height;
   }
@@ -106,7 +106,7 @@ main {
   }
 }
 
-@media (max-width: 699px) {
+@media (max-width: 749px) {
   header {
     height: 2 * $header-height;
     background: linear-gradient($secondary-color, $third-color-pale);

@@ -1,5 +1,5 @@
 <main>
-  <header><h2>Мои рассчеты</h2></header>
+  <header><h2>Мои расчеты</h2></header>
   <article>
     <section *ngIf="accounts && accounts.length === 0">Пока здесь пусто</section>
     <a href="/account/{{account.id}}/dashboard" *ngFor="let account of accounts; first as isFirst"
@@ -7,7 +7,7 @@
       {{account.name}}
     </a>
     <section>
-      <p><a routerLink="/newAccount">Добавить рассчет</a></p>
+      <p><a routerLink="/newAccount">Добавить расчет</a></p>
       <p><a (click)="logout()">Выход</a></p>
     </section>
   </article>

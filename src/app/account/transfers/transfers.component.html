@@ -1,7 +1,8 @@
-<header>
-  <div class="section-header">Переводы
-    <b class="fa-icon-button" *ngIf="!newTransfer" (click)="initEmptyTransfer()">+</b>
-  </div>
+<header class="header">
+  <span class="bigger-font" title="После добавления людей здесь можно добавить, кто сколько и кому отдал">
+    Переводы
+  </span>&nbsp;
+  <button *ngIf="!newTransfer && persons && persons.size !== 0" (click)="initEmptyTransfer()">Добавить</button>
 </header>
 <div class="active-card" id="transfers-form" *ngIf="newTransfer && persons" (keyup.enter)="addNewTransfer()">
   <input [(ngModel)]="newTransfer.amount" placeholder="Сумма" appAutofocus type="number"/>
@@ -25,6 +26,9 @@
     <button (click)="addNewTransfer()">Добавить</button>
     <button (click)="clearTransfer()">Отмена</button>
   </section>
+</div>
+<div class="hint" *ngIf="persons && transfers.size === 0">
+  <fa-icon [icon]="['fas', 'info-circle']"></fa-icon> После добавления людей здесь можно добавить, кто сколько и кому отдал
 </div>
 <ng-container *ngIf="persons">
   <app-transfer *ngFor="let transfer of transfers | keyvalue" [transfer]="transfer" [persons]="persons"></app-transfer>
