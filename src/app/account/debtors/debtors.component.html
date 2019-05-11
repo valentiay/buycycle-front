@@ -6,7 +6,7 @@
 </header>
 <article>
   <div class="active-card" *ngIf="newPerson" (keyup.enter)="addNewPerson()">
-    <section><input autofocus class="person-name" [(ngModel)]="newPerson.name" placeholder="Имя" appAutofocus/>
+    <section><input type="text" autofocus class="person-name" [(ngModel)]="newPerson.name" placeholder="Имя" appAutofocus/>
     </section>
     <hr/>
     <section>

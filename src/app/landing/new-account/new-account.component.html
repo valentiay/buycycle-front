@@ -3,6 +3,9 @@
   <article>
     <section class="small-form" (keyup.enter)="submit()">
       <input type="text" appAutofocus [(ngModel)]="newAccount.name" placeholder="Имя расчета"/>
+      <label><input [(ngModel)]="newAccount.mode" name="mode" type="radio" value="private"> Доступен только мне</label>
+      <label><input [(ngModel)]="newAccount.mode" name="mode" type="radio" value="publicRestricted"> Просмотр по ссылке</label>
+      <label><input [(ngModel)]="newAccount.mode" name="mode" type="radio" value="public"> Просмотр и редактирование по ссылке</label>
       <button (click)="submit()">Создать</button>
     </section>
     <section class="small-form-links">

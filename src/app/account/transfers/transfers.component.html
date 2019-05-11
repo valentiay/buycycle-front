@@ -27,8 +27,8 @@
     <button (click)="clearTransfer()">Отмена</button>
   </section>
 </div>
-<div class="hint" *ngIf="persons && transfers.size === 0">
-  <fa-icon [icon]="['fas', 'info-circle']"></fa-icon> После добавления людей здесь можно добавить, кто сколько и кому отдал
+<div class="hint" *ngIf="persons && transfers && transfers.size === 0">
+  <fa-icon [icon]="['fas', 'info-circle']"></fa-icon> После добавления людей здесь можно будет указать переводы денег между участниками расчёта
 </div>
 <ng-container *ngIf="persons">
   <app-transfer *ngFor="let transfer of transfers | keyvalue" [transfer]="transfer" [persons]="persons"></app-transfer>

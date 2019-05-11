@@ -28,8 +28,8 @@
       <button type="reset" (click)="clearDeal()">Отмена</button>
     </section>
   </div>
-  <div class="hint" *ngIf="persons && deals.size === 0">
-    <fa-icon [icon]="['fas', 'info-circle']"></fa-icon> После добавления людей здесь можно добавить покупки и указать, кто за кого заплатил
+  <div class="hint" *ngIf="persons && deals && deals.size === 0">
+    <fa-icon [icon]="['fas', 'info-circle']"></fa-icon> После добавления людей здесь можно будет указать покупки в рамках текущего расчёта
   </div>
   <app-deal *ngFor="let deal of deals | keyvalue" [deal]="deal" [persons]="persons"></app-deal>
 </article>

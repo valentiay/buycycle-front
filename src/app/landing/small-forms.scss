@@ -44,7 +44,7 @@ section {
   margin: 0 0.1em;
 }
 
-input {
+input[type=text], input[type=password] {
   border: 1px solid $third-color-pale;
   width: 100%;
 }

@@ -15,7 +15,7 @@ export class NewAccountComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.newAccount = new Account(null);
+    this.newAccount = new Account(null, 'publicRestricted');
     this.authService.isAuthorised().subscribe(isAuthorised => {
       if (!isAuthorised) {
         this.router.navigateByUrl('/login');
