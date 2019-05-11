@@ -19,6 +19,26 @@ import {Cached} from '../caching/Cached';
   providedIn: 'root'
 })
 export class AccountService {
+  private accountId: string;
+
+  constructor(private http: HttpClient) {
+  }
+
+  private getAccountUrl = 'https://buycycle.ml/api/getAccount';
+
+  private addPersonUrl = 'https://buycycle.ml/api/addPerson';
+  private getPersonsUrl = 'https://buycycle.ml/api/getPersons';
+
+  private addDealUrl = 'https://buycycle.ml/api/addDeal';
+  private updateDealUrl = 'https://buycycle.ml/api/updateDeal';
+  private getDealsUrl = 'https://buycycle.ml/api/getDeals';
+  private deleteDealUrl = 'https://buycycle.ml/api/deleteDeal';
+
+  private addTransferUrl = 'https://buycycle.ml/api/addTransfer';
+  private updateTransferUrl = 'https://buycycle.ml/api/updateTransfer';
+  private getTransfersUrl = 'https://buycycle.ml/api/getTransfers';
+  private deleteTransferUrl = 'https://buycycle.ml/api/deleteTransfer';
+
 
   private deals: Cached<Map<string, Deal>> = new Cached(() =>
     this.http
@@ -53,26 +73,6 @@ export class AccountService {
         return newTransfers;
       })
     ));
-
-  private accountId: string;
-
-  constructor(private http: HttpClient) {
-  }
-
-  private getAccountUrl = 'https://buycycle.ml/api/getAccount';
-
-  private addPersonUrl = 'https://buycycle.ml/api/addPerson';
-  private getPersonsUrl = 'https://buycycle.ml/api/getPersons';
-
-  private addDealUrl = 'https://buycycle.ml/api/addDeal';
-  private updateDealUrl = 'https://buycycle.ml/api/updateDeal';
-  private getDealsUrl = 'https://buycycle.ml/api/getDeals';
-  private deleteDealUrl = 'https://buycycle.ml/api/deleteDeal';
-
-  private addTransferUrl = 'https://buycycle.ml/api/addTransfer';
-  private updateTransferUrl = 'https://buycycle.ml/api/updateTransfer';
-  private getTransfersUrl = 'https://buycycle.ml/api/getTransfers';
-  private deleteTransferUrl = 'https://buycycle.ml/api/deleteTransfer';
 
   private accountIdParams() {
     return {

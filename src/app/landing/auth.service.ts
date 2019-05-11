@@ -1,12 +1,14 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, of} from 'rxjs';
+import {BehaviorSubject, Observable, of, pipe} from 'rxjs';
 import {Account} from '../models/Account';
 import {Error} from '../models/Error';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {AddAnythingResponse} from '../models/responses/AddAnythingResponse';
-import {User} from '../models/User';
+import {NewUser} from '../models/NewUser';
 import {WithId} from '../models/responses/WithId';
 import {catchError, flatMap, map} from 'rxjs/operators';
+import {User} from '../models/User';
+import {Cached} from '../caching/Cached';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +20,9 @@ export class AuthService {
   private registerUrl = 'https://buycycle.ml/api/register';
   private getAccountsUrl = 'https://buycycle.ml/api/getAccounts';
   private logoutUrl = 'https://buycycle.ml/api/logout';
+  private getUserUrl = 'https://buycycle.ml/api/whoAmI';
 
-  private accounts: BehaviorSubject<Account & WithId[]> = new BehaviorSubject(null);
+  private user: Cached<User> = new Cached<User>(() => this.http.get<User>(this.getUserUrl, this.options));
 
   private options = {withCredentials: true};
 
@@ -34,38 +37,38 @@ export class AuthService {
     return this.http.post<AddAnythingResponse>(this.addAccountUrl, account);
   }
 
-  login(user: User): Observable<{}> {
-    return this.http.post(this.loginUrl, user, this.options).pipe(this.handleError);
+  login(user: NewUser): Observable<{}> {
+    return this.http.post(this.loginUrl, user, this.options).pipe(
+      flatMap(() => this.user.forceGet()),
+      this.handleError,
+    );
   }
 
-  register(user: User): Observable<{}> {
-    return this.http.post(this.registerUrl, user, this.options);
+  register(user: NewUser): Observable<{}> {
+    return this.http.post(this.registerUrl, user, this.options)
+      .pipe(
+        flatMap(() => this.user.forceGet())
+      );
   }
 
   getAccounts(): Observable<Account & WithId[]> {
     return this.http
-      .get<Account & WithId[]>(this.getAccountsUrl, this.options)
-      .pipe(flatMap(accounts => {
-        this.accounts.next(accounts);
-        return this.accounts;
-      }));
+      .get<Account & WithId[]>(this.getAccountsUrl, this.options);
+  }
+
+  getUser(): Observable<User> {
+    return this.user.get();
   }
 
   isAuthorised(): Observable<boolean> {
-    return this.http
-      .get<Account & WithId[]>(this.getAccountsUrl, this.options)
-      .pipe(
-        map(accounts => {
-          this.accounts.next(accounts);
-          return true;
-        }),
-        catchError((error, caught) => {
-          return of(false);
-        }),
-      );
+    return this.user.get().pipe(
+      map(user => user.isRegistered)
+    );
   }
 
   logout(): Observable<{}> {
-    return this.http.post(this.logoutUrl, this.options);
+    return this.http.post(this.logoutUrl, this.options).pipe(
+      flatMap(() => this.user.forceGet())
+    );
   }
 }
