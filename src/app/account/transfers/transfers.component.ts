@@ -14,11 +14,13 @@ export class TransfersComponent implements OnInit {
   transfers: Map<string, Transfer>;
   persons: Map<string, Person>;
   newTransfer: Transfer;
+  errorTexts: string[];
 
   constructor(private accountService: AccountService) {
   }
 
   ngOnInit() {
+    this.errorTexts = [];
     this.getPersons();
     this.getTransfers();
   }
@@ -32,11 +34,26 @@ export class TransfersComponent implements OnInit {
   }
 
   initEmptyTransfer() {
+    this.errorTexts = [];
     this.newTransfer = new Transfer(null, null, null);
   }
 
   addNewTransfer() {
-    this.accountService.addTransfer(this.newTransfer).subscribe(this.newTransfer = undefined);
+    this.errorTexts = [];
+    if (!this.newTransfer.amount) {
+      this.errorTexts.push('Не указана сумма перевода');
+    } else if (this.newTransfer.amount < 0) {
+      this.errorTexts.push('Указана отрицательная сумма перевода');
+    }
+    if (!this.newTransfer.sender) {
+      this.errorTexts.push('Не указан отправитель перевода');
+    }
+    if (!this.newTransfer.receiver) {
+      this.errorTexts.push('Не указан получатель перевода');
+    }
+    if (this.errorTexts.length === 0) {
+      this.accountService.addTransfer(this.newTransfer).subscribe(this.newTransfer = undefined);
+    }
   }
 
   clearTransfer() {

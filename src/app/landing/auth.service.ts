@@ -26,10 +26,6 @@ export class AuthService {
 
   private options = {withCredentials: true};
 
-  private handleError = catchError((error, caught) => {
-    throw new Error(error.code, 'Произошла неизвестная ошибка');
-  });
-
   constructor(private http: HttpClient) {
   }
 
@@ -40,14 +36,33 @@ export class AuthService {
   login(user: NewUser): Observable<{}> {
     return this.http.post(this.loginUrl, user, this.options).pipe(
       flatMap(() => this.user.forceGet()),
-      this.handleError,
+      catchError((error, _) => {
+        switch (error.status) {
+          case 401:
+            throw new Error(error.status, 'Неверный логин или пароль');
+          default:
+            throw new Error(error.status, 'Произошла неизвестная ошибка');
+        }
+      }),
     );
   }
 
   register(user: NewUser): Observable<{}> {
     return this.http.post(this.registerUrl, user, this.options)
       .pipe(
-        flatMap(() => this.user.forceGet())
+        flatMap(() => this.user.forceGet()),
+        catchError((error, _) => {
+          switch (error.status) {
+            case 400:
+              if (error.error.status === 'registration_error') {
+                throw new Error(error.status, 'Логин уже занят');
+              } else {
+                throw new Error(error.status, 'Произошла неизвестная ошибка');
+              }
+            default:
+              throw new Error(error.status, 'Произошла неизвестная ошибка');
+          }
+        })
       );
   }
 

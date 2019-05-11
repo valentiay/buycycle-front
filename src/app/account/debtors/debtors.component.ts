@@ -12,6 +12,7 @@ export class DebtorsComponent implements OnInit {
 
   persons: Map<string, Person>;
   newPerson: Person;
+  errorText: string;
 
   constructor(private accountService: AccountService) {
   }
@@ -31,11 +32,18 @@ export class DebtorsComponent implements OnInit {
   }
 
   initEmptyPerson() {
-    this.newPerson = new Person('');
+    this.errorText = undefined;
+    this.newPerson = new Person(null);
   }
 
   addNewPerson() {
-    this.accountService.addPerson(this.newPerson).subscribe(() => this.newPerson = undefined);
+    if (!this.newPerson.name) {
+      this.errorText = 'Не введено имя';
+    } else {
+      this.accountService
+        .addPerson(this.newPerson)
+        .subscribe(() => this.newPerson = undefined);
+    }
   }
 
   clearPerson() {

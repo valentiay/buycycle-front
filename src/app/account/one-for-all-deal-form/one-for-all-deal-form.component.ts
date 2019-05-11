@@ -11,7 +11,12 @@ import {AccountService} from '../account.service';
 export class OneForAllDealFormComponent implements OnInit {
 
   @Input() deal: OneForAllDeal;
+  @Input() update: () => void;
+  @Input() reset: () => void;
   persons: Map<string, Person>;
+
+  private mainErrorTexts: string[];
+  private lenderErrorTexts: string[];
 
   constructor(private accountService: AccountService) {
   }
@@ -42,5 +47,28 @@ export class OneForAllDealFormComponent implements OnInit {
       }
     });
     return notMembers;
+  }
+
+  validateAndUpdate() {
+    this.mainErrorTexts = [];
+    this.lenderErrorTexts = [];
+    if (!this.deal.name) {
+      this.mainErrorTexts.push('Не введено название покупки');
+    }
+    if (!this.deal.amount) {
+      this.mainErrorTexts.push('Не введена стоимость покупки');
+    } else if (this.deal.amount < 0) {
+      this.mainErrorTexts.push('Введена отрицательная стоимость покупки');
+    }
+    if (!this.deal.lender) {
+      this.lenderErrorTexts.push('Не задан человек, который платит за всех');
+    }
+    if (this.deal.members.size === 0) {
+      this.lenderErrorTexts.push('Список людей, участвующих в покупке пуст');
+    }
+
+    if (this.lenderErrorTexts.length === 0 && this.mainErrorTexts.length === 0) {
+      this.update();
+    }
   }
 }

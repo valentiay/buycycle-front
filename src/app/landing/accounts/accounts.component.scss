@@ -1,14 +1,28 @@
 @import "../small-forms";
 
+#accounts-list {
+  display: flex;
+  flex-direction: column;
+}
+
 .accounts-list-item {
   padding: $default-padding;
   border: 1px solid $third-color-pale;
   border-radius: $default-radius;
   text-decoration: none;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
 .accounts-list-item:hover {
   opacity: 0.7;
+}
+
+.account-creation-date {
+  color: $dark-color-brightest;
+  font-size: 0.9em;
+  margin-left: 1em;
 }
 
 a {

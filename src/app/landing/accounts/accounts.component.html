@@ -2,10 +2,12 @@
   <header><h2>Мои расчеты</h2></header>
   <article>
     <section *ngIf="accounts && accounts.length === 0">Пока здесь пусто</section>
-    <a href="/account/{{account.id}}/dashboard" *ngFor="let account of accounts; first as isFirst"
-       class="small-form accounts-list-item">
-      {{account.name}}
+    <section id="accounts-list">
+      <a href="/account/{{account.id}}/dashboard" *ngFor="let account of accounts; first as isFirst"
+       class="accounts-list-item">
+      <span>{{account.name}}</span><span class="account-creation-date">{{account.createdAt | date:'yyyy-MM-dd'}}</span>
     </a>
+    </section>
     <section>
       <p><a routerLink="/newAccount">Добавить расчет</a></p>
       <p><a (click)="logout()">Выход</a></p>

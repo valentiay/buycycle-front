@@ -5,18 +5,19 @@
   <button *ngIf="!newTransfer && persons && persons.size !== 0" (click)="initEmptyTransfer()">Добавить</button>
 </header>
 <div class="active-card" id="transfers-form" *ngIf="newTransfer && persons" (keyup.enter)="addNewTransfer()">
+  <p *ngFor="let errorText of errorTexts">
+    <app-error [text]="errorText"></app-error>
+  </p>
   <input [(ngModel)]="newTransfer.amount" placeholder="Сумма" appAutofocus type="number"/>
   <hr/>
   <section>
     <p>
       <label>Отправитель <select [(ngModel)]="newTransfer.sender">
-        <option value="" disabled selected>Кто?</option>
         <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
       </select></label>
     </p>
     <p>
       <label>Получатель <select [(ngModel)]="newTransfer.receiver">
-        <option value="" disabled selected>Кто?</option>
         <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
       </select></label>
     </p>

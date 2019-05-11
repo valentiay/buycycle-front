@@ -32,15 +32,19 @@ export class DealComponent {
   }
 
   cancel() {
-    this.isEdited = false;
-    this.editedDeal = undefined;
+    const self = this;
+    return () => {
+      self.isEdited = false;
+      self.editedDeal = undefined;
+    };
   }
 
   submit() {
-    this.accountService.updateDeal(this.deal.key, this.editedDeal).subscribe(() => {
-      this.deal.value = this.editedDeal;
-      this.isEdited = false;
-      this.editedDeal = undefined;
+    const self = this;
+    return () => self.accountService.updateDeal(self.deal.key, self.editedDeal).subscribe(() => {
+      self.deal.value = self.editedDeal;
+      self.isEdited = false;
+      self.editedDeal = undefined;
     });
   }
 }

@@ -9,16 +9,17 @@
   <i>{{persons.get(transfer.value.sender).name}}</i>
 </div>
 <div class="active-card" *ngIf="transfer && isEdited" (keyup.enter)="submit()">
+  <p *ngFor="let errorText of errorTexts">
+    <app-error [text]="errorText"></app-error>
+  </p>
   <input [(ngModel)]="editedTransfer.amount" placeholder="Сумма" appAutofocus type="number"/>
   <p>
     <label>Отправитель <select [(ngModel)]="editedTransfer.sender">
-      <option value="" disabled selected>Кто?</option>
       <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
     </select></label>
   </p>
   <p>
     <label>Получатель <select [(ngModel)]="editedTransfer.receiver">
-      <option value="" disabled selected>Кто?</option>
       <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">{{person.value.name}}</option>
     </select></label>
   </p>

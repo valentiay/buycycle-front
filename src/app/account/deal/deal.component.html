@@ -28,17 +28,14 @@
   </ng-container>
 </div>
 
-<div *ngIf="deal && isEdited" class="active-card" (keyup.enter)="submit()">
+<div *ngIf="deal && isEdited">
   <ng-container [ngSwitch]="deal.value.type">
     <ng-container *ngSwitchCase="dealType.OneForAll">
-      <app-one-for-all-deal-form [deal]="editedDeal"></app-one-for-all-deal-form>
+      <app-one-for-all-deal-form [deal]="editedDeal" [update]="submit()" [reset]="cancel()"></app-one-for-all-deal-form>
     </ng-container>
 
     <ng-container *ngSwitchCase="dealType.Debtors">
       <app-debtor-deal-form [deal]="editedDeal"></app-debtor-deal-form>
     </ng-container>
   </ng-container>
-  <hr/>
-  <button class="deal-control-button" type="submit" (click)="submit()">Сохранить</button>
-  <button class="deal-control-button" type="reset" (click)="cancel()">Отмена</button>
 </div>

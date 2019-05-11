@@ -1,13 +1,18 @@
-<div *ngIf="deal && persons">
-  <section>
+<div *ngIf="deal && persons" class="active-card">
+  <section (keyup.enter)="validateAndUpdate()">
+    <p *ngFor="let errorText of mainErrorTexts">
+      <app-error [text]="errorText"></app-error>
+    </p>
     <input class="deal-name" [(ngModel)]="deal.name" placeholder="Название" type="text" required appAutofocus/>
     <input class="deal-price" [(ngModel)]="deal.amount" placeholder="Стоимость" type="number" required/>
   </section>
   <hr/>
-  <section>
+  <section (keyup.enter)="update()">
+    <p *ngFor="let errorText of lenderErrorTexts">
+      <app-error [text]="errorText"></app-error>
+    </p>
     <p>
       <label><select [(ngModel)]="deal.lender" required="required">
-        <option value="" disabled selected>Кто?</option>
         <option *ngFor="let person of persons | keyvalue" value="{{person.key}}">
           {{person.value.name}}
         </option>
@@ -29,5 +34,10 @@
         </button>
       </ng-container>
     </p>
+  </section>
+  <hr/>
+  <section>
+    <button type="button" (click)="validateAndUpdate()">Подтвердить</button>
+    <button type="reset" (click)="reset()">Отмена</button>
   </section>
 </div>

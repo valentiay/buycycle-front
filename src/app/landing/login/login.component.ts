@@ -24,9 +24,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.user).subscribe(
-    () => this.router.navigateByUrl('/accounts'),
-    err => this.errorText = err.text
-    );
+    if (!this.user.login) {
+      this.errorText = 'Не введен логин';
+    } else if (!this.user.password) {
+      this.errorText = 'Не введен пароль';
+    } else {
+      this.authService.login(this.user).subscribe(
+        () => this.router.navigateByUrl('/accounts'),
+        err => this.errorText = err.text
+      );
+    }
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../auth.service';
-import {Account} from '../../models/Account';
 import {Router} from '@angular/router';
 import {NewUser} from '../../models/NewUser';
 
@@ -27,12 +26,17 @@ export class RegistrationComponent implements OnInit {
   }
 
   register() {
-    if (this.password1 === this.password2) {
-      this.authService.register(new NewUser(this.login, this.password1)).subscribe(() => {
-        this.router.navigateByUrl('/newAccount');
-      });
-    } else {
+    if (!this.login) {
+      this.errorText = 'Не введен логин';
+    } else if (!this.password1 || !this.password2) {
+      this.errorText = 'Не введен пароль';
+    } else if (this.password1 !== this.password2) {
       this.errorText = 'Пароли не совпадают';
+    } else {
+      this.authService.register(new NewUser(this.login, this.password1)).subscribe(
+        () => this.router.navigateByUrl('/newAccount'),
+        err => this.errorText = err.text
+      );
     }
   }
 }

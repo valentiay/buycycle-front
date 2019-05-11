@@ -2,10 +2,11 @@
   <span class="bigger-font" title="После добавления людей здесь можно добавить покупки и указать, кто за кого заплатил">
     Покупки
   </span>&nbsp;
-  <button class="fa-icon-button" *ngIf="!newDeal && persons && persons.size !== 0" (click)="initEmptyDeal()">Добавить</button>
+  <button class="fa-icon-button" *ngIf="!isEdited && persons && persons.size !== 0" (click)="initEmptyDeal()">Добавить</button>
 </header>
 <article *ngIf="persons && deals">
-  <div *ngIf="newDeal" class="active-card" (keyup.enter)="addNewDeal()">
+  <div *ngIf="isEdited">
+<!--
     <section>
       <button class="weak-button" (click)="setNewDealType(dealType.OneForAll)"
               [class.active-button]="newDealType === dealType.OneForAll">
@@ -18,14 +19,10 @@
       </button>
       <hr/>
     </section>
-    <section [ngSwitch]="newDealType">
-      <app-one-for-all-deal-form *ngSwitchCase="dealType.OneForAll" [deal]="newDeal"></app-one-for-all-deal-form>
+-->
+    <section *ngIf="isEdited" [ngSwitch]="newDealType">
+      <app-one-for-all-deal-form *ngSwitchCase="dealType.OneForAll" [deal]="newDeal" [update]="addNewDeal()" [reset]="clearDeal()"></app-one-for-all-deal-form>
       <app-debtor-deal-form *ngSwitchCase="dealType.Debtors" [deal]="newDeal"></app-debtor-deal-form>
-    </section>
-    <hr/>
-    <section>
-      <button type="submit" (click)="addNewDeal()">Добавить</button>
-      <button type="reset" (click)="clearDeal()">Отмена</button>
     </section>
   </div>
   <div class="hint" *ngIf="persons && deals && deals.size === 0">

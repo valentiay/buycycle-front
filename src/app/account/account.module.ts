@@ -14,6 +14,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {AccountRoutingModule} from './account-routing.module';
 import { DetailedComponent } from './detailed/detailed.component';
 import {AutoFocusDirective} from '../auto-focus.directive';
+import {UtilsModule} from '../utils/utils.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {AutoFocusDirective} from '../auto-focus.directive';
     FormsModule,
     FontAwesomeModule,
     AccountRoutingModule,
+    UtilsModule,
   ]
 })
 export class AccountModule {

@@ -17,11 +17,13 @@ export class DealsComponent implements OnInit {
   newDealType: DealType = DealType.OneForAll;
   deals: Map<string, Deal>;
   persons: Map<string, Person>;
+  isEdited;
 
   constructor(private accountService: AccountService) {
   }
 
   ngOnInit() {
+    this.isEdited = false;
     this.getPersons();
     this.getDeals();
   }
@@ -34,31 +36,40 @@ export class DealsComponent implements OnInit {
     this.accountService.getDeals().subscribe(deals => this.deals = deals);
   }
 
-  setNewDealType(type: DealType) {
-    this.newDealType = type;
-    switch (type) {
-      case DealType.OneForAll: {
-        this.newDeal = OneForAllDeal.fromOtherDeal(this.newDeal);
-        break;
-      }
-      case DealType.Debtors: {
-        this.newDeal = DebtorDeal.fromOtherDeal(this.newDeal);
-        break;
-      }
-    }
-  }
+  // setNewDealType(type: DealType) {
+  //   this.newDealType = type;
+  //   switch (type) {
+  //     case DealType.OneForAll: {
+  //       this.newDeal = OneForAllDeal.fromOtherDeal(this.newDeal);
+  //       break;
+  //     }
+  //     case DealType.Debtors: {
+  //       this.newDeal = DebtorDeal.fromOtherDeal(this.newDeal);
+  //       break;
+  //     }
+  //   }
+  // }
 
   initEmptyDeal() {
     const members = new Set<string>();
     this.persons.forEach((person, id) => members.add(id));
     this.newDeal = new OneForAllDeal(null, null, members, null);
+    this.isEdited = true;
   }
 
   addNewDeal() {
-    this.accountService.addDeal(this.newDeal).subscribe(() => this.newDeal = undefined);
+    const self = this;
+    return () => self.accountService.addDeal(self.newDeal).subscribe(() => {
+      self.isEdited = false;
+      self.newDeal = undefined;
+    });
   }
 
   clearDeal() {
-    this.newDeal = undefined;
+    const self = this;
+    return () => {
+      self.isEdited = false;
+      self.newDeal = undefined;
+    };
   }
 }
