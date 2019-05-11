@@ -2,7 +2,7 @@
   <header><h2>Регистрация</h2></header>
   <article>
     <section class="small-form" (keyup.enter)="register()">
-      <app-error [text]="errorText"></app-error>
+      <app-error *ngFor="let errorText of errorTexts" [text]="errorText"></app-error>
       <input [(ngModel)]="login" type="text" appAutofocus placeholder="Логин">
       <input [(ngModel)]="password1" type="password" placeholder="Пароль">
       <input [(ngModel)]="password2" type="password" placeholder="Повторите пароль">

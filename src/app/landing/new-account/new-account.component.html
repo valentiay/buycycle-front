@@ -2,6 +2,7 @@
   <header><h2>Новый расчет</h2></header>
   <article>
     <section class="small-form" (keyup.enter)="submit()">
+      <app-error *ngFor="let errorText of errorTexts" [text]="errorText"></app-error>
       <input type="text" appAutofocus [(ngModel)]="newAccount.name" placeholder="Имя расчета"/>
       <label><input [(ngModel)]="newAccount.mode" name="mode" type="radio" value="private"> Доступен только мне</label>
       <label><input [(ngModel)]="newAccount.mode" name="mode" type="radio" value="publicRestricted"> Просмотр по ссылке</label>

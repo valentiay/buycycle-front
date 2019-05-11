@@ -11,10 +11,12 @@ import {Router} from '@angular/router';
 export class NewAccountComponent implements OnInit {
 
   newAccount: Account;
+  errorTexts: string[];
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.errorTexts = [];
     this.newAccount = new Account(null, 'publicRestricted');
     this.authService.isAuthorised().subscribe(isAuthorised => {
       if (!isAuthorised) {
@@ -24,8 +26,14 @@ export class NewAccountComponent implements OnInit {
   }
 
   submit() {
-    this.authService
-      .createAccount(this.newAccount)
-      .subscribe(response => this.router.navigateByUrl(`/account/${response.id}/dashboard`));
+    this.errorTexts = [];
+    if (!this.newAccount.name) {
+      this.errorTexts.push('Не введено имя рассчета');
+    }
+    if (this.errorTexts.length === 0) {
+      this.authService
+        .createAccount(this.newAccount)
+        .subscribe(response => this.router.navigateByUrl(`/account/${response.id}/dashboard`));
+    }
   }
 }

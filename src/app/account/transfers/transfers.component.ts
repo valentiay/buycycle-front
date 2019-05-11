@@ -47,6 +47,8 @@ export class TransfersComponent implements OnInit {
     }
     if (!this.newTransfer.sender) {
       this.errorTexts.push('Не указан отправитель перевода');
+    } else if (this.newTransfer.sender === this.newTransfer.receiver) {
+      this.errorTexts.push('Отправитель и получатель совпадают');
     }
     if (!this.newTransfer.receiver) {
       this.errorTexts.push('Не указан получатель перевода');

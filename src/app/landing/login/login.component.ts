@@ -13,9 +13,10 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   user: NewUser = new NewUser(null, null);
-  errorText: string;
+  errorTexts: string[];
 
   ngOnInit() {
+    this.errorTexts = [];
     this.authService.isAuthorised().subscribe(isAuthorised => {
       if (isAuthorised) {
         this.router.navigateByUrl('/accounts');
@@ -24,14 +25,17 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.errorTexts = [];
     if (!this.user.login) {
-      this.errorText = 'Не введен логин';
-    } else if (!this.user.password) {
-      this.errorText = 'Не введен пароль';
-    } else {
+      this.errorTexts.push('Не введен логин');
+    }
+    if (!this.user.password) {
+      this.errorTexts.push('Не введен пароль');
+    }
+    if (this.errorTexts.length === 0) {
       this.authService.login(this.user).subscribe(
         () => this.router.navigateByUrl('/accounts'),
-        err => this.errorText = err.text
+        err => this.errorTexts.push(err.text)
       );
     }
   }
