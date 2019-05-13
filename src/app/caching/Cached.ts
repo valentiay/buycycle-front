@@ -1,24 +1,23 @@
-import {BehaviorSubject, Observable} from 'rxjs';
+import {Observable, ReplaySubject} from 'rxjs';
 import {flatMap} from 'rxjs/operators';
 
 export class Cached<T> {
-  private value: BehaviorSubject<T>;
+  private value: ReplaySubject<T> = new ReplaySubject(0);
+  isStarted = false;
 
   constructor(private init: () => Observable<T>) {
   }
 
   get(): Observable<T> {
-    if (!this.value) {
-      return this.forceGet();
-    } else {
+    if (this.isStarted) {
       return this.value;
+    } else {
+      return this.forceGet();
     }
   }
 
   forceGet(): Observable<T> {
-    if (!this.value) {
-      this.value = new BehaviorSubject(null);
-    }
+    this.isStarted = true;
     return this
       .init()
       .pipe(

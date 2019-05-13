@@ -4,7 +4,7 @@
       <div class="deal-name">{{deal.value.name}}</div>
       <div class="deal-price">{{deal.value.amount}}</div>
     </div>
-    <div class="card-controls">
+    <div class="card-controls" *ngIf="isEditable">
       <fa-icon [icon]="['fas', 'pencil-alt']" (click)="edit()"></fa-icon>
       <fa-icon [icon]="['fas', 'times']" (click)="remove()" size="lg"></fa-icon>
     </div>

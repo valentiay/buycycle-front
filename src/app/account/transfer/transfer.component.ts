@@ -16,11 +16,14 @@ export class TransferComponent implements OnInit {
   isEdited = false;
   editedTransfer: Transfer;
   errorTexts: string[] = [];
+  isEditable: boolean;
+
   constructor(private accountService: AccountService) {
   }
 
   ngOnInit() {
     this.errorTexts = [];
+    this.accountService.isEditable().subscribe(isEditable => this.isEditable = isEditable);
   }
 
   remove(id: string) {

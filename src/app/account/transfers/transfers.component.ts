@@ -10,26 +10,19 @@ import {AccountService} from '../account.service';
 })
 export class TransfersComponent implements OnInit {
 
-
   transfers: Map<string, Transfer>;
   persons: Map<string, Person>;
   newTransfer: Transfer;
   errorTexts: string[];
+  isEditable: boolean;
 
   constructor(private accountService: AccountService) {
   }
 
   ngOnInit() {
     this.errorTexts = [];
-    this.getPersons();
-    this.getTransfers();
-  }
-
-  getPersons() {
+    this.accountService.isEditable().subscribe(isEditable => this.isEditable = isEditable);
     this.accountService.getPersons().subscribe(persons => this.persons = persons);
-  }
-
-  getTransfers() {
     this.accountService.getTransfers().subscribe(transfers => this.transfers = transfers);
   }
 

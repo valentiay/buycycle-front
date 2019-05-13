@@ -17,23 +17,17 @@ export class DealsComponent implements OnInit {
   newDealType: DealType = DealType.OneForAll;
   deals: Map<string, Deal>;
   persons: Map<string, Person>;
-  isEdited;
+  isEdited: boolean;
+  isEditable: boolean;
 
   constructor(private accountService: AccountService) {
   }
 
   ngOnInit() {
     this.isEdited = false;
-    this.getPersons();
-    this.getDeals();
-  }
-
-  getPersons() {
     this.accountService.getPersons().subscribe(persons => this.persons = persons);
-  }
-
-  getDeals() {
     this.accountService.getDeals().subscribe(deals => this.deals = deals);
+    this.accountService.isEditable().subscribe(isEditable => this.isEditable = isEditable);
   }
 
   // setNewDealType(type: DealType) {

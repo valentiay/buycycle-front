@@ -2,7 +2,7 @@
   <span class="bigger-font" title="После добавления людей здесь можно добавить покупки и указать, кто за кого заплатил">
     Покупки
   </span>&nbsp;
-  <button class="fa-icon-button" *ngIf="!isEdited && persons && persons.size !== 0" (click)="initEmptyDeal()">Добавить</button>
+  <button class="fa-icon-button" *ngIf="isEditable && !isEdited && persons && persons.size !== 0" (click)="initEmptyDeal()">Добавить</button>
 </header>
 <article *ngIf="persons && deals">
   <div *ngIf="isEdited">

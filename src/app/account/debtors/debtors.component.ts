@@ -13,18 +13,14 @@ export class DebtorsComponent implements OnInit {
   persons: Map<string, Person>;
   newPerson: Person;
   errorText: string;
+  isEditable: boolean;
 
   constructor(private accountService: AccountService) {
   }
 
   ngOnInit() {
-    this.getPersons();
-  }
-
-  getPersons() {
-    this.accountService.getPersons().subscribe(persons => {
-      this.persons = persons;
-    });
+    this.accountService.getPersons().subscribe(persons => this.persons = persons);
+    this.accountService.isEditable().subscribe(isEditable => this.isEditable = isEditable);
   }
 
   addTransfer(from: string, to: string, amount: number) {

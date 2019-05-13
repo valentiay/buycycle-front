@@ -2,7 +2,7 @@
   <span class="bigger-font" title="После добавления людей здесь можно добавить, кто сколько и кому отдал">
     Переводы
   </span>&nbsp;
-  <button *ngIf="!newTransfer && persons && persons.size !== 0" (click)="initEmptyTransfer()">Добавить</button>
+  <button *ngIf="isEditable && !newTransfer && persons && persons.size !== 0" (click)="initEmptyTransfer()">Добавить</button>
 </header>
 <div class="active-card" id="transfers-form" *ngIf="newTransfer && persons" (keyup.enter)="addNewTransfer()">
   <p *ngFor="let errorText of errorTexts">

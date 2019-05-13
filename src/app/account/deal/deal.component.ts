@@ -18,8 +18,10 @@ export class DealComponent {
 
   editedDeal: Deal;
   isEdited = false;
+  isEditable: boolean;
 
   constructor(private accountService: AccountService) {
+    this.accountService.isEditable().subscribe(isEditable => this.isEditable = isEditable);
   }
 
   remove() {

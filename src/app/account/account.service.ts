@@ -7,21 +7,21 @@ import {Account} from '../models/Account';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {AddPersonRequest} from '../models/requests/AddPersonRequest';
 import {AddAnythingResponse} from '../models/responses/AddAnythingResponse';
-import {flatMap, map} from 'rxjs/operators';
+import {catchError, flatMap, map, tap} from 'rxjs/operators';
 import {WithId} from '../models/responses/WithId';
 import {AddDealRequest} from '../models/requests/AddDealRequest';
 import {BackendPerson} from '../models/responses/BackendPerson';
 import {AddTransferRequest} from '../models/requests/AddTransferRequest';
 import {first} from 'rxjs/internal/operators/first';
 import {Cached} from '../caching/Cached';
+import {Router} from '@angular/router';
+import {AuthService} from '../landing/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  private accountId: string;
-
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router, private auth: AuthService) {
   }
 
   private getAccountUrl = 'https://buycycle.ml/api/getAccount';
@@ -39,19 +39,37 @@ export class AccountService {
   private getTransfersUrl = 'https://buycycle.ml/api/getTransfers';
   private deleteTransferUrl = 'https://buycycle.ml/api/deleteTransfer';
 
+  private processErrors = catchError((error, caught) => {
+    switch (error.status) {
+      case 401:
+        this.router.navigateByUrl('/401');
+        throw caught;
+      case 404:
+        this.router.navigateByUrl('/404');
+        throw caught;
+      default:
+        throw caught;
+    }
+  });
+
+  private accountId: string;
+  private account: BehaviorSubject<Account> = new BehaviorSubject(null);
 
   private deals: Cached<Map<string, Deal>> = new Cached(() =>
     this.http
       .get<(Deal & WithId)[]>(this.getDealsUrl, this.accountIdParams())
       .pipe(
         map(deals => {
-          const newDeals = new Map<string, Deal>();
-          deals.forEach(deal => newDeals.set(deal.id, DealOperations.parseDeal(deal)));
-          return newDeals;
-        })
+            const newDeals = new Map<string, Deal>();
+            deals.forEach(deal => newDeals.set(deal.id, DealOperations.parseDeal(deal)));
+            return newDeals;
+          },
+          this.processErrors
+        )
       )
   );
 
+  // @ts-ignore
   private persons: Cached<Map<string, Person>> = new Cached(() =>
     this.http
       .get<(BackendPerson)[]>(this.getPersonsUrl, this.accountIdParams())
@@ -61,9 +79,11 @@ export class AccountService {
           persons.forEach(person => newPersons.set(person.id, BackendPerson.toPerson(person)));
           return newPersons;
         }),
+        this.processErrors
       )
   );
 
+  // @ts-ignore
   private transfers: Cached<Map<string, Transfer>> = new Cached(() => this.http
     .get<(Transfer & WithId)[]>(this.getTransfersUrl, this.accountIdParams())
     .pipe(
@@ -71,7 +91,8 @@ export class AccountService {
         const newTransfers = new Map<string, Transfer>();
         transfers.forEach(deal => newTransfers.set(deal.id, deal));
         return newTransfers;
-      })
+      }),
+      this.processErrors
     ));
 
   private accountIdParams() {
@@ -83,7 +104,19 @@ export class AccountService {
 
   setAccount(id: string): Observable<Account> {
     this.accountId = id;
-    return this.http.get<Account>(this.getAccountUrl, this.accountIdParams());
+    return this.http.get<Account>(this.getAccountUrl, this.accountIdParams()).pipe(
+      tap(account => this.account.next(account))
+    );
+  }
+
+  isEditable(): Observable<boolean> {
+    return this.auth.getUser().pipe(
+      flatMap(user =>
+        this.account.pipe(
+          map(account => account && (account.mode === 'public' || account.owner === user.userId))
+        )
+      )
+    );
   }
 
   getDeals(): Observable<Map<string, Deal>> {
@@ -96,6 +129,7 @@ export class AccountService {
       .pipe(
         flatMap(() => this.deals.forceGet()),
         flatMap(() => this.persons.forceGet()),
+        this.processErrors,
         first(),
       );
   }
@@ -107,6 +141,7 @@ export class AccountService {
       .pipe(
         flatMap(() => this.deals.forceGet()),
         flatMap(() => this.persons.forceGet()),
+        this.processErrors,
         first(),
       );
   }
@@ -116,6 +151,7 @@ export class AccountService {
     return this.http.delete(this.deleteDealUrl, options).pipe(
       flatMap(() => this.deals.forceGet()),
       flatMap(() => this.persons.forceGet()),
+      this.processErrors,
       first(),
     );
   }
@@ -129,6 +165,7 @@ export class AccountService {
       .post<AddAnythingResponse>(this.addPersonUrl, AddPersonRequest.fromPerson(person, this.accountId), this.accountIdParams())
       .pipe(
         flatMap(() => this.persons.forceGet()),
+        this.processErrors,
         first(),
       );
   }
@@ -143,6 +180,7 @@ export class AccountService {
       .pipe(
         flatMap(() => this.transfers.forceGet()),
         flatMap(() => this.persons.forceGet()),
+        this.processErrors,
         first(),
       );
   }
@@ -152,6 +190,7 @@ export class AccountService {
     return this.http.delete(this.deleteTransferUrl, options).pipe(
       flatMap(() => this.persons.forceGet()),
       flatMap(() => this.transfers.forceGet()),
+      this.processErrors,
       first(),
     );
   }
@@ -163,6 +202,7 @@ export class AccountService {
       .pipe(
         flatMap(() => this.transfers.forceGet()),
         flatMap(() => this.persons.forceGet()),
+        this.processErrors,
         first(),
       );
 

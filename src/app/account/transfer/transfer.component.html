@@ -1,5 +1,5 @@
 <div class="card" *ngIf="transfer && !isEdited">
-  <div class="card-controls">
+  <div class="card-controls" *ngIf="isEditable">
     <fa-icon (click)="edit()" [icon]="['fas', 'pencil-alt']"></fa-icon>
     <fa-icon (click)="remove(transfer.key)" [icon]="['fas', 'times']" size="lg"></fa-icon>
   </div>

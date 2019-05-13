@@ -1,6 +1,7 @@
 export class Account {
   name: string;
   createdAt: string;
+  owner: string;
 
   mode: 'public' | 'publicRestricted' | 'private';
 

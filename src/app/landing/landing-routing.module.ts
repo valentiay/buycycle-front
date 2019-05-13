@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {RegistrationComponent} from './registration/registration.component';
 import {LoginComponent} from './login/login.component';
-import {NepovesloComponent} from './nepoveslo/nepoveslo.component';
+import {NepovesloComponent} from '../utils/nepoveslo/nepoveslo.component';
 import {NewAccountComponent} from './new-account/new-account.component';
 import {AccountsComponent} from './accounts/accounts.component';
 
@@ -18,10 +18,6 @@ const landingRoutes: Routes = [
   {
     path: 'newAccount',
     component: NewAccountComponent,
-  },
-  {
-    path: 'nepoveslo',
-    component: NepovesloComponent,
   },
   {
     path: 'accounts',

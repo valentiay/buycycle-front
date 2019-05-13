@@ -5,7 +5,7 @@ import {LandingRoutingModule} from './landing-routing.module';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import { NepovesloComponent } from './nepoveslo/nepoveslo.component';
+import { NepovesloComponent } from '../utils/nepoveslo/nepoveslo.component';
 import { NewAccountComponent } from './new-account/new-account.component';
 import {AccountModule} from '../account/account.module';
 import { AccountsComponent } from './accounts/accounts.component';

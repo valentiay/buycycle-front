@@ -1,0 +1,23 @@
+:host {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background-image: url("https://media0.giphy.com/media/FbPsiH5HTH1Di/giphy.gif");
+  background-position: center;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace;
+}
+
+main {
+  background-color: #000;
+  padding: 3em;
+}
+
+h2 {
+  color: #ddd;
+}
+
+a, h4 {
+  color: #888
+}
