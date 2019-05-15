@@ -27,4 +27,10 @@ export class Cached<T> {
         })
       );
   }
+
+  invalidate() {
+    this.value.complete();
+    this.isStarted = false;
+    this.value = new ReplaySubject(0);
+  }
 }

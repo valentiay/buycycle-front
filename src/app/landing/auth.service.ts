@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   createAccount(account: Account): Observable<AddAnythingResponse> {
-    return this.http.post<AddAnythingResponse>(this.addAccountUrl, account);
+    return this.http.post<AddAnythingResponse>(this.addAccountUrl, account, this.options);
   }
 
   login(user: NewUser): Observable<{}> {
@@ -82,7 +82,7 @@ export class AuthService {
   }
 
   logout(): Observable<{}> {
-    return this.http.post(this.logoutUrl, this.options).pipe(
+    return this.http.post(this.logoutUrl, {}, this.options).pipe(
       flatMap(() => this.user.forceGet())
     );
   }

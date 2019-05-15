@@ -103,6 +103,9 @@ export class AccountService {
   }
 
   setAccount(id: string): Observable<Account> {
+    this.persons.invalidate();
+    this.transfers.invalidate();
+    this.deals.invalidate();
     this.accountId = id;
     return this.http.get<Account>(this.getAccountUrl, this.accountIdParams()).pipe(
       tap(account => this.account.next(account))
