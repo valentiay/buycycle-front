@@ -5,7 +5,7 @@
         Buycycle
       </span>
       <span id="account-name">
-        <ng-container *ngIf="account">{{account.name}}</ng-container>
+        <ng-container *ngIf="account">{{(account.name.length>17)? (account.name | slice:0:14)+'...':(account.name)}}</ng-container>
         <ng-container *ngIf="!account">...</ng-container>
       </span>
     </div>

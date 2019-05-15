@@ -31,6 +31,7 @@ article {
   vertical-align: baseline;
   line-height: $header-height;
   margin-left: $default-margin;
+  white-space: nowrap;
 }
 
 #header-icon {

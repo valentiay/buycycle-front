@@ -8,6 +8,9 @@ import {AppRoutingModule} from './app-routing.module';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {
+  faUserEdit,
+  faUser,
+  faUserShield,
   faCheck,
   faTimes,
   faPlus,
@@ -38,6 +41,6 @@ import {LandingModule} from './landing/landing.module';
 })
 export class AppModule {
   constructor() {
-    library.add(faCheck, faTimes, faPlus, faPencilAlt, faInfoCircle, faExclamationTriangle);
+    library.add(faCheck, faTimes, faPlus, faPencilAlt, faInfoCircle, faExclamationTriangle, faUserEdit, faUser, faUserShield);
   }
 }

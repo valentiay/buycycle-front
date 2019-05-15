@@ -3,9 +3,14 @@
   <article>
     <section *ngIf="accounts && accounts.length === 0">Пока здесь пусто</section>
     <section id="accounts-list">
-      <a href="/account/{{account.id}}/dashboard" *ngFor="let account of accounts; first as isFirst"
+      <a href="/account/{{account.id}}/dashboard" *ngFor="let account of accounts"
        class="accounts-list-item">
-      <span>{{account.name}}</span><span class="account-creation-date">{{account.createdAt | date:'yyyy-MM-dd'}}</span>
+        <span><ng-container [ngSwitch]="account.mode">
+          <fa-icon *ngSwitchCase="'public'" [icon]="['fas', 'user-edit']" size="xs" class="account-mode"></fa-icon>
+          <fa-icon *ngSwitchCase="'publicRestricted'" [icon]="['fas', 'user']" size="xs" class="account-mode"></fa-icon>
+          <fa-icon *ngSwitchCase="'private'" [icon]="['fas', 'user-shield']" size="xs" class="account-mode"></fa-icon>
+        </ng-container>
+        {{account.name}}</span><span class="account-creation-date">{{account.createdAt | date:'yyyy-MM-dd'}}</span>
     </a>
     </section>
     <section>
